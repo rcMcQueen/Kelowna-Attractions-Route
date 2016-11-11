@@ -7,6 +7,12 @@
         width: 75%;
 	padding-left:50px;
        }
+li {
+   margin:0 0 20px 0;   
+}
+  body {
+	background-image: url("background1.png");
+     }
  </style>
 <title>Map Page</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,20 +23,19 @@
 </a>
 <!-- First Grid: Logo & About -->
 <div class="w3-row">
-  <div class="w3-quarter w3-orange w3-container w3-center" style="height:700px">
-
+  <div class="w3-quarter w3-blue w3-container w3-center" style="height:700px">
     <div class="w3-padding-16">
       <h1>Route Info</h1>
     </div>
     <div class="w3-padding-16">
-	<ul class="w3-ul w3-card-4">
-  	 <li class="w3-padding-24 w3-blue w3-bottombar w3-border-khaki">
+	<ul class="w3-ul w3-card-0">
+  	 <li class="w3-padding-24 w3-blue w3-border-blue" style = "box-shadow: 0px 0px 20px 2px #778899">
    	  <span onclick="this.parentElement.style.display='none'" class="w3-closebtn 		w3-padding">&times;</span>
    	  <img src="right.png" class="w3-left" style="width:70px">
     	  <span class="w3-large">Turn Left on Ellis</span><br>
    	  <span>500m</span>
   	 </li>
-	 <li class="w3-padding-8 w3-blue">
+	 <li class="w3-padding-8" style = "box-shadow: 0px 0px 20px 2px #778899">
    	  <span onclick="this.parentElement.style.display='none'" class="w3-closebtn 		w3-padding">&times;</span>
    	  <img src="right.png" class="w3-left" style="width:70px">
     	  <span class="w3-large">Turn Right on Gordon</span><br>
@@ -42,7 +47,7 @@
   <div class="w3-full w3-lightgrey w3-container" style="height:700px">
     <div class="w3-padding-16 w3-center">
       <h1>Map</h1>
-     	<div class = "w3-spi" id="map"></div>
+     	<div class = "w3-spin" id="map"></div>
     <script>
       function initMap() {
         var uluru = {lat: 49.8880, lng: -119.4960};
