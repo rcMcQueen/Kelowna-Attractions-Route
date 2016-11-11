@@ -1,9 +1,9 @@
 CREATE TABLE User (
-  uname VARCHAR(45),
-  upass VARCHAR(45),
+  uname VARCHAR(45) NOT NULL,
+  upass VARCHAR(45) NOT NULL,
   first_name VARCHAR(25),
   last_name VARCHAR(25),
-  email VARCHAR(45),
+  email VARCHAR(128) NOT NULL,
   country VARCHAR(45),
   PRIMARY KEY (uname)
 );
@@ -15,43 +15,51 @@ CREATE TABLE Route (
 );
 
 CREATE TABLE StoredRoute (
-  sid int,
-  uname VARCHAR(45),
-  rid int,
-  name VARCHAR(45),
+  sid int AUTO_INCREMENT,
+  uname VARCHAR(45) NOT NULL,
+  rid int NOT NULL,
+  name VARCHAR(45) NOT NULL,
   description VARCHAR(200),
   picture VARCHAR(512) CHARACTER SET 'ascii' COLLATE 'ascii_general_ci',
   date_taken DATE,
-  visible tinyint(1),
+  visible tinyint(1) NOT NULL,
   rating DECIMAL(3,2),
   PRIMARY KEY (sid, uname, rid),
   FOREIGN KEY (uname) REFERENCES User(uname),
   FOREIGN KEY (rid) REFERENCES Route(rid)
 );
 
+CREATE TABLE RouteStop (
+  id int AUTO_INCREMENT,
+  rid int NOT NULL,
+  aid int NOT NULL,
+  PRIMARY KEY(id, rid, aid),
+  FOREIGN KEY (rid) REFERENCES Route(rid),
+  FOREIGN KEY (aid) REFERENCES Attraction(aid)
+);
+
 CREATE TABLE Attraction (
-  aid int,
-  name VARCHAR(45),
+  aid int AUTO_INCREMENT,
+  name VARCHAR(45) NOT NULL,
   address VARCHAR(45),
   zip VARCHAR(7),
   city VARCHAR(45),
   country VARCHAR(45),
-  lat DECIMAL(10,7),
-  lon DECIMAL(10,7),
-  type VARCHAR(20),
+  lat DECIMAL(10,7) NOT NULL,
+  long DECIMAL(10,7) NOT NULL,
+  type VARCHAR(20) NOT NULL,
   description VARCHAR(200),
   rating DECIMAL(3,2),
   picture VARCHAR(512) CHARACTER SET 'ascii' COLLATE 'ascii_general_ci',
-  PRIMARY KEY(aid)
+  PRIMARY KEY (aid)
 );
 
-CREATE TABLE RouteStop (
-  id int,
-  rid int,
-  aid int,
-  PRIMARY KEY(id, rid, aid),
-  FOREIGN KEY (rid) REFERENCES Route(rid),
-  FOREIGN KEY (aid) REFERENCES Attraction(aid)
+CREATE TABLE AttractionPhoto (
+    aid int,
+    picture VARCHAR(512) CHARACTER SET 'ascii' COLLATE 'ascii_general_ci',
+    PRIMARY KEY(aid, picture),
+    FOREIGN KEY (aid) REFERENCES Attraction(aid),
+    FOREIGN KEY (picture) REFERENCES (picture)
 );
 
 INSERT INTO Attraction(aid, lat, lon, name, address, zip, city, country, type) VALUES (1, 49.839825, -119.431216, 'SpierHead Winery', '3950 Spiers Rd', 'V1W 4B3', 'Kelowna', 'Canada', 'Winery');
