@@ -14,6 +14,22 @@ CREATE TABLE Route (
   PRIMARY KEY (rid)
 );
 
+CREATE TABLE Attraction (
+  aid int AUTO_INCREMENT,
+  name VARCHAR(128) NOT NULL,
+  address VARCHAR(45),
+  zip VARCHAR(7),
+  city VARCHAR(45),
+  country VARCHAR(45),
+  lat DECIMAL(10,7) NOT NULL,
+  lng DECIMAL(10,7) NOT NULL,
+  type VARCHAR(20) NOT NULL,
+  description VARCHAR(200),
+  rating DECIMAL(3,2),
+  picture VARCHAR(512) CHARACTER SET 'ascii' COLLATE 'ascii_general_ci',
+  PRIMARY KEY (aid)
+);
+
 CREATE TABLE StoredRoute (
   sid int AUTO_INCREMENT,
   uname VARCHAR(45) NOT NULL,
@@ -38,28 +54,13 @@ CREATE TABLE RouteStop (
   FOREIGN KEY (aid) REFERENCES Attraction(aid)
 );
 
-CREATE TABLE Attraction (
-  aid int AUTO_INCREMENT,
-  name VARCHAR(45) NOT NULL,
-  address VARCHAR(45),
-  zip VARCHAR(7),
-  city VARCHAR(45),
-  country VARCHAR(45),
-  lat DECIMAL(10,7) NOT NULL,
-  lng DECIMAL(10,7) NOT NULL,
-  type VARCHAR(20) NOT NULL,
-  description VARCHAR(200),
-  rating DECIMAL(3,2),
-  picture VARCHAR(512) CHARACTER SET 'ascii' COLLATE 'ascii_general_ci',
-  PRIMARY KEY (aid)
-);
+
 
 CREATE TABLE AttractionPhoto (
     aid int,
     picture VARCHAR(512) CHARACTER SET 'ascii' COLLATE 'ascii_general_ci',
     PRIMARY KEY(aid, picture),
-    FOREIGN KEY (aid) REFERENCES Attraction(aid),
-    FOREIGN KEY (picture) REFERENCES (picture)
+    FOREIGN KEY (aid) REFERENCES Attraction(aid)
 );
 
 INSERT INTO Attraction(aid, lat, lng, name, address, zip, city, country, type) VALUES (1, 49.839825, -119.431216, 'SpierHead Winery', '3950 Spiers Rd', 'V1W 4B3', 'Kelowna', 'Canada', 'Winery');
