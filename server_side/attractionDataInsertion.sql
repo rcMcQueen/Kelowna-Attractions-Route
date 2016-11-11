@@ -46,7 +46,7 @@ CREATE TABLE Attraction (
   city VARCHAR(45),
   country VARCHAR(45),
   lat DECIMAL(10,7) NOT NULL,
-  long DECIMAL(10,7) NOT NULL,
+  lng DECIMAL(10,7) NOT NULL,
   type VARCHAR(20) NOT NULL,
   description VARCHAR(200),
   rating DECIMAL(3,2),
