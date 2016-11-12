@@ -1,2 +1,2 @@
 # Placeholder
-![alt tag](https://raw.githubusercontent.com/rcMcQueen/COSC304/best_dog.jpg)
+![Alt text](best_dog.jpg?raw=true "Title")
