@@ -6,6 +6,18 @@ module.exports = function(app, passport) {
 	app.get('/', function(req, res) {
 		res.render('index.ejs'); // load the index.ejs file
 	});
+	
+	app.get('/popAttr', function(req, res) {
+		connection.query("SELECT name, description, rating, picture FROM Attraction ORDER BY rating DESC");
+	});
+	
+	app.get('/recRoute', function(req, res) {
+		connection.query("SELECT name, description, rating, picture FROM StoredRoute ORDER BY rating DESC LIMIT 3");
+	});
+	// TO BE CONTINUED: need to include parameters in the following query
+	app.get('/makeAttr', function(req, res) {
+		connection.query("SELECT name, description, rating, picture FROM Attraction WHERE type = ? ORDER BY rating DESC");
+	});
 
 	// =====================================
 	// LOGIN ===============================
