@@ -1,2 +1,2 @@
 # Placeholder
-![alt tag](https://rcMcQueen/COSC304/edit/master/README.png)
+![alt tag](https://github.com/rcMcQueen/COSC304/best_dog.jpg)
