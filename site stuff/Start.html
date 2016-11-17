@@ -15,6 +15,7 @@
 <title>Start Page</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <body class="w3-content" style="max-width:2000px">
 <a href="route.html">
   <img border="0" src="back.png" width="50" height="50">
@@ -27,11 +28,19 @@
     </div>
     <div class="w3-padding-16">
 	<form class="w3-container w3-bottombar w3-blue w3-border-white" style = "box-shadow: 10px 10px 5px #888888">
-	<h3>Location</h3>
-	<label>Postal Code</label>
-		<input class="w3-input" type="text" length = "6">
-	<label>Address</label>
-		<input class="w3-input" type="text">
+	<h3>Current Location&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ending Location(optional)</h3>
+	<div class="input-group">
+  	 <span class="input-group-btn">
+        	<button onclick="getLocation()" class="btn btn-secondary" type="button"><i class="material-icons w3-large">my_location</i></button>
+      	  </span>
+ 	 <input type="text" class="form-control input-lg" id="inputlg" placeholder="Postal Code" aria-describedby="basic-addon1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<button class="btn btn-secondary" type="button"><i class="material-icons w3-large">my_location</i></button>
+	<input type="text" class="form-control input-lg" id="inputlg" placeholder="Postal Code" aria-describedby="basic-addon1">
+	</div>
+	<div class="input-group">
+ 	 <input type="text" class="form-control input-lg" id="inputlg" placeholder="Address" aria-describedby="basic-addon1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<input type="text" class="form-control input-lg" id="inputlg" placeholder="Address" aria-describedby="basic-addon1">
+	</div>
 	<br>
 	</form>
 	<form class="w3-container w3-blue" style = "box-shadow: 10px 10px 5px #888888">
@@ -40,14 +49,14 @@
    		 <span onclick="this.parentElement.style.display='none'" 
     			class="w3-closebtn w3-padding">&times;</span>
     			<img src="img_avatar2.png" class="w3-left w3-circle" style="width:60px">
-    		<span class="w3-xlarge">Attraction 1</span><br>
+    		<span class="w3-xlarge">Route 1</span><br>
     		<span>Desc</span>
  		 </li>
 		<li class="w3-padding-16 w3-border-bottom w3-border-white">
    		 <span onclick="this.parentElement.style.display='none'" 
     			class="w3-closebtn w3-padding">&times;</span>
     			<img src="img_avatar2.png" class="w3-left w3-circle" style="width:60px">
-    		<span class="w3-xlarge">Attraction 2</span><br>
+    		<span class="w3-xlarge">Route 2</span><br>
     		<span>Desc</span>
  		 </li>
 	</ul>
@@ -60,15 +69,39 @@
       <h1>Popular Attraction</h1>
       <div class="w3-center">
 	<div class="w3-padding-32">
-	<form class="w3-container w3-bottombar w3-blue w3-border-white" style = "box-shadow: 10px 10px 5px #888888">
+	<form class="w3-container w3-bottombar w3-blue w3-border-white w3-padding" style = "box-shadow: 10px 10px 5px #888888">
 	<h3>Location</h3>
-	<label>Postal Code</label>
-		<input class="w3-input" type="text" length = "6">
-	<label>Address</label>
-		<input class="w3-input" type="text">
+	<div class="w3-row-padding">
+  		<div class="w3-third">
+    			<input class="w3-radio" type="radio" name="attrType" value="Winerys" checked>
+			<label class="w3-validate">Winerys</label>
+  		</div>
+  		<div class="w3-third">
+    			<input class="w3-radio" type="radio" name="attrType" value="Hiking" checked>
+			<label class="w3-validate">Hiking</label>
+  		</div>
+  		<div class="w3-third">
+    			<input class="w3-radio" type="radio" name="gender" value="History" checked>
+			<label class="w3-validate">Historical Sites</label>
+  		</div>
+	</div>
+	<div class="w3-row-padding">
+  		<div class="w3-third">
+    			<input class="w3-radio" type="radio" name="attrType" value="Parks" checked>
+			<label class="w3-validate">Parks</label>
+  		</div>
+  		<div class="w3-third">
+    			<input class="w3-radio" type="radio" name="attrType" value="Farms" checked>
+			<label class="w3-validate">Farms/Orchards</label>
+  		</div>
+  		<div class="w3-third">
+    			<input class="w3-radio" type="radio" name="gender" value="Entertainment" checked>
+			<label class="w3-validate">Entertainment</label>
+  		</div>
+	</div>
 	<br>
 	</form>
-	<form class="w3-container w3-blue" style = "box-shadow: 10px 10px 5px #888888">
+	<form class="w3-container w3-blue w3-padding" style = "box-shadow: 10px 10px 5px #888888">
 	<ul class="w3-ul w3-card-4">
   		<li class="w3-padding-16 w3-border-bottom w3-border-white">
    		 <span onclick="this.parentElement.style.display='none'" 
@@ -98,3 +131,18 @@
 
 </body>
 </html>
+
+<script>
+var x = document.getElementById("demo");
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+}
+function showPosition(position) {
+    x.innerHTML = "Latitude: " + position.coords.latitude + 
+    "<br>Longitude: " + position.coords.longitude; 
+}
+</script>

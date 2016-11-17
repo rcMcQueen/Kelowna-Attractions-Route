@@ -4,8 +4,7 @@
  <style>
   #map {
         height: 450px;
-        width: 75%;
-	padding-left:50px;
+        width: 100%;
        }
   body {
 	background-image: url("background1.png");
@@ -19,29 +18,32 @@
   <img border="0" src="back.png" width="50" height="50">
 </a>
 <!-- First Grid: Logo & About -->
+
 <div class="w3-row">
-  <div class="w3-quarter w3-blue w3-container w3-center" style="height:700px">
-    <div class="w3-padding-16">
-      <h1>Route Maker</h1>
-    </div>
-    <div class="w3-padding-16">
-	<form class="w3-container" style = "box-shadow: 0px 0px 10px 5px #888888;height:450px">
+<div class="w3-third w3-container w3-center" style="height:700px">
+    <div class="w3-padding-16 w3-center">
+      <h1>Popular Attraction</h1>
+      <div class="w3-center">
+	<div class="w3-padding-32">
+	<form class="w3-container w3-blue w3-border-white w3-padding" style = "box-shadow: 10px 10px 5px #888888">
 	<h3>Location</h3>
-	<label>Postal Code</label>
-		<input class="w3-input" type="text" length = "6">
-	<label>Address</label>
-		<input class="w3-input" type="text">
-	<br>
+	
+<ul class="w3-navbar w3-teal">
+  <li><a href="javascript:void(0)" onclick="openTab('Attraction')">A</a></li>
+  <li><a href="javascript:void(0)" onclick="openTab('Selected')">S</a></li>
+</ul>
+
+<div id="Attraction" class="w3-container tab">
+  <form class="w3-container w3-blue w3-padding" style = "box-shadow: 10px 10px 5px #888888">
 	<ul class="w3-ul w3-card-4">
-  		<li class="w3-padding-16 w3-blue w3-bottombar w3-border-white">
+  		<li class="w3-padding-16 w3-border-bottom w3-border-white">
    		 <span onclick="this.parentElement.style.display='none'" 
     			class="w3-closebtn w3-padding">&times;</span>
     			<img src="img_avatar2.png" class="w3-left w3-circle" style="width:60px">
     		<span class="w3-xlarge">Attraction 1</span><br>
     		<span>Desc</span>
  		 </li>
-		<br>
-		<li class="w3-padding-16 w3-border-bottom w3-border-white w3-blue">
+		<li class="w3-padding-16 w3-border-bottom w3-border-white">
    		 <span onclick="this.parentElement.style.display='none'" 
     			class="w3-closebtn w3-padding">&times;</span>
     			<img src="img_avatar2.png" class="w3-left w3-circle" style="width:60px">
@@ -49,13 +51,44 @@
     		<span>Desc</span>
  		 </li>
 	</ul>
+	<br>
+	</form>
+</div>
+
+<div id="Selected" class="w3-container tab">
+  <form class="w3-container w3-blue w3-padding" style = "box-shadow: 10px 10px 5px #888888">
+	<ul class="w3-ul w3-card-4">
+  		<li class="w3-padding-16 w3-border-bottom w3-border-white">
+   		 <span onclick="this.parentElement.style.display='none'" 
+    			class="w3-closebtn w3-padding">&times;</span>
+    			<img src="img_avatar2.png" class="w3-left w3-circle" style="width:60px">
+    		<span class="w3-xlarge">Attraction 1</span><br>
+    		<span>Desc</span>
+ 		 </li>
+		<li class="w3-padding-16 w3-border-bottom w3-border-white">
+   		 <span onclick="this.parentElement.style.display='none'" 
+    			class="w3-closebtn w3-padding">&times;</span>
+    			<img src="img_avatar2.png" class="w3-left w3-circle" style="width:60px">
+    		<span class="w3-xlarge">Attraction 2</span><br>
+    		<span>Desc</span>
+ 		 </li>
+	</ul>
+	<br>
+	</form>
+</div>
+
+
+	<br>
 	</form>
     </div>
-  </div>
-  <div class="w3-full w3-lightgrey w3-container" style="height:700px">
+   </div>
+</div>
+</div>
+ 
+  <div class="w3-twothird w3-lightgrey w3-container" style="height:700px">
     <div class="w3-padding-16 w3-center">
       <h1>Map</h1>
-     	<div class = "w3-spin" id="map"></div>
+     	<div class = "spi" id="map" style = "box-shadow: 10px 10px 5px #888888"></div>
     <script>
       function initMap() {
         var uluru = {lat: 49.8880, lng: -119.4960};
@@ -65,11 +98,22 @@
         });
       }
     </script>
+
      <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmVV2Ab0atjhri97nB2q1OGD_Eb6xW-Hw&callback=initMap">
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmVV2Ab0atjhri97nB2q1OGD_Eb6xW-	Hw&callback=initMap">
     </script>
-      <div class="w3-left-align w3-padding-xxlarge">
-      </div>
+
+<script>
+openTab("Attraction")
+function openTab(tabName) {
+    var i;
+    var x = document.getElementsByClassName("tab");
+    for (i = 0; i < x.length; i++) {
+       x[i].style.display = "none";
+    }
+    document.getElementById(tabName).style.display = "block";
+}
+</script>
     </div>
   </div>
 </div>
