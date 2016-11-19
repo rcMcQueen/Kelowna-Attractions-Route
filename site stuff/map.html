@@ -5,22 +5,43 @@
   #map {
         height: 450px;
         width: 75%;
-	padding-left:50px;
+		padding-left:50px;
        }
-li {
-   margin:0 0 20px 0;   
+	   
+	
+		
+	body {
+		background-image: url("background1.png");
+		}
+		
+		label {
+    font: normal 18px ariel !important;
+	}
+	
+	li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
 }
-  body {
-	background-image: url("background1.png");
-     }
+	a:hover { 
+    background-color: teal;
+}
  </style>
 <title>Map Page</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
 <body class="w3-content" style="max-width:2000px">
-<a href="start.html">
-  <img border="0" src="back.png" width="50" height="50">
-</a>
+<ul style = "list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;"
+	class = "w3-blue">
+	<a href="start.html"><img border="0" src="back.png" width="50" height="50"></a>
+  <li style="float:right"><a class="active" href="#about"><b>Sign Up</b></a></li>
+  <li style="float:right"><a class="active" href="#about"><b>Login</b></a></li>
+</ul>
 <!-- First Grid: Logo & About -->
 <div class="w3-row">
   <div class="w3-quarter w3-container w3-center" style="height:700px">
