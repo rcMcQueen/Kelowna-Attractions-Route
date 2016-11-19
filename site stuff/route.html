@@ -42,11 +42,11 @@
 
 <div class="w3-row">
 <div class="w3-third w3-container w3-center" style="height:700px">
-    <div class="w3-padding-16 w3-center">
-      <h1>Popular Attraction</h1>
-      <div class="w3-center">
-	<div class="w3-padding-32">
-	<form class="w3-container w3-blue w3-border-white w3-padding" style = "box-shadow: 10px 10px 5px #888888">
+<div class="w3-padding-16 w3-center">
+<h1>Popular Attraction</h1>
+<div class="w3-center">
+<div class="w3-padding-32">
+<form class="w3-container w3-blue w3-border-white w3-padding" style = "box-shadow: 10px 10px 5px #888888">
 	<h3>Location</h3>
 	
 <ul class="w3-navbar w3-teal">
@@ -55,7 +55,6 @@
 </ul>
 
 <div id="Attraction" class="w3-container tab">
-  <form class="w3-container w3-blue w3-padding" style = "box-shadow: 10px 10px 5px #888888">
 	<ul class="w3-ul w3-card-4">
   		<li class="w3-padding-16 w3-border-bottom w3-border-white">
    		 <span onclick="this.parentElement.style.display='none'" 
@@ -72,12 +71,10 @@
     		<span>Desc</span>
  		 </li>
 	</ul>
-	</form>
 </div>
 
 <div id="Selected" class="w3-container tab">
-  <form class="w3-container w3-blue w3-padding" style = "box-shadow: 10px 10px 5px #888888">
-	<ul class="w3-ul w3-card-4">
+	<ul class="w3-ul w3-card-4" >
   		<li class="w3-padding-16 w3-border-bottom w3-border-white">
    		 <span onclick="this.parentElement.style.display='none'" 
     			class="w3-closebtn w3-padding">&times;</span>
@@ -93,7 +90,6 @@
     		<span>Desc</span>
  		 </li>
 	</ul>
-	</form>
 </div>
 
 
@@ -107,7 +103,7 @@
   <div class="w3-twothird w3-lightgrey w3-container" style="height:700px">
     <div class="w3-padding-16 w3-center">
 	<br><br>
-     	<div class = "spi" id="map" style = "box-shadow: 10px 10px 5px #888888"></div>
+     	<div class = "w3-spi" id="map" style = "box-shadow: 10px 10px 5px #888888"></div>
     <script>
       function initMap() {
         var uluru = {lat: 49.8880, lng: -119.4960};
@@ -131,6 +127,14 @@ function openTab(tabName) {
        x[i].style.display = "none";
     }
     document.getElementById(tabName).style.display = "block";
+}
+</script>
+
+<script>
+function printAttractions(length)	{
+	for (x = 0;x<length;x++){
+		alert("fuck me");
+	}
 }
 </script>
     </div>
