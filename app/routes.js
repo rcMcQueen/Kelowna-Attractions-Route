@@ -1,3 +1,6 @@
+var configDB = require('../config/database.js');
+var mysql = require('mysql');
+var connection = mysql.createConnection(configDB.DB);
 module.exports = function(app, passport) {
 
 	// =====================================

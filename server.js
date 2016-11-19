@@ -15,7 +15,6 @@ var bodyParser   = require('body-parser');
 var session      = require('express-session');
 
 var configDB = require('./config/database.js');
-
 // configuration ===============================================================
 var connection = mysql.createConnection(configDB.DB); // connect to our database
 
