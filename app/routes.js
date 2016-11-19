@@ -6,11 +6,11 @@ module.exports = function(app, passport) {
 	app.get('/', function(req, res) {
 		res.render('index.ejs'); // load the index.ejs file
 	});
-	
+
 	app.get('/popAttr', function(req, res) {
 		connection.query("SELECT name, description, rating, picture FROM Attraction ORDER BY rating DESC");
 	});
-	
+
 	app.get('/recRoute', function(req, res) {
 		connection.query("SELECT name, description, rating, picture FROM StoredRoute ORDER BY rating DESC LIMIT 3");
 	});

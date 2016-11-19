@@ -17,7 +17,7 @@ var session      = require('express-session');
 var configDB = require('./config/database.js');
 
 // configuration ===============================================================
-//mysql.connect(configDB.DB); // connect to our database
+mysql.connect(configDB.DB); // connect to our database
 
 require('./config/passport')(passport); // pass passport for configuration
 // initialize express app
