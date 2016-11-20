@@ -1,8 +1,23 @@
 var configDB = require('../config/database.js');
 var mysql = require('mysql');
 var connection = mysql.createConnection(configDB.DB);
-module.exports = function(app, passport) {
 
+function buildDynamicAttractionQuery(values) {
+	var conditions = [];
+	var index;
+	for (index = 0; index < values.length; index++) {
+		if (typeof values[index]!== 'undefined') {
+			conditions.push("type = ?");
+		}
+	}
+
+	return {
+		where: values.length ?
+			conditions.join(' OR ') : '1',
+		values: values
+	};
+}
+module.exports = function(app, passport) {
 	// =====================================
 	// HOME PAGE (with login links) ========
 	// =====================================
@@ -17,9 +32,23 @@ module.exports = function(app, passport) {
 	app.get('/recRoute', function(req, res) {
 		connection.query("SELECT name, description, rating, picture FROM StoredRoute ORDER BY rating DESC LIMIT 3");
 	});
+
 	// TO BE CONTINUED: need to include parameters in the following query
 	app.get('/makeAttr', function(req, res) {
-		connection.query("SELECT name, description, rating, picture FROM Attraction WHERE type = ? ORDER BY rating DESC");
+		var types = buildDynamicAttractionQuery(req.params.attrTypes);
+		var sql = 'SELECT name, description, rating, picture FROM Attraction WHERE ' + types.where;
+
+		connection.query(sql, types.values, function(err, results) {
+			if(!err){
+				res.json(results);
+			} else {
+				res.json({
+					"code" : 50,
+					"status" : "Error in connection to database."
+				});
+			}
+		});
+		//connection.query("SELECT name, description, rating, picture FROM Attraction WHERE type = ? ORDER BY rating DESC");
 	});
 
 	// =====================================
