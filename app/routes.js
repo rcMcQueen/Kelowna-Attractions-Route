@@ -7,19 +7,31 @@ var connection = mysql.createConnection({
 	database: 'routes'
 });
 
+Object.size = function(obj) {
+    var size = 0, key;
+    for (key in obj) {
+        if (obj.hasOwnProperty(key)) size++;
+    }
+    return size;
+};
+
 function buildDynamicAttractionQuery(values) {
-	var values = {"type" : ["Winery", "Park", "Historical/Museum"]}
+	//var values = {"type" : ["Winery", "Park", "Historical/Museum"]}
+    var size = Object.size(values);
+    console.log(JSON.stringify(values));
 	var conditions = [];
 	var index;
-	for (index = 0; index < values.length; index++) {
-		if (typeof values[index]!== 'undefined') {
+	for (index = 0; index < size; index++) {
+        console.log("Value " + index + values["type"]);
+
+		if (typeof values["type"] !== 'undefined') {
 			conditions.push("type = ?");
 		}
 	}
 
 	return {
-		where: values.length ?
-			conditions.join(' OR ') : '1',
+		where: size ?
+			conditions.join(' OR ') : conditions,
 		values: values
 	};
 }

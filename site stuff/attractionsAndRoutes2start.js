@@ -20,7 +20,7 @@ function getPopularAttractions() {
      });
  };
 
- function getRecommendedRoutes() {
+function getRecommendedRoutes() {
      $(document).ready(function () {
          $.ajax({
              type: 'GET',
@@ -37,17 +37,39 @@ function getPopularAttractions() {
      });
  };
 
- var attrTypes = {};
- $.getScript("attrTypes.js", function() {
-     attrTypes = updateAttractions();
- });
+function updateAttractions() {
+    var selectedAttr = {"type":[]};
+    if(document.getElementById("Winery").checked){
+        //selectedAttr["type"] = "Winery";
+        selectedAttr["type"].push("Winery");
+    }
+    if(document.getElementById("Hiking Trail").checked){
+        selectedAttr["type"].push("Hiking Trail");
+    }
+    if(document.getElementById("Historical/Museum").checked){
+        selectedAttr["type"].push("Historical/Museum");
+    }
+    if(document.getElementById("Park").checked){
+        selectedAttr["type"].push("Park");
+    }
+    if(document.getElementById("Farm/Orchard").checked){
+        selectedAttr["type"].push("Farm/Orchard");
+    }
+    if(document.getElementById("Entertainment").checked){
+        selectedAttr["type"].push("Entertainment");
+    }
+    return selectedAttr;
+}
 
- function getAttractionTypes() {
+function getAttractions() {
+     var attrTypes = {};
+     attrTypes = updateAttractions();
+
      $(document).ready(function () {
          $.ajax({
              type: 'GET',
              data: attrTypes,
-             url: 'http://159.203.47.53:8080/makeAttr',
+             url: ':8080/makeAttr',
              dataType: 'json',
              success: function (data) {
                  data = JSON.stringify(data);
@@ -58,21 +80,4 @@ function getPopularAttractions() {
              }
          });
      });
- };
-
- function getSelectedAttractions() {
-     $(document).ready(function () {
-         $.ajax({
-             type: 'GET',
-             url: 'http://159.203.47.53:8080/popAttr',
-             dataType: 'json',
-             success: function (data) {
-                 data = JSON.stringify(data);
-                 console.log(data);
-             },
-             error: function (data) {
-                 console.log('Error, Ajax call unsuccessful.', data);
-             }
-         });
-     });
- };
+};

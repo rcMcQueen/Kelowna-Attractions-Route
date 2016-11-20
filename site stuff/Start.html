@@ -98,34 +98,34 @@
       <h1>Popular Attractions</h1>
       <div class="w3-center">
 	<div class="w3-padding-32">
-	<form class="w3-container w3-bottombar w3-blue w3-border-white w3-padding" style = "box-shadow: 10px 10px 5px #888888" onchange="myFunction()">
+	<form class="w3-container w3-bottombar w3-blue w3-border-white w3-padding" style = "box-shadow: 10px 10px 5px #888888" onchange="getAttractions()">
 	<h3>Location</h3>
 	<div class="w3-row-padding">
   		<div class="w3-third">
-    			<input type="checkbox" name="Winery" value="Winery" checked>
+    			<input id="Winery" type="checkbox" name="Winery" value="Winery" unchecked>
 			<label class="w3-validate">Wineries</label>
 			</input>
   		</div>
   		<div class="w3-third">
-    			<input  type="checkbox" name="Hiking Trail" value="Hiking Trail" checked>
+    			<input id="Hiking Trail" type="checkbox" name="Hiking Trail" value="Hiking Trail" unchecked>
 			<label class="w3-validate">Hiking</label>
   		</div>
   		<div class="w3-third">
-    			<input  type="checkbox" name="Historical/Museum" value="Historical/Museum" checked>
+    			<input id="Historical/Museum" type="checkbox" name="Historical/Museum" value="Historical/Museum" unchecked>
 			<label class="w3-validate">Historical Sites</label>
   		</div>
 	</div>
 	<div class="w3-row-padding">
   		<div class="w3-third">
-    			<input  type="checkbox" name="Park" value="Park" checked>
+    			<input  id="Park" type="checkbox" name="Park" value="Park" unchecked>
 			<label class="w3-validate">Parks</label>
   		</div>
   		<div class="w3-third">
-    			<input	type="checkbox" name="Farm/Orchard" value="Farm/Orchard" checked>
+    			<input	id="Farm/Orchard" type="checkbox" name="Farm/Orchard" value="Farm/Orchard" unchecked>
 			<label class="w3-validate">Farms/Orchards</label>
   		</div>
   		<div class="w3-third">
-    			<input type="checkbox" name="Entertainment" value="Entertainment" checked>
+    			<input id="Entertainment" type="checkbox" name="Entertainment" value="Entertainment" unchecked>
 			<label class="w3-validate">Entertainment</label>
   		</div>
 	</div>
@@ -168,8 +168,8 @@
 
 </body>
 </html>
-<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAmVV2Ab0atjhri97nB2q1OGD_Eb6xW-Hw&js?sensor=false"></script> 
-<script src="attrTypes.js"></script>
+<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAmVV2Ab0atjhri97nB2q1OGD_Eb6xW-Hw&js?sensor=false"></script>
+<script src="attractionsAndRoutes2start.js"></script>
 <script>
 
    
