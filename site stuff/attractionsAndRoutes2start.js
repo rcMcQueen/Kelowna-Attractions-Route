@@ -69,7 +69,7 @@ function getAttractions() {
          $.ajax({
              type: 'GET',
              data: attrTypes,
-             url: ':8080/makeAttr',
+             url: 'http://159.203.47.53:8080/makeAttr',
              dataType: 'json',
              success: function (data) {
                  data = JSON.stringify(data);
