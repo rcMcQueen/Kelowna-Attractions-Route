@@ -10,10 +10,9 @@ var connection = mysql.createConnection({
   host: 'localhost',
   port: '3306',
   user: 'root',
-  password: 'null'
+  password: 'a4g443fds2A',
+  database: 'routes'
 });
-
-connection.query('USE assignment_two');
 
 // Expose this function to our app using module.exports
 

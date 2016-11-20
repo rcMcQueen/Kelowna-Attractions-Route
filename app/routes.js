@@ -1,8 +1,14 @@
 var configDB = require('../config/database.js');
 var mysql = require('mysql');
-var connection = mysql.createConnection(configDB.DB);
+var connection = mysql.createConnection({
+	host: 'localhost',
+	user: 'root',
+	password: 'a4g443fds2A',
+	database: 'routes'
+});
 
 function buildDynamicAttractionQuery(values) {
+	var values = {"type" : ["Winery", "Park", "Historical/Museum"]}
 	var conditions = [];
 	var index;
 	for (index = 0; index < values.length; index++) {
@@ -36,8 +42,10 @@ module.exports = function(app, passport) {
 	// TO BE CONTINUED: need to include parameters in the following query
 	app.get('/makeAttr', function(req, res) {
 		var types = buildDynamicAttractionQuery(req.params.attrTypes);
-		var sql = 'SELECT name, description, rating, picture FROM Attraction WHERE ' + types.where;
-
+		console.log(types.where);
+		console.log(types.values);
+		var sql = 'SELECT name, type FROM Attraction WHERE ' + types.where;
+		console.log(sql);
 		connection.query(sql, types.values, function(err, results) {
 			if(!err){
 				res.json(results);
