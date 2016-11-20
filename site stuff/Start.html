@@ -44,6 +44,7 @@
     overflow: hidden;"
 	class = "w3-blue">
 	<a href="route.html"><img border="0" src="back.png" width="50" height="50"></a>
+ <button onclick="alert('Directions: Enter starting address, then choose either a predefined route, attraction to visit, or custom ending address');" class="btn btn-secondary" type="button"><i class="material-icons w3-xxxlarge">help</i></button>
   <li style="float:right"><a class="active" href="#about"><b>Sign Up</b></a></li>
   <li style="float:right"><a class="active" href="#about"><b>Login</b></a></li>
 </ul>
@@ -76,14 +77,14 @@
   		<li class="w3-padding-16 w3-border-bottom w3-border-white">
    		 <span onclick="this.parentElement.style.display='none'" 
     			class="w3-closebtn w3-padding">&times;</span>
-    			<img src="img_avatar2.png" class="w3-left w3-circle" style="width:60px">
+    			<img src="best_dog.jpg" class="w3-left w3-circle" style="width:60px">
     		<span class="w3-xlarge">Route 1</span><br>
     		<span>Desc</span>
  		 </li>
 		<li class="w3-padding-16 w3-border-bottom w3-border-white">
    		 <span onclick="this.parentElement.style.display='none'" 
     			class="w3-closebtn w3-padding">&times;</span>
-    			<img src="img_avatar2.png" class="w3-left w3-circle" style="width:60px">
+    			<img src="best_dog.jpg" class="w3-left w3-circle" style="width:60px">
     		<span class="w3-xlarge">Route 2</span><br>
     		<span>Desc</span>
  		 </li>
@@ -135,21 +136,21 @@
   		<li class="w3-padding-16 w3-border-bottom w3-border-white">
    		 <span onclick="this.parentElement.style.display='none'" 
     			class="w3-closebtn w3-padding">&times;</span>
-    			<img src="img_avatar2.png" class="w3-left w3-circle" style="width:60px">
+    			<img src="best_dog.jpg" class="w3-left w3-circle" style="width:60px">
     		<span class="w3-xlarge">Attraction 1</span><br>
     		<span>Desc</span>
  		 </li>
 		<li class="w3-padding-16 w3-border-bottom w3-border-white">
    		 <span onclick="this.parentElement.style.display='none'" 
     			class="w3-closebtn w3-padding">&times;</span>
-    			<img src="img_avatar2.png" class="w3-left w3-circle" style="width:60px">
+    			<img src="best_dog.jpg" class="w3-left w3-circle" style="width:60px">
     		<span class="w3-xlarge">Attraction 2</span><br>
     		<span>Desc</span>
  		 </li>
 		 <li class="w3-padding-16 w3-border-bottom w3-border-white">
    		 <span onclick="this.parentElement.style.display='none'" 
     			class="w3-closebtn w3-padding">&times;</span>
-    			<img src="img_avatar2.png" class="w3-left w3-circle" style="width:60px">
+    			<img src="best_dog.jpg" class="w3-left w3-circle" style="width:60px">
     		<span class="w3-xlarge">Attraction 3</span><br>
     		<span>Desc</span>
  		 </li>
@@ -171,7 +172,6 @@
 <script src="attrTypes.js"></script>
 <script>
 
-alert("Directions: Enter starting address, then choose either a predefined route, attraction to visit, or custom ending address");
    
 var x = document.getElementById("currLoc");
 function getLocation(idTag) {

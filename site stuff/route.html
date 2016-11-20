@@ -27,7 +27,7 @@
 	}
 	
 	.attrImg {
-		src="img_avatar2.png" 
+		src="best_dog.jpg" 
 		class="w3-left w3-circle" 
 		style="width:60px"
 	}
@@ -35,6 +35,7 @@
 <title>Route Page</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <body class="w3-content" style="max-width:2000px">
 <ul style = "list-style-type: none;
     margin: 0;
@@ -42,6 +43,7 @@
     overflow: hidden;"
 	class = "w3-blue">
 	<a href="map.html"><img border="0" src="back.png" width="50" height="50"></a>
+	<button onclick="alert('Directions: Add more attractions to visit on route, hit next button when ready to proceed');" class="btn btn-secondary" type="button"><i class="material-icons w3-xxxlarge">help</i></button>
   <li style="float:right"><a class="active" href="#about"><b>Sign Up</b></a></li>
   <li style="float:right"><a class="active" href="#about"><b>Login</b></a></li>
 </ul>
@@ -58,7 +60,14 @@
 <ul class="w3-navbar w3-teal">
   <li><a href="javascript:void(0)" onclick="openTab('Attraction')">Attractions</a></li>
   <li><a href="javascript:void(0)" onclick="openTab('Selected')">Selected</a></li>
+  <li style = "float:right"><a href="javascript:void(0)" onclick="openTab('Finalize')">Finalize</a></li>
 </ul>
+<div id="Finalize" class="w3-container tab">
+	<br>
+	<h3>Are you sure your route is ready?</h3>
+	<br>
+	<a href = "map.html"><button class="btn btn-secondary" type="button">Yes, Proceed</button></a>
+</div>
 
 <div id="Attraction" class="w3-container tab">
 	<form class="w3-container w3-bottombar w3-blue w3-border-white w3-padding" style = "box-shadow: 10px 10px 5px #888888" onchange="myFunction()">
