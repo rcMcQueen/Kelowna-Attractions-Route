@@ -46,22 +46,11 @@
 <div class="w3-row">
   <div class="w3-quarter w3-container w3-center" style="height:700px">
     <div class="w3-padding-16">
-      <h1>Route Info</h1>
+      <h1>Route Directions</h1>
     </div>
-    <div class="w3-padding-16">
-	<ul class="w3-ul w3-card-0 w3-blue">
-  	 <li class="w3-padding-24  w3-border-blue" style = "box-shadow: 0px 0px 20px 2px #778899">
-   	  <span onclick="this.parentElement.style.display='none'" class="w3-closebtn 		w3-padding">&times;</span>
-   	  <img src="right.png" class="w3-left" style="width:70px">
-    	  <span class="w3-large">Turn Left on Ellis</span><br>
-   	  <span>500m</span>
-  	 </li>
-	 <li class="w3-padding-8" style = "box-shadow: 0px 0px 20px 2px #778899">
-   	  <span onclick="this.parentElement.style.display='none'" class="w3-closebtn 		w3-padding">&times;</span>
-   	  <img src="right.png" class="w3-left" style="width:70px">
-    	  <span class="w3-large">Turn Right on Gordon</span><br>
-   	  <span>2km</span>
-  	 </li>
+<form class="w3-container w3-blue w3-border-white w3-padding" style = "box-shadow: 10px 10px 5px #888888">
+<div id="Selected" class="w3-container tab">
+	<ul class="w3-ul w3-card-4" id = "attrList" >
 	</ul>
     </div>
   </div>
@@ -87,8 +76,45 @@
   </div>
 </div>
 
+<script>
+printAttractions("attrList");
+printAttractions("attrList");
+x = 2;
 
+function printAttractions(listId)	{
+	var listNode = document.createElement("LI");
+	listNode.setAttribute('class','w3-padding-16 w3-border-bottom w3-border-white ');
+	listNode.setAttribute('onclick',"decrementDirection(this);");
+	var imageNode = document.createElement("IMG");
+	imageNode.setAttribute('src', 'best_dog.jpg');
+	imageNode.setAttribute('class','w3-left w3-circle');
+	imageNode.setAttribute('style','width:60px');
+	var spanNodeOne = document.createElement('span');
+	spanNodeOne.innerHTML = "Direction Here";
+	spanNodeOne.setAttribute('class','w3-large');
+	var spanNodeTwo = document.createElement("span");
+	spanNodeTwo.innerHTML = "Desc";
+    listNode.appendChild(imageNode);
+	listNode.appendChild(spanNodeOne);
+	listNode.appendChild(document.createElement("BR"));
+	listNode.appendChild(spanNodeTwo);
+    document.getElementById(listId).appendChild(listNode);
+}
 
+function decrementDirection(item) {
+	item.style.display='none'
+	x = x-1;
+	if(x <= 0) {
+		var listNode = document.createElement("LI");
+		listNode.setAttribute('class','w3-padding-16 w3-border-bottom w3-border-white ');
+		var spanNodeOne = document.createElement('span');
+		spanNodeOne.setAttribute('class','w3-large');
+		spanNodeOne.innerHTML = "All Done";
+		listNode.appendChild(spanNodeOne);
+		document.getElementById("attrList").appendChild(listNode);
+	}
+}
+</script>
 <!-- Footer -->
 
 </body>
