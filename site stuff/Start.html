@@ -168,6 +168,7 @@
 </body>
 </html>
 <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAmVV2Ab0atjhri97nB2q1OGD_Eb6xW-Hw&js?sensor=false"></script> 
+<script src="attrTypes.js"></script>
 <script>
 
 alert("Directions: Enter starting address, then choose either a predefined route, attraction to visit, or custom ending address");
@@ -210,27 +211,5 @@ function proceed(bool)	{
 	return;
 }
 
-function updateAttractions() {
-	var selectedAttr = {"type":[]};
-	if(document.getElementById("Winery").checked){
-		<!--selectedAttr["type"] = "Winery";
-		selectedAttr["type"].push("Winery");
-	}
-	if(document.getElementById("Hiking Trail").checked){
-		selectedAttr["type"] = "Hiking Trail";
-	}
-	if(document.getElementById("Historical/Museum").checked){
-		selectedAttr["type"] = "Historical/Museum";
-	}
-	if(document.getElementById("Park").checked){
-		selectedAttr["type"] = "Park";
-	}
-	if(document.getElementById("Farm/Orchard").checked){
-		selectedAttr["type"] = "Farm/Orchard";
-	}
-	if(document.getElementById("Entertainment").checked){
-		selectedAttr["type"] = "Entertainment";
-	}
-    return selectedAttr;
-}
+
 </script>

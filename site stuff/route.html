@@ -11,7 +11,7 @@
      }
 	 
 	 label {
-    font: normal 18px ariel !important;
+    font: bold 18px ariel !important;
 	}
 	
 	li a {
@@ -20,7 +20,9 @@
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-}
+	}
+		 
+		 
 	a:hover { 
     background-color: teal;
 }
@@ -43,23 +45,56 @@
 <div class="w3-row">
 <div class="w3-third w3-container w3-center" style="height:700px">
 <div class="w3-padding-16 w3-center">
-<h1>Popular Attraction</h1>
+<h1>Attractions</h1>
 <div class="w3-center">
 <div class="w3-padding-32">
 <form class="w3-container w3-blue w3-border-white w3-padding" style = "box-shadow: 10px 10px 5px #888888">
-	<h3>Location</h3>
 	
 <ul class="w3-navbar w3-teal">
-  <li><a href="javascript:void(0)" onclick="openTab('Attraction')">A</a></li>
-  <li><a href="javascript:void(0)" onclick="openTab('Selected')">S</a></li>
+  <li><a href="javascript:void(0)" onclick="openTab('Attraction')">Attractions</a></li>
+  <li><a href="javascript:void(0)" onclick="openTab('Selected')">Selected</a></li>
 </ul>
 
 <div id="Attraction" class="w3-container tab">
+	<form class="w3-container w3-bottombar w3-blue w3-border-white w3-padding" style = "box-shadow: 10px 10px 5px #888888" onchange="myFunction()">
+	<ul class="w3-ul w3-card-8 w3-padding-8">
+	<div class="w3-row-padding">
+  		<div class="w3-half">
+    			<input type="checkbox" name="Winery" value="Winery" checked>
+			<label class="w3-validate">Wineries</label>
+			</input>
+  		</div>
+  		<div class="w3-half">
+    			<input  type="checkbox" name="Hiking Trail" value="Hiking Trail" checked>
+			<label class="w3-validate">Hiking</label>
+  		</div>
+	</div>
+	<div class="w3-row-padding">
+  		<div class="w3-half">
+    			<input  type="checkbox" name="Historical/Museum" value="Historical/Museum" checked>
+			<label class="w3-validate">Historical Sites</label>
+  		</div>
+  		<div class="w3-half">
+    			<input  type="checkbox" name="Park" value="Park" checked>
+			<label class="w3-validate">Parks</label>
+  		</div>
+	</div>
+	<div class="w3-row-padding">
+  		<div class="w3-half">
+    			<input	type="checkbox" name="Farm/Orchard" value="Farm/Orchard" checked>
+			<label class="w3-validate">Farms/Orchards</label>
+  		</div>
+  		<div class="w3-half">
+    			<input type="checkbox" name="Entertainment" value="Entertainment" checked>
+			<label class="w3-validate">Entertainment</label>
+  		</div>
+	</div>
+	</ul>
+	<br>
+	</form>
 	<ul class="w3-ul w3-card-4">
-  		<li class="w3-padding-16 w3-border-bottom w3-border-white">
-   		 <span onclick="this.parentElement.style.display='none'" 
-    			class="w3-closebtn w3-padding">&times;</span>
-    			<img src="img_avatar2.png" class="w3-left w3-circle" style="width:60px">
+  		<li class="w3-padding-16 w3-border-bottom w3-border-white " onclick="this.style.display='none'">
+    		<img src="img_avatar2.png" class="w3-left w3-circle" style="width:60px">
     		<span class="w3-xlarge">Attraction 1</span><br>
     		<span>Desc</span>
  		 </li>
@@ -132,9 +167,12 @@ function openTab(tabName) {
 
 <script>
 function printAttractions(length)	{
-	for (x = 0;x<length;x++){
-		alert("fuck me");
-	}
+    var node = document.createElement("LI");
+	node = "class='w3-padding-16 w3-border-bottom w3-border-white'";
+    var textnode = document.createTextNode("Water");
+    node.appendChild(textnode);
+    document.getElementById("myList").appendChild(node);
+}
 }
 </script>
     </div>
