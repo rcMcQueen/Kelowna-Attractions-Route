@@ -41,7 +41,7 @@ module.exports = function(app, passport) {
 	});
 
 	app.get('/popAttr', function(req, res) {
-		var sql = 'SELECT * FROM Attraction ORDER BY rating DESC";';
+		var sql = 'SELECT * FROM Attraction ORDER BY rating DESC;';
 		connection.query(sql, function(err, results) {
 			if(!err){
 				res.json(results);
