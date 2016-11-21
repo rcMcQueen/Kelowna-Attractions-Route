@@ -45,7 +45,17 @@ module.exports = function(app, passport) {
 	});
 
 	app.get('/recRoute', function(req, res) {
-		connection.query("SELECT name, description, rating, picture FROM StoredRoute ORDER BY rating DESC LIMIT 3");
+		var sql = 'SELECT name, description, rating, picture FROM StoredRoute ORDER BY rating DESC LIMIT 2;' ;
+		connection.query(sql, function(err, results) {
+			if(!err){
+				res.json(results);
+			} else {
+				res.json({
+					"code" : 50,
+					"status" : "Error in connection to database."
+				});
+			}
+		});
 	});
 
 	app.get('/makeAttr', function(req, res) {
