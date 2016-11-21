@@ -1,5 +1,3 @@
-document.getElementsByTagName('head')[0].appendChild(script);
-
 function getPopularAttractions() {
     var DATA = {};
     $(document).ready(function () {
