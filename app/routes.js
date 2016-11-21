@@ -16,16 +16,12 @@ Object.size = function(obj) {
 };
 
 function buildDynamicAttractionQuery(values) {
-	//var values = {"type" : ["Winery", "Park", "Historical/Museum"]}
     var size = Object.size(values);
-    console.log(JSON.stringify(values));
 	var conditions = [];
 	var index;
 	for (index = 0; index < size; index++) {
-        console.log("Value " + index + values["type"]);
-
-		if (typeof values["type"] !== 'undefined') {
-			conditions.push("type = ?");
+		if (typeof values[index] !== 'undefined') {
+			conditions.push("type = '?'");
 		}
 	}
 
@@ -52,14 +48,15 @@ module.exports = function(app, passport) {
 		connection.query("SELECT name, description, rating, picture FROM StoredRoute ORDER BY rating DESC LIMIT 3");
 	});
 
-	// TO BE CONTINUED: need to include parameters in the following query
 	app.get('/makeAttr', function(req, res) {
-		var types = buildDynamicAttractionQuery(req.params.attrTypes);
-		console.log(types.where);
-		console.log(types.values);
-		var sql = 'SELECT name, type FROM Attraction WHERE ' + types.where;
+		var stringify = JSON.stringify(req.query.type);
+		var content = JSON.parse(stringify);
+		var types = buildDynamicAttractionQuery(content);
+		console.log('Where: ' + types.where);
+		console.log('Values: ' + types.values);
+		var sql = 'SELECT * FROM Attraction WHERE ' + types.where + ' ORDER BY rating DESC;' ;
 		console.log(sql);
-		connection.query(sql, types.values, function(err, results) {
+		connection.query(sql, [types.values], function(err, results) {
 			if(!err){
 				res.json(results);
 			} else {
@@ -69,7 +66,6 @@ module.exports = function(app, passport) {
 				});
 			}
 		});
-		//connection.query("SELECT name, description, rating, picture FROM Attraction WHERE type = ? ORDER BY rating DESC");
 	});
 
 	// =====================================

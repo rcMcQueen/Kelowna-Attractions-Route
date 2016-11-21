@@ -40,7 +40,6 @@ function getRecommendedRoutes() {
 function updateAttractions() {
     var selectedAttr = {"type":[]};
     if(document.getElementById("Winery").checked){
-        //selectedAttr["type"] = "Winery";
         selectedAttr["type"].push("Winery");
     }
     if(document.getElementById("Hiking Trail").checked){
@@ -64,7 +63,6 @@ function updateAttractions() {
 function getAttractions() {
      var attrTypes = {};
      attrTypes = updateAttractions();
-     console.log(attrTypes);
      $(document).ready(function () {
          $.ajax({
              type: 'GET',
