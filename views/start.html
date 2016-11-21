@@ -219,7 +219,6 @@ function attrListMinus()	{
 
 function printAttractions(listId)	{
 	var jsonRecRoutes = getRecommendedRoutes();
-	var obj = jsonRecRoutes.parse(text);
 	var listNode = document.createElement("LI");
 	listNode.setAttribute('class','w3-padding-16 w3-border-bottom w3-border-white ');
 	listNode.setAttribute('onclick',"this.style.display='none'");
@@ -228,10 +227,10 @@ function printAttractions(listId)	{
 	imageNode.setAttribute('class','w3-left w3-circle');
 	imageNode.setAttribute('style','width:60px');
 	var spanNodeOne = document.createElement('span');
-	spanNodeOne.innerHTML = obj.name[y];
+	spanNodeOne.innerHTML = jsonRecRoutes.name[y];
 	spanNodeOne.setAttribute('class','w3-xlarge');
 	var spanNodeTwo = document.createElement("span");
-	spanNodeTwo.innerHTML = obj[y].description;
+	spanNodeTwo.innerHTML = jsonRecRoutes.description[y];
     listNode.appendChild(imageNode);
 	listNode.appendChild(spanNodeOne);
 	listNode.appendChild(document.createElement("BR"));
