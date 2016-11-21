@@ -163,7 +163,7 @@ for(x = 0;x<3;x++){
 var attrNum = 0;
 var routeNum = 0;
 var x = document.getElementById("currLoc");
-var y = 1;
+var y = 0;
 
 function getLocation(idTag) {
 	x = document.getElementById(idTag);
@@ -219,7 +219,6 @@ function attrListMinus()	{
 
 function printAttractions(listId)	{
 	var jsonRecRoutes = getRecommendedRoutes();
-	var obj = JSON.parse(jsonRecRoutes);
 	var listNode = document.createElement("LI");
 	listNode.setAttribute('class','w3-padding-16 w3-border-bottom w3-border-white ');
 	listNode.setAttribute('onclick',"this.style.display='none'");
@@ -228,10 +227,10 @@ function printAttractions(listId)	{
 	imageNode.setAttribute('class','w3-left w3-circle');
 	imageNode.setAttribute('style','width:60px');
 	var spanNodeOne = document.createElement('span');
-	spanNodeOne.innerHTML = obj.name[y];
+	spanNodeOne.innerHTML = jsonRecRoutes[y].name;
 	spanNodeOne.setAttribute('class','w3-xlarge');
 	var spanNodeTwo = document.createElement("span");
-	spanNodeTwo.innerHTML = obj.description[y];
+	spanNodeTwo.innerHTML = jsonRecRoutes[y].description;
     listNode.appendChild(imageNode);
 	listNode.appendChild(spanNodeOne);
 	listNode.appendChild(document.createElement("BR"));
