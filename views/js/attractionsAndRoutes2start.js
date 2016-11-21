@@ -4,45 +4,37 @@ script.type = 'text/javascript';
 document.getElementsByTagName('head')[0].appendChild(script);
 
 function getPopularAttractions() {
-    var DATA = {};
-    $(document).ready(function () {
-        $.ajax({
-            type: 'GET',
-            url: 'http://159.203.47.53:8080/popAttr',
-            dataType: 'json',
-            success: function (data) {
-                DATA = data;
-                data = JSON.stringify(data);
-                console.log(data);
-            },
-            error: function (err) {
-                DATA = err;
-                console.log('Error, Ajax call unsuccessful.', err);
-            }
-        });
-    });
-    return DATA;
+     $(document).ready(function () {
+         $.ajax({
+             type: 'GET',
+             url: 'http://159.203.47.53:8080/popAttr',
+             dataType: 'json',
+             success: function (data) {
+                 data = JSON.stringify(data);
+                 console.log(data);
+             },
+             error: function (data) {
+                 console.log('Error, Ajax call unsuccessful.', data);
+             }
+         });
+     });
  };
 
 function getRecommendedRoutes() {
-    var DATA = {};
      $(document).ready(function () {
          $.ajax({
              type: 'GET',
              url: 'http://159.203.47.53:8080/recRoute',
              dataType: 'json',
              success: function (data) {
-                 DATA = data;
                  data = JSON.stringify(data);
                  console.log(data);
              },
-             error: function (err) {
-                 DATA = err;
-                 console.log('Error, Ajax call unsuccessful.', err);
+             error: function (data) {
+                 console.log('Error, Ajax call unsuccessful.', data);
              }
          });
      });
-    return DATA;
  };
 
 function updateAttractions() {
@@ -70,7 +62,6 @@ function updateAttractions() {
 
 function getAttractions() {
      var attrTypes = {};
-     var DATA = {};
      attrTypes = updateAttractions();
      $(document).ready(function () {
          $.ajax({
@@ -79,15 +70,12 @@ function getAttractions() {
              url: 'http://159.203.47.53:8080/makeAttr',
              dataType: 'json',
              success: function (data) {
-                 DATA = data;
                  data = JSON.stringify(data);
                  console.log(data);
              },
              error: function (err) {
-                 DATA = err;
                  console.log('Error, Ajax call unsuccessful.', err);
              }
          });
      });
-    return DATA;
 };

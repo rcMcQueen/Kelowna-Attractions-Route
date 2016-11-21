@@ -43,8 +43,8 @@
     padding: 0;
     overflow: hidden;"
 	class = "w3-blue">
-	<a href="route.html"><img border="0" src="img/back.png" width="50" height="50"></a>
- <button onclick="alert('Directions: Enter starting address, then choose either a predefined route, attraction to visit, or custom ending address');" class="btn btn-secondary" type="button"><i class="material-icons w3-xxxlarge">help</i></button>
+	<!--<a href="route.html"><img border="0" src="img/back.png" width="40" height="40"></a>-->
+ <button onclick="alert('Directions: Enter starting address, then choose either a predefined route, attraction to visit, or custom ending address');" class="btn btn-secondary" type="button"><i class="material-icons" style="font-size:40px">help</i></button>
   <li style="float:right"><a class="active" href="#about"><b>Sign Up</b></a></li>
   <li style="float:right"><a class="active" href="#about"><b>Login</b></a></li>
 </ul>
@@ -102,58 +102,40 @@
 	<h3>Location</h3>
 	<div class="w3-row-padding">
   		<div class="w3-third">
-    			<input id="Winery" type="checkbox" name="Winery" value="Winery" unchecked>
+    			<input id="Winery" type="checkbox" name="Winery" value="Winery" checked>
 			<label class="w3-validate">Wineries</label>
 			</input>
   		</div>
   		<div class="w3-third">
-    			<input id="Hiking Trail" type="checkbox" name="Hiking Trail" value="Hiking Trail" unchecked>
+    			<input id="Hiking Trail" type="checkbox" name="Hiking Trail" value="Hiking Trail" checked>
 			<label class="w3-validate">Hiking</label>
   		</div>
   		<div class="w3-third">
-    			<input id="Historical/Museum" type="checkbox" name="Historical/Museum" value="Historical/Museum" unchecked>
+    			<input id="Historical/Museum" type="checkbox" name="Historical/Museum" value="Historical/Museum" checked>
 			<label class="w3-validate">Historical Sites</label>
   		</div>
 	</div>
 	<div class="w3-row-padding">
   		<div class="w3-third">
-    			<input  id="Park" type="checkbox" name="Park" value="Park" unchecked>
+    			<input  id="Park" type="checkbox" name="Park" value="Park" checked>
 			<label class="w3-validate">Parks</label>
   		</div>
   		<div class="w3-third">
-    			<input	id="Farm/Orchard" type="checkbox" name="Farm/Orchard" value="Farm/Orchard" unchecked>
+    			<input	id="Farm/Orchard" type="checkbox" name="Farm/Orchard" value="Farm/Orchard" checked>
 			<label class="w3-validate">Farms/Orchards</label>
   		</div>
   		<div class="w3-third">
-    			<input id="Entertainment" type="checkbox" name="Entertainment" value="Entertainment" unchecked>
+    			<input id="Entertainment" type="checkbox" name="Entertainment" value="Entertainment" checked>
 			<label class="w3-validate">Entertainment</label>
   		</div>
 	</div>
 	<br>
 	</form>
 	<form class="w3-container w3-blue w3-padding-4" style = "box-shadow: 10px 10px 5px #888888">
-	<ul class="w3-ul w3-card-4">
-  		<li class="w3-padding-16 w3-border-bottom w3-border-white">
-   		 <span onclick="this.parentElement.style.display='none'"
-    			class="w3-closebtn w3-padding">&times;</span>
-    			<img src="img/best_dog.jpg" class="w3-left w3-circle" style="width:60px">
-    		<span class="w3-xlarge">Attraction 1</span><br>
-    		<span>Desc</span>
- 		 </li>
-		<li class="w3-padding-16 w3-border-bottom w3-border-white">
-   		 <span onclick="this.parentElement.style.display='none'"
-    			class="w3-closebtn w3-padding">&times;</span>
-    			<img src="img/best_dog.jpg" class="w3-left w3-circle" style="width:60px">
-    		<span class="w3-xlarge">Attraction 2</span><br>
-    		<span>Desc</span>
- 		 </li>
-		 <li class="w3-padding-16 w3-border-bottom w3-border-white">
-   		 <span onclick="this.parentElement.style.display='none'"
-    			class="w3-closebtn w3-padding">&times;</span>
-    			<img src="img/best_dog.jpg" class="w3-left w3-circle" style="width:60px">
-    		<span class="w3-xlarge">Attraction 3</span><br>
-    		<span>Desc</span>
- 		 </li>
+	<ul class="w3-ul w3-card-4" id ="attrList">
+		<button onclick ="attrListMinus();return false" style = 'display:none' id = 'backBtn'>Go Back</button>
+		<button onclick = 'attrListPlus();return false'>Load More</button>
+		<hr>
 	</ul>
 	<br>
 	</form>
@@ -173,7 +155,14 @@
 <script>
 
 
+for(x = 0;x<3;x++){
+	printAttractions("attrList");
+}
+
+var attrNum = 0;
+var routeNum = 0;
 var x = document.getElementById("currLoc");
+
 function getLocation(idTag) {
 	x = document.getElementById(idTag);
     if (navigator.geolocation) {
@@ -209,6 +198,42 @@ function proceed(bool)	{
 	}
 	alert("Error: Please enter ending location, or select route or attraction");
 	return;
+}
+
+function attrListPlus()	{
+	document.getElementById('backBtn').style.display="inline";
+	attrNum=attrNum+1;
+	<!--database page stuff here
+}
+
+function attrListMinus()	{
+	attrNum=attrNum-1;
+	if(attrNum == 0){
+		document.getElementById('backBtn').style.display="none";
+	}
+	<!--database stuff here
+}
+
+
+function printAttractions(listId)	{
+	var jsonRecRoutes = getRecommendedRoutes();
+	var listNode = document.createElement("LI");
+	listNode.setAttribute('class','w3-padding-16 w3-border-bottom w3-border-white ');
+	listNode.setAttribute('onclick',"this.style.display='none'");
+	var imageNode = document.createElement("IMG");
+	imageNode.setAttribute('src', 'img/best_dog.jpg');
+	imageNode.setAttribute('class','w3-left w3-circle');
+	imageNode.setAttribute('style','width:60px');
+	var spanNodeOne = document.createElement('span');
+	spanNodeOne.innerHTML = "Attraction Name Here";
+	spanNodeOne.setAttribute('class','w3-xlarge');
+	var spanNodeTwo = document.createElement("span");
+	spanNodeTwo.innerHTML = "Desc";
+    listNode.appendChild(imageNode);
+	listNode.appendChild(spanNodeOne);
+	listNode.appendChild(document.createElement("BR"));
+	listNode.appendChild(spanNodeTwo);
+    document.getElementById(listId).appendChild(listNode);
 }
 
 
