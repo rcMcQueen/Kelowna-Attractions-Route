@@ -8,7 +8,7 @@ var port     = process.env.PORT || 8080;
 var mysql = require('mysql');
 var passport = require('passport');
 var flash    = require('connect-flash');
-
+var path = require('path');
 var morgan       = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
@@ -26,6 +26,8 @@ require('./config/passport')(passport); // pass passport for configuration
        app.use(bodyParser.urlencoded({ extended: true }));
 
    app.set('view engine', 'ejs'); // set up ejs for templating
+   app.engine('html', require('ejs').renderFile);
+   app.use(express.static(path.join(__dirname, 'views')));
 
    // required for passport
    app.use(session({ secret: 'dank_memes' })); // session secret

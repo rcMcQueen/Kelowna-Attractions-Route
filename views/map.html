@@ -7,17 +7,17 @@
         width: 75%;
 		padding-left:50px;
        }
-	   
-	
-		
+
+
+
 	body {
-		background-image: url("background1.png");
+		background-image: url("img/background1.png");
 		}
-		
+
 		label {
     font: normal 18px ariel !important;
 	}
-	
+
 	li a {
     display: block;
     color: white;
@@ -25,7 +25,7 @@
     padding: 14px 16px;
     text-decoration: none;
 }
-	a:hover { 
+	a:hover {
     background-color: teal;
 }
  </style>
@@ -39,7 +39,7 @@
     padding: 0;
     overflow: hidden;"
 	class = "w3-blue">
-	<a href="start.html"><img border="0" src="back.png" width="50" height="50"></a>
+	<a href="start.html"><img border="0" src="img/back.png" width="50" height="50"></a>
 	<button onclick="alert('Directions: click directions as you finish them to remove them until you are done, have a nice trip!');" class="btn btn-secondary" type="button"><i class="material-icons w3-xxxlarge">help</i></button>
   <li style="float:right"><a class="active" href="#about"><b>Sign Up</b></a></li>
   <li style="float:right"><a class="active" href="#about"><b>Login</b></a></li>
@@ -88,7 +88,7 @@ function printAttractions(listId)	{
 	listNode.setAttribute('class','w3-padding-16 w3-border-bottom w3-border-white ');
 	listNode.setAttribute('onclick',"decrementDirection(this);");
 	var imageNode = document.createElement("IMG");
-	imageNode.setAttribute('src', 'best_dog.jpg');
+	imageNode.setAttribute('src', 'img/best_dog.jpg');
 	imageNode.setAttribute('class','w3-left w3-circle');
 	imageNode.setAttribute('style','width:60px');
 	var spanNodeOne = document.createElement('span');
