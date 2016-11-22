@@ -43,6 +43,7 @@ module.exports = function(passport) {
     // Defaults to user/pass. Add in email
     usernameField : 'uname',
     passwordfield : 'password',
+    emailField : 'email',
     passReqToCallback : true // enables passback of entire request to callback
   },
   function(req, uname, password, done) {
@@ -56,10 +57,8 @@ module.exports = function(passport) {
       else {
         var newUser = new Model.User();
         newUser.uname = uname;
-        console.log(req, "the req");
         newUser.password = bcrypt.hashSync(password);
-        console.log(newUser.uname, " username before store");
-        connection.query("INSERT INTO User (uname, password) VALUES (?, ?)", [newUser.uname, newUser.password]);
+        connection.query("INSERT INTO User (uname, password, email) VALUES (?, ?, ?)", [newUser.uname, newUser.password, newUser.email]);
         return done(null, newUser);
       }
     });
@@ -82,6 +81,7 @@ module.exports = function(passport) {
     connection.query("SELECT * FROM User WHERE uname = ?", [username], function(err, rows){
       // If any error, return it
       if (err)
+      console.log(err);
         return done(err);
 
       // If no user found, return message
