@@ -42,8 +42,7 @@ module.exports = function(passport) {
   passport.use('local-signup', new LocalStrategy({
     // Defaults to user/pass. Add in email
     usernameField : 'uname',
-    passwordfield : 'password',
-    emailField : 'email',
+    passwordField : 'password',
     passReqToCallback : true // enables passback of entire request to callback
   },
   function(req, uname, password, done) {
@@ -58,6 +57,7 @@ module.exports = function(passport) {
         var newUser = new Model.User();
         newUser.uname = uname;
         newUser.password = bcrypt.hashSync(password);
+	newUser.email = req.body.email;
         connection.query("INSERT INTO User (uname, upass, email) VALUES (?, ?, ?)", [newUser.uname, newUser.password, newUser.email]);
         return done(null, newUser);
       }
@@ -74,14 +74,13 @@ module.exports = function(passport) {
     passReqToCallback: true
   },
 
-  function(req, username, password, done) {
+  function(req, uname, password, done) {
 
     //Find a user whose username is the same as the form's username
     // Check if user already exists
-    connection.query("SELECT * FROM User WHERE uname = ?", [username], function(err, rows){
+    connection.query("SELECT uname, upass FROM User WHERE uname = ?", [uname], function(err, rows){
       // If any error, return it
       if (err)
-      console.log(err);
         return done(err);
 
       // If no user found, return message
@@ -89,7 +88,7 @@ module.exports = function(passport) {
         return done(null, false, req.flash('loginMessage', 'No user found.'));
 
       // If user is found, but password is wrong
-      if (!(rows[0].password == password))
+      if (!(bcrypt.compareSync(password, rows[0].upass)))
         return done(null, false, req.flash('loginMessage', 'Incorrect Password'));
 
       // Otherwise, return success
