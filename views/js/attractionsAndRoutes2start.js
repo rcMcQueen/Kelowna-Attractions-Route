@@ -29,8 +29,9 @@ function getRecommendedRoutes() {
              url: 'http://159.203.47.53:8080/recRoute',
              dataType: 'json',
              success: function (data) {
-                   DATA = data;
-                  DATA = JSON.stringify(data);
+                 DATA = JSON.parse(data);
+                  // DATA = data;
+                  //DATA = JSON.stringify(data);
                   console.log(DATA);
                   data = JSON.stringify(data);
                   console.log(data);
