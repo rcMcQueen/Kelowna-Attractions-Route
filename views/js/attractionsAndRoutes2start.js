@@ -30,7 +30,7 @@ function getRecommendedRoutes() {
              dataType: 'json',
              success: function (data) {
                  DATA = data;
-                 DATA = JSON.stringify(data);
+                 data = JSON.stringify(data);
                  console.log(data);
              },
              error: function (err) {
