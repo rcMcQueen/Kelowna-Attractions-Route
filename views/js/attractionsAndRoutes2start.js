@@ -31,7 +31,7 @@ function getRecommendedRoutes() {
              success: function (data) {
                  DATA = data;
                  DATA = JSON.stringify(data);
-                 console.log(DATA);
+                 console.log(data);
              },
              error: function (err) {
                  DATA = err;
@@ -39,7 +39,7 @@ function getRecommendedRoutes() {
              }
          });
      });
-    return DATA;
+    return data;
  };
 
 function updateAttractions() {
