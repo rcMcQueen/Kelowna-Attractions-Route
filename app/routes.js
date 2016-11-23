@@ -21,7 +21,7 @@ function buildDynamicAttractionQuery(values) {
 	var index;
 	for (index = 0; index < size; index++) {
 		if (typeof values[index] !== 'undefined') {
-			conditions.push("type = '?'");
+			conditions.push("type = ?");
 		}
 	}
 
