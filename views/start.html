@@ -154,7 +154,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="js/attractionsAndRoutes2start.js"></script>
 <script>
-
+var y = 0;
 
 for(x = 0;x<3;x++){
 	printAttractions("attrList");
@@ -163,7 +163,6 @@ for(x = 0;x<3;x++){
 var attrNum = 0;
 var routeNum = 0;
 var x = document.getElementById("currLoc");
-var y = 0;
 
 function getLocation(idTag) {
 	x = document.getElementById(idTag);
@@ -216,9 +215,12 @@ function attrListMinus()	{
 	<!--database stuff here
 }
 
-
 function printAttractions(listId)	{
 	var jsonRecRoutes = getRecommendedRoutes();
+	//var obj = [{"name":"Exit Kelowna - BNA Pub Friday Night Fun","description":"It is Friday night and You and your Friends do not know what to do ? Try out one of our recommended routes: Exit and BNA night is great for hanging out and having fun with your friends !","rating":5,"picture":null},{"name":"Norbert's Wine Tour","description":"Visit Kelowna's best wineries and enjoy the best quality wines that the Okanagan has to offer ! This recommended route is perfect for your first wine tasting experience in the Okanagan! ","rating":5,"picture":null}];
+	if(y > obj.size){
+		return;
+	}
 	var listNode = document.createElement("LI");
 	listNode.setAttribute('class','w3-padding-16 w3-border-bottom w3-border-white ');
 	listNode.setAttribute('onclick',"this.style.display='none'");
@@ -227,10 +229,10 @@ function printAttractions(listId)	{
 	imageNode.setAttribute('class','w3-left w3-circle');
 	imageNode.setAttribute('style','width:60px');
 	var spanNodeOne = document.createElement('span');
-	spanNodeOne.innerHTML = jsonRecRoutes.y.name;
+	spanNodeOne.innerHTML = obj[y].name;
 	spanNodeOne.setAttribute('class','w3-xlarge');
 	var spanNodeTwo = document.createElement("span");
-	spanNodeTwo.innerHTML = jsonRecRoutes.y.description;
+	spanNodeTwo.innerHTML = obj[y].description;
     listNode.appendChild(imageNode);
 	listNode.appendChild(spanNodeOne);
 	listNode.appendChild(document.createElement("BR"));
@@ -238,6 +240,4 @@ function printAttractions(listId)	{
     document.getElementById(listId).appendChild(listNode);
 	y = y+1;
 }
-
-
 </script>
