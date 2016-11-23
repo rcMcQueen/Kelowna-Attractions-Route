@@ -74,18 +74,61 @@ module.exports = function(app, passport) {
 		var types = buildDynamicAttractionQuery(content);
 		console.log('Where: ' + types.where);
 		console.log('Values: ' + types.values);
-		var sql = 'SELECT * FROM Attraction WHERE ' + types.where + ' ORDER BY rating DESC;' ;
-		console.log(sql);
-		connection.query(sql, [types.values], function(err, results) {
-			if(!err){
-				res.json(results);
-			} else {
-				res.json({
-					"code" : 50,
-					"status" : "Error in connection to database."
-				});
-			}
-		});
+        var arrayLength = types.values.length;
+        var prepStatements;
+        var emptyQuery, noFilter = false;
+
+        switch (arrayLength) {
+            case 0:
+                emptyQuery = true;
+                break;
+            case 1:
+                prepStatements = [ types.values[0] ];
+                break;
+            case 2:
+                prepStatements = [ types.values[0], types.values[1] ];
+                break;
+            case 3:
+                prepStatements = [ types.values[0], types.values[1], types.values[2] ];
+                break;
+            case 4:
+                prepStatements = [ types.values[0], types.values[1], types.values[2], types.values[3] ];
+                break;
+            case 5:
+                prepStatements = [ types.values[0], types.values[1], types.values[2], types.values[3], types.values[4] ];
+                break;
+            case 6:
+                noFilter = true;
+        }
+
+        if(noFilter){
+            sql = 'SELECT * FROM Attraction ORDER BY rating DESC;' ;
+            connection.query(sql, function(err, results) {
+                if(!err){
+                    res.json(results);
+                } else {
+                    res.json({
+                        "code" : 50,
+                        "status" : "Error in connection to database."
+                    });
+                }
+            });
+        } else if (emptyQuery){
+            // return empty result set
+        } else {
+            var sql = 'SELECT * FROM Attraction WHERE ' + types.where + ' ORDER BY rating DESC;' ;
+            connection.query(sql, prepStatements, function(err, results) {
+                if(!err){
+                    res.json(results);
+                } else {
+                    res.json({
+                        "code" : 50,
+                        "status" : "Error in connection to database."
+                    });
+                }
+            });
+        }
+        console.log(sql);
 	});
 
 	// =====================================
