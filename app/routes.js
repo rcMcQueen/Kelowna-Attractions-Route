@@ -69,66 +69,75 @@ module.exports = function(app, passport) {
 	});
 
 	app.get('/makeAttr', function(req, res) {
-		var stringify = JSON.stringify(req.query.type);
-		var content = JSON.parse(stringify);
-		var types = buildDynamicAttractionQuery(content);
-		console.log('Where: ' + types.where);
-		console.log('Values: ' + types.values);
-        var arrayLength = types.values.length;
-        var prepStatements;
-        var emptyQuery, noFilter = false;
+		if(!req.query.type){
+			// return empty set, since there are no parameters passed
+			// fix this, there has to be a better way to return an empty set
+			var sql = "SELECT * FROM Attraction WHERE type = 'nothing';" ;
+			connection.query(sql, function(err, results) {
+				if(!err){
+					res.json(results);
+				} else {
+					res.json({
+						"code" : 50,
+						"status" : "Error in connection to database."
+					});
+				}
+			});
+		}
+		else{
+			var stringify = JSON.stringify(req.query.type);
+			var content = JSON.parse(stringify);
+			var types = buildDynamicAttractionQuery(content);
+			var arrayLength = types.values.length;
+			var prepStatements;
+			var noFilter = false;
 
-        switch (arrayLength) {
-            case 0:
-                emptyQuery = true;
-                break;
-            case 1:
-                prepStatements = [ types.values[0] ];
-                break;
-            case 2:
-                prepStatements = [ types.values[0], types.values[1] ];
-                break;
-            case 3:
-                prepStatements = [ types.values[0], types.values[1], types.values[2] ];
-                break;
-            case 4:
-                prepStatements = [ types.values[0], types.values[1], types.values[2], types.values[3] ];
-                break;
-            case 5:
-                prepStatements = [ types.values[0], types.values[1], types.values[2], types.values[3], types.values[4] ];
-                break;
-            case 6:
-                noFilter = true;
-        }
+			switch (arrayLength) {
+				case 1:
+					prepStatements = [ types.values[0] ];
+					break;
+				case 2:
+					prepStatements = [ types.values[0], types.values[1] ];
+					break;
+				case 3:
+					prepStatements = [ types.values[0], types.values[1], types.values[2] ];
+					break;
+				case 4:
+					prepStatements = [ types.values[0], types.values[1], types.values[2], types.values[3] ];
+					break;
+				case 5:
+					prepStatements = [ types.values[0], types.values[1], types.values[2], types.values[3], types.values[4] ];
+					break;
+				case 6:
+					noFilter = true;
+			}
 
-        if(noFilter){
-            sql = 'SELECT * FROM Attraction ORDER BY rating DESC;' ;
-            connection.query(sql, function(err, results) {
-                if(!err){
-                    res.json(results);
-                } else {
-                    res.json({
-                        "code" : 50,
-                        "status" : "Error in connection to database."
-                    });
-                }
-            });
-        } else if (emptyQuery){
-            // return empty result set
-        } else {
-            var sql = 'SELECT * FROM Attraction WHERE ' + types.where + ' ORDER BY rating DESC;' ;
-            connection.query(sql, prepStatements, function(err, results) {
-                if(!err){
-                    res.json(results);
-                } else {
-                    res.json({
-                        "code" : 50,
-                        "status" : "Error in connection to database."
-                    });
-                }
-            });
-        }
-        console.log(sql);
+			if(noFilter){
+				sql = 'SELECT * FROM Attraction ORDER BY rating DESC;' ;
+				connection.query(sql, function(err, results) {
+					if(!err){
+						res.json(results);
+					} else {
+						res.json({
+							"code" : 50,
+							"status" : "Error in connection to database."
+						});
+					}
+				});
+			} else {
+				var sql = 'SELECT * FROM Attraction WHERE ' + types.where + ' ORDER BY rating DESC;' ;
+				connection.query(sql, prepStatements, function(err, results) {
+					if(!err){
+						res.json(results);
+					} else {
+						res.json({
+							"code" : 50,
+							"status" : "Error in connection to database."
+						});
+					}
+				});
+			}
+		}
 	});
 
 	// =====================================
