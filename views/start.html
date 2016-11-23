@@ -217,6 +217,7 @@ function attrListMinus()	{
 
 function printAttractions(listId)	{
 	var jsonRecRoutes = getRecommendedRoutes();
+	alert(jsonRecRoutes);
 	//var obj = [{"name":"Exit Kelowna - BNA Pub Friday Night Fun","description":"It is Friday night and You and your Friends do not know what to do ? Try out one of our recommended routes: Exit and BNA night is great for hanging out and having fun with your friends !","rating":5,"picture":null},{"name":"Norbert's Wine Tour","description":"Visit Kelowna's best wineries and enjoy the best quality wines that the Okanagan has to offer ! This recommended route is perfect for your first wine tasting experience in the Okanagan! ","rating":5,"picture":null}];
 	var listNode = document.createElement("LI");
 	listNode.setAttribute('class','w3-padding-16 w3-border-bottom w3-border-white ');
@@ -226,10 +227,10 @@ function printAttractions(listId)	{
 	imageNode.setAttribute('class','w3-left w3-circle');
 	imageNode.setAttribute('style','width:60px');
 	var spanNodeOne = document.createElement('span');
-	spanNodeOne.innerHTML = jsonRecRoutes[y];
+	spanNodeOne.innerHTML = jsonRecRoutes[1];
 	spanNodeOne.setAttribute('class','w3-xlarge');
 	var spanNodeTwo = document.createElement("span");
-	spanNodeTwo.innerHTML = jsonRecRoutes[y];
+	spanNodeTwo.innerHTML = jsonRecRoutes[1];
     listNode.appendChild(imageNode);
 	listNode.appendChild(spanNodeOne);
 	listNode.appendChild(document.createElement("BR"));
