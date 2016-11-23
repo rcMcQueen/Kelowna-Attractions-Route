@@ -1,4 +1,4 @@
-document.getElementsByTagName('head')[0].appendChild(script);
+//document.getElementsByTagName('head')[0].appendChild(script);
 
 function getPopularAttractions() {
     var DATA = {};
@@ -31,7 +31,7 @@ function getRecommendedRoutes() {
              success: function (data) {
                  DATA = data;
                  DATA = JSON.stringify(data);
-                 console.log(data);
+                 console.log(DATA);
              },
              error: function (err) {
                  DATA = err;
