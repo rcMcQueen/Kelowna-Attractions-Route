@@ -22,25 +22,21 @@ function getPopularAttractions() {
  };
 
 function getRecommendedRoutes() {
-    var DATA = {};
-     $(document).ready(function () {
-         $.ajax({
+	var x;
+	$.ajax({
              type: 'GET',
+	     async: false,
              url: 'http://159.203.47.53:8080/recRoute',
              dataType: 'json',
              success: function (data) {
-                  DATA = data;
-                  data = JSON.stringify(data);
-                  console.log(data);
+		x  = data;
                },
              error: function (err) {
-                 DATA = err;
                  console.log('Error, Ajax call unsuccessful.', err);
              }
          });
-     });
-    return DATA;
- };
+	return x;
+ }
 
 function updateAttractions() {
     var selectedAttr = {"type":[]};
