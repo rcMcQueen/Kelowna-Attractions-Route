@@ -21,7 +21,7 @@ function getPopularAttractions() {
     return DATA;
  };
 
-function getRecommendedRoutes(var listId) {
+function getRecommendedRoutes(listId) {
 	$(document).ready(function() {
 	$.ajax({
              type: 'GET',
