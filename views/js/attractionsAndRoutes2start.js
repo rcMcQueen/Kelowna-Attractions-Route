@@ -22,21 +22,38 @@ function getPopularAttractions() {
  };
 
 function getRecommendedRoutes() {
-	var x;
+	$(document).ready(function() {
 	$.ajax({
              type: 'GET',
-	     async: false,
              url: 'http://159.203.47.53:8080/recRoute',
              dataType: 'json',
-             success: function (data) {
-		x  = data;
-               },
+             success: function(data) {
+		var jsonRecRoutes = data;
+		var listNode = document.createElement("LI");
+		listNode.setAttribute('class', 'w3-padding-16 w3-border-bottom w3-border-white');
+		listNode.setAttribute('onclick', "this.style.display='none'");
+		var imageNode = document.createElement("IMG");
+		imageNode.setAttribute('src', 'img/best_dog.jpg');
+		imageNode.setAttribute('class', 'w3-left w3-circle');
+		imageNode.setAttribute('style', 'width:60px');
+		var spanNodeOne = document.createElement('span');
+		spanNodeOne.innerHTML = jsonRecRoutes[y].name;
+		spanNodeOne.setAttribute('class','w3-xlarge');
+		var spanNodeTwo = document.createElement("span");
+		spanNodeTwo.innerHTML = jsonRecRoutes[y].description;
+		listNode.appendChild(imageNode);
+		listNode.appendChild(spanNodeOne);
+		listNode.appendChild(document.createElement("BR"));
+		listNode.appendChild(spanNodeTwo);
+		document.getElementById("attrList").appendChild(listNode);
+		y += 1
+		},
              error: function (err) {
                  console.log('Error, Ajax call unsuccessful.', err);
              }
-         });
-	return x;
- }
+	});
+    });
+}
 
 function updateAttractions() {
     var selectedAttr = {"type":[]};
