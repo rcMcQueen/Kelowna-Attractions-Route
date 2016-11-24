@@ -89,27 +89,16 @@ module.exports = function(app, passport) {
 			var content = JSON.parse(stringify);
 			var types = buildDynamicAttractionQuery(content);
 			var arrayLength = types.values.length;
-			var prepStatements;
+			var prepStatements = [];
 			var noFilter = false;
 
-			switch (arrayLength) {
-				case 1:
-					prepStatements = [ types.values[0] ];
-					break;
-				case 2:
-					prepStatements = [ types.values[0], types.values[1] ];
-					break;
-				case 3:
-					prepStatements = [ types.values[0], types.values[1], types.values[2] ];
-					break;
-				case 4:
-					prepStatements = [ types.values[0], types.values[1], types.values[2], types.values[3] ];
-					break;
-				case 5:
-					prepStatements = [ types.values[0], types.values[1], types.values[2], types.values[3], types.values[4] ];
-					break;
-				case 6:
-					noFilter = true;
+			if (arrayLength < 1 || arrayLength == 'undefined') {
+				noFilter = true;
+			}
+			else {
+				for(i = 0; i < arrayLength; i++) {
+					prepStatements.push(types.values[i]);
+				}
 			}
 
 			if(noFilter){
@@ -126,6 +115,7 @@ module.exports = function(app, passport) {
 				});
 			} else {
 				var sql = 'SELECT * FROM Attraction WHERE ' + types.where + ' ORDER BY rating DESC;' ;
+				console.log(prepStatements);
 				connection.query(sql, prepStatements, function(err, results) {
 					if(!err){
 						res.json(results);

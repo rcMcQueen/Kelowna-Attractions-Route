@@ -1,4 +1,4 @@
-function getPopularAttractions() {
+function getPopularAttractions(listId) {
     $(document).ready(function () {
         $.ajax({
             type: 'GET',
