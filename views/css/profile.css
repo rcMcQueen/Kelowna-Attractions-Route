@@ -1,9 +1,20 @@
 .html {
   color: #ffffff;
 }
-#bs-example-navbar-collapse-1 {
+
+#bs-example-navbar-collapse-1 a {
+  color: #ffffff;
+}
+.navbar-default {
   background-color: #4169e1;
-  color: inherit;
+  color: #ffffff;
+}
+.navbar-default .navbar-brand{
+  color: #ffffff;
+}
+
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+  background-color: #66CDAA;
 }
 .navbar-nav {
   width: 100%;

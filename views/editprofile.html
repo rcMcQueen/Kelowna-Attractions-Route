@@ -2,8 +2,10 @@
 <html>
 <head>
   <title> Edit Profile </title>
-  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
-  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <style>
       body        { padding-top:80px; }
   </style>
@@ -13,22 +15,26 @@
 
   <div class="col-sm-6 col-sm-offset-3">
 
-      <h1><span class="fa fa-sign-in"></span> Signup</h1>
-<form action="/editprofile" method="post">
-  <div class="form-group">
-    <label>Email</label>
-    <input type="text" class="form-control" name="email">
-  </div>
-  <div class="form-group">
-      <label>Password</label>
-      <input type="password" class="form-control" name="password">
-  </div>
-  <div class="form-group">
-      <label>City</label>
-      <input type="text" class="form-control" name="city">
-  </div>
-
-  <button type="submit" class="btn btn-warning btn-lg">Signup</button>
+      <h1><span class="fa fa-sign-in"></span> Edit Profile</h1>
+  <form action="/editprofile" method="post">
+ <div class="form-group">
+   <label for="email">Email address:</label>
+   <input type="email" class="form-control" id="email">
+ </div>
+ <div class="form-group">
+   <label for="pwd">Password:</label>
+   <input type="password" class="form-control" id="pwd">
+   <div class="form-group">
+     <label for="first_name">First Name:</label>
+     <input type="password" class="form-control" id="first_name">
+   </div>
+ </div>
+ <div class="form-group">
+   <label for="city">City:</label>
+   <input type="password" class="form-control" id="city">
+ </div>
+ <button type="submit" class="btn btn-primary">Save Profile</button>
+</form>
 
 </form>
 </div>
