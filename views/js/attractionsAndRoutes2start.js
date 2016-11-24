@@ -45,7 +45,7 @@ function getRecommendedRoutes() {
 		listNode.appendChild(spanNodeOne);
 		listNode.appendChild(document.createElement("BR"));
 		listNode.appendChild(spanNodeTwo);
-		document.getElementById("attrList").appendChild(listNode);
+		document.getElementById("recRouteList").appendChild(listNode);
 		y += 1
 		},
              error: function (err) {
