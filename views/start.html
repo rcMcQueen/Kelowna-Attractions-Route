@@ -7,20 +7,16 @@
         width: 75%;
 		padding-left:50px;
        }
-
   body {
 		background-image: url("img/background1.png");
      }
-
  input[type="checkbox"]{
 		width: 20px;
 		height: 20px;
 	}
-
  label {
     font: bold 18px ariel !important;
 	}
-
 	li a {
     display: block;
     color: white;
@@ -73,21 +69,8 @@
 	<br>
 	</form>
 	<form class="w3-container w3-blue" style = "box-shadow: 10px 10px 5px #888888">
-	<ul class="w3-ul w3-card-4">
-  		<li class="w3-padding-16 w3-border-bottom w3-border-white">
-   		 <span onclick="this.parentElement.style.display='none'"
-    			class="w3-closebtn w3-padding">&times;</span>
-    			<img src="img/best_dog.jpg" class="w3-left w3-circle" style="width:60px">
-    		<span class="w3-xlarge">Route 1</span><br>
-    		<span>Desc</span>
- 		 </li>
-		<li class="w3-padding-16 w3-border-bottom w3-border-white">
-   		 <span onclick="this.parentElement.style.display='none'"
-    			class="w3-closebtn w3-padding">&times;</span>
-    			<img src="img/best_dog.jpg" class="w3-left w3-circle" style="width:60px">
-    		<span class="w3-xlarge">Route 2</span><br>
-    		<span>Desc</span>
- 		 </li>
+	<ul class="w3-ul w3-card-4" id = "recRouteList">
+  		
 	</ul>
 	<br>
 	</form>
@@ -155,15 +138,12 @@
 <script src="js/attractionsAndRoutes2start.js"></script>
 <script>
 var y = 0;
-
 for(x = 0;x<3;x++){
 	getRecommendedRoutes();
 }
-
 var attrNum = 0;
 var routeNum = 0;
 var x = document.getElementById("currLoc");
-
 function getLocation(idTag) {
 	x = document.getElementById(idTag);
     if (navigator.geolocation) {
@@ -184,7 +164,6 @@ function showPosition(position) {
 	}
 	)
 }
-
 function proceed(bool)	{
 	var x = document.getElementById("currPos");
 	if(x.value == "") {
@@ -200,13 +179,11 @@ function proceed(bool)	{
 	alert("Error: Please enter ending location, or select route or attraction");
 	return;
 }
-
 function attrListPlus()	{
 	document.getElementById('backBtn').style.display="inline";
 	attrNum=attrNum+1;
 	<!--database page stuff here
 }
-
 function attrListMinus()	{
 	attrNum=attrNum-1;
 	if(attrNum == 0){
@@ -215,4 +192,3 @@ function attrListMinus()	{
 	<!--database stuff here
 }
 </script>
-
