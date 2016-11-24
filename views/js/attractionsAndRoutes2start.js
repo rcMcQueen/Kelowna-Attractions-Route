@@ -21,7 +21,7 @@ function getPopularAttractions() {
     return DATA;
  };
 
-function getRecommendedRoutes() {
+function getRecommendedRoutes(var listId) {
 	$(document).ready(function() {
 	$.ajax({
              type: 'GET',
@@ -45,7 +45,7 @@ function getRecommendedRoutes() {
 		listNode.appendChild(spanNodeOne);
 		listNode.appendChild(document.createElement("BR"));
 		listNode.appendChild(spanNodeTwo);
-		document.getElementById("recRouteList").appendChild(listNode);
+		document.getElementById(listId).appendChild(listNode);
 		y += 1
 		},
              error: function (err) {
