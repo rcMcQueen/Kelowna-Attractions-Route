@@ -40,6 +40,7 @@ function getRecommendedRoutes(listId) {
              dataType: 'json',
              success: function(data) {
 		var jsonRecRoutes = data;
+		console.log(y)
 		var listNode = document.createElement("LI");
 		listNode.setAttribute('class', 'w3-padding-16 w3-border-bottom w3-border-white');
 		listNode.setAttribute('onclick', "this.style.display='none'");
@@ -57,7 +58,7 @@ function getRecommendedRoutes(listId) {
 		listNode.appendChild(document.createElement("BR"));
 		listNode.appendChild(spanNodeTwo);
 		document.getElementById(listId).appendChild(listNode);
-		y += 1
+		y +=1
 		},
              error: function (err) {
                  console.log('Error, Ajax call unsuccessful.', err);
