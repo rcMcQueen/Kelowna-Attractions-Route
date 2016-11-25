@@ -131,6 +131,21 @@ module.exports = function(app, passport) {
 	});
 
 	// =====================================
+	// ROUTES AND MAP  =====================
+	// =====================================
+
+	app.get('/showRecRoute', function(req, res) {
+		if(!req.query.sid){
+			// return empty set, since there are no parameters passed
+		}
+		else{
+			var stringify = JSON.stringify(req.query.sid);
+			var content = JSON.parse(stringify);
+			// write query to return all route stops and their coordinates based on the stored route is
+		}
+	});
+
+	// =====================================
 	// LOGIN ===============================
 	// =====================================
 	// show the login form
