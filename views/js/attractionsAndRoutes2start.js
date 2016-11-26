@@ -112,6 +112,7 @@ function getAttractions(listId,offset) {
                  //while (node.hasChildNodes()) {
                  //    node.removeChild(node.firstChild);
                  //}
+				 var aids = {0,0,0,0};
 				 for(var x = 0;x<4;x++)	{
                      var listNode = document.createElement("LI");
                      listNode.setAttribute('class', 'w3-padding-16 w3-border-bottom w3-border-white');
@@ -126,15 +127,18 @@ function getAttractions(listId,offset) {
                      spanNodeTwo.innerHTML = jsonTypeAttr[x+offset].description;
                      var spanNodeThree = document.createElement("span");
                      spanNodeThree.innerHTML = 'Rating: ' + jsonTypeAttr[x+offset].rating + '/5';
+					 var aidNode = document.createElement("INPUT");
+					aidNode.setAttribute("type", "hidden");
+					aidNode.setAttribute("value",jsonTypeAttr[x+offset].aid);
+					aidNode.setAttribute("id",x);
                      listNode.appendChild(imageNode);
                      listNode.appendChild(spanNodeOne);
 					listNode.appendChild(document.createElement("BR"));
                      listNode.appendChild(spanNodeThree);
                      listNode.appendChild(document.createElement("BR"));
                      listNode.appendChild(spanNodeTwo);
-					 var aid = new var;
-					 aid = jsonTypeAttr[x+offset].aid;
-					 listNode.addEventListener('click',function(){clickAttr(aid);});
+					 aids[x] = 
+					 listNode.addEventListener('click',function(){clickAttr(x);});
                      document.getElementById(listId).appendChild(listNode);
 				 }
              },
