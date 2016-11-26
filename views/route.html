@@ -9,11 +9,9 @@
 		body {
 			background-image: url("img/background1.png");
 		}
-
 		label {
 			font: bold 18px ariel !important;
 		}
-
 		li a {
 			display: block;
 			color: white;
@@ -21,11 +19,9 @@
 			padding: 14px 16px;
 			text-decoration: none;
 		}
-
 		a:hover {
 			background-color: teal;
 		}
-
 		.attrImg {
 			src="img/best_dog.jpg";
 			class="w3-left w3-circle";
@@ -48,7 +44,6 @@
 	<li style="float:right"><a class="active" href="#about"><b>Login</b></a></li>
 </ul>
 <!-- First Grid: Logo & About -->
-
 <div class="w3-row">
 	<div class="w3-third w3-container w3-center" style="height:700px">
 		<div class="w3-padding-4 w3-center">
@@ -56,7 +51,6 @@
 			<div class="w3-center">
 				<div class="w3-padding-4">
 					<form class="w3-container w3-blue w3-border-white w3-padding" style = "box-shadow: 10px 10px 5px #888888">
-
 						<ul class="w3-navbar w3-teal">
 							<li><a href="javascript:void(0)" onclick="openTab('Attraction')">Attractions</a></li>
 							<li><a href="javascript:void(0)" onclick="openTab('Selected')">Selected</a></li>
@@ -68,7 +62,6 @@
 							<br>
 							<a href = "map.html"><button class="btn btn-secondary" type="button">Yes, Proceed</button></a>
 						</div>
-
 						<div id="Attraction" class="w3-container tab">
 							<form class="w3-container w3-bottombar w3-blue w3-border-white w3-padding" style = "box-shadow: 10px 10px 5px #888888" onchange="getAttractions('attrList')">
 								<br>
@@ -123,7 +116,6 @@
 			</div>
 		</div>
 	</div>
-
 	<div class="w3-twothird w3-lightgrey w3-container" style="height:700px">
 		<div class="w3-padding-16 w3-center">
 			<br><br>
@@ -137,15 +129,13 @@
 					});
 				}
 			</script>
-
 			<script async defer
 					src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmVV2Ab0atjhri97nB2q1OGD_Eb6xW-	Hw&callback=initMap">
 			</script>
 			<script src="js/attractionsAndRoutes2start.js"></script>
 			<script src="js/routes2map.js"></script>
-
-
 			<script>
+				document.write(getAttrId());
 				openTab("Attraction")
 				for(x = 0;x<3;x++){
 					printAttractions("attrList");
@@ -159,7 +149,6 @@
 					}
 					document.getElementById(tabName).style.display = "block";
 				}
-
 				function printAttractions(listId)	{
 					var listNode = document.createElement("LI");
 					listNode.setAttribute('class','w3-padding-16 w3-border-bottom w3-border-white ');
@@ -179,7 +168,6 @@
 					listNode.appendChild(spanNodeTwo);
 					document.getElementById(listId).appendChild(listNode);
 				}
-
 				function attrListPlus()	{
 					document.getElementById('backBtn').style.display="inline";
 					attrNum=attrNum+1;
@@ -192,14 +180,10 @@
 					}
 					//-database stuff here
 				}
-
 			</script>
 		</div>
 	</div>
 </div>
-
-
 <!-- Footer -->
-
 </body>
 </html>
