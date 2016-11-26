@@ -189,6 +189,12 @@ function proceed(bool)	{
 	return;
 }
 
+function clickAttr(aid)	{
+	sessionStorage.aid = aid;
+	console.log(aid);
+	proceed(true);
+}
+
 function updateCheckBoxs(){
 	getAttractions("attrList",offset)
 }

@@ -1,17 +1,5 @@
 
-var savedAttrId = null;
-var savedRouteRid = null;
-var userName = null;
 
-function clickAttr(aid)	{
-	savedAttrId = aid;
-	console.log(aid);
-	location.href = 'route.html';
-}
-
-function getAttrId(){
-	return savedAttrId;
-}
 function getPopularAttractions(listId) {
     $(document).ready(function () {
         $.ajax({
