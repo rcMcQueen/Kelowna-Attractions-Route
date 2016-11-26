@@ -111,8 +111,6 @@ function getAttractions(listId,offset) {
                  //while (node.hasChildNodes()) {
                  //    node.removeChild(node.firstChild);
                  //}
-
-                 for(var x = 0; x < dataLength ; x++){
                      var listNode = document.createElement("LI");
                      listNode.setAttribute('class', 'w3-padding-16 w3-border-bottom w3-border-white');
                      listNode.setAttribute('onclick', "this.style.display='none'");
@@ -121,10 +119,10 @@ function getAttractions(listId,offset) {
                      imageNode.setAttribute('class', 'w3-left w3-circle');
                      imageNode.setAttribute('style', 'width:60px');
                      var spanNodeOne = document.createElement('span');
-                     spanNodeOne.innerHTML = jsonTypeAttr[x].name;
+                     spanNodeOne.innerHTML = jsonTypeAttr[x+offset].name;
                      spanNodeOne.setAttribute('class','w3-xlarge');
                      var spanNodeTwo = document.createElement("span");
-                     spanNodeTwo.innerHTML = jsonTypeAttr[x].description;
+                     spanNodeTwo.innerHTML = jsonTypeAttr[x+offset].description;
                      var spanNodeThree = document.createElement("span");
                      spanNodeThree.innerHTML = 'Rating: ' + jsonTypeAttr[x].rating + '/5';
                      listNode.appendChild(imageNode);
@@ -134,7 +132,6 @@ function getAttractions(listId,offset) {
                      listNode.appendChild(document.createElement("BR"));
                      listNode.appendChild(spanNodeTwo);
                      document.getElementById(listId).appendChild(listNode);
-                 }
              },
              error: function (err) {
                  console.log('Error, Ajax call unsuccessful.', err);
