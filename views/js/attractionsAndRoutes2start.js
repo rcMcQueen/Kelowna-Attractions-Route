@@ -126,6 +126,7 @@ function getAttractions(listId,offset) {
                      spanNodeTwo.innerHTML = jsonTypeAttr[x+offset].description;
                      var spanNodeThree = document.createElement("span");
                      spanNodeThree.innerHTML = 'Rating: ' + jsonTypeAttr[x+offset].rating + '/5';
+					 var aid = jsonTypeAttr[x+offset].aid;
 					 var aidNode = document.createElement("INPUT");
 					aidNode.setAttribute("type", "hidden");
 					aidNode.setAttribute("value",jsonTypeAttr[x+offset].aid);
@@ -136,7 +137,7 @@ function getAttractions(listId,offset) {
                      listNode.appendChild(spanNodeThree);
                      listNode.appendChild(document.createElement("BR"));
                      listNode.appendChild(spanNodeTwo);
-					 listNode.addEventListener('click',function(){clickAttr(x);});
+					 listNode.addEventListener('click',function(){clickAttr(aid);});
                      document.getElementById(listId).appendChild(listNode);
 				 }
              },
