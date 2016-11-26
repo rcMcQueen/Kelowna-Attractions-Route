@@ -132,7 +132,9 @@ function getAttractions(listId,offset) {
                      listNode.appendChild(spanNodeThree);
                      listNode.appendChild(document.createElement("BR"));
                      listNode.appendChild(spanNodeTwo);
-					 listNode.addEventListener('click',function(){clickAttr(jsonTypeAttr[x+offset].aid);});
+					 var aid = new var;
+					 aid = jsonTypeAttr[x+offset].aid;
+					 listNode.addEventListener('click',function(){clickAttr(aid);});
                      document.getElementById(listId).appendChild(listNode);
 				 }
              },
