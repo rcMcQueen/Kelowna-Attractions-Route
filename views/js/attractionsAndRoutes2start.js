@@ -112,7 +112,6 @@ function getAttractions(listId,offset) {
                  //while (node.hasChildNodes()) {
                  //    node.removeChild(node.firstChild);
                  //}
-				 var aids = {0,0,0,0};
 				 for(var x = 0;x<4;x++)	{
                      var listNode = document.createElement("LI");
                      listNode.setAttribute('class', 'w3-padding-16 w3-border-bottom w3-border-white');
@@ -137,7 +136,6 @@ function getAttractions(listId,offset) {
                      listNode.appendChild(spanNodeThree);
                      listNode.appendChild(document.createElement("BR"));
                      listNode.appendChild(spanNodeTwo);
-					 aids[x] = 
 					 listNode.addEventListener('click',function(){clickAttr(x);});
                      document.getElementById(listId).appendChild(listNode);
 				 }
