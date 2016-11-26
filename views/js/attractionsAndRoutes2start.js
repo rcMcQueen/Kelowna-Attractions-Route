@@ -143,7 +143,7 @@ function getAttractions(listId,offset) {
                      listNode.appendChild(spanNodeThree);
                      listNode.appendChild(document.createElement("BR"));
                      listNode.appendChild(spanNodeTwo);
-					 listNode.addEventListener('click',clickAttr(jsonTypeAttr[x+offset].aid));
+					 listNode.addEventListener('click',function(){clickAttr(jsonTypeAttr[x+offset].aid);});
                      document.getElementById(listId).appendChild(listNode);
 				 }
              },
