@@ -189,8 +189,8 @@ function proceed(bool)	{
 	return;
 }
 
-function clickAttr(x)	{
-	sessionStorage.aid = document.getElementById(x).value;
+function clickAttr(aid)	{
+	sessionStorage.aid = aid;
 	console.log(aid);
 	proceed(true);
 }
