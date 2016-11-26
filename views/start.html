@@ -178,22 +178,30 @@ function proceed(bool)	{
 	}
 	if(document.getElementById("destPos").value != "") {
 		window.location.href = "route.html";
+		return;
 	}
-	if(bool == true) {
+	else if(bool == true) {
 		window.location.href = "route.html";
+		return;
 	}
-	alert("Error: Please enter ending location, or select route or attraction");
+	else{
+		alert("Error: Please enter ending location, or select route or attraction");
+	}
 	return;
 }
 function attrListPlus()	{
 	document.getElementById('backBtn').style.display="inline";
 	attrNum=attrNum+1;
 	offset= offset+offsetNum;
+	y=0;
+	getAttractions('attrList',offset)
 	//database page stuff here
 }
 function attrListMinus()	{
 	attrNum=attrNum-1;
 	offset= offset-offsetNum;
+	y=0;
+	getAttractions('attrList',offset)
 	if(attrNum == 0){
 		document.getElementById('backBtn').style.display="none";
 	}
