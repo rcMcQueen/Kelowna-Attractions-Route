@@ -145,9 +145,7 @@ var offset = 0;
 for(x = 0; x < 2; x++){
 	getRecommendedRoutes("recRouteList");
 }
-for(x=0; x < offsetNum; x++) {
-	getAttractions("attrList",offset);
-}
+getAttractions("attrList",offset);
 var attrNum = 0;
 var routeNum = 0;
 var x = document.getElementById("currLoc");
@@ -191,9 +189,7 @@ function proceed(bool)	{
 }
 
 function updateCheckBoxs(){
-	for(var y = 0;y<offsetNum;y++){
-		getAttractions("attrList",offset)
-	}
+	getAttractions("attrList",offset)
 }
 
 function attrListPlus()	{
