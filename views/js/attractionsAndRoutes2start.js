@@ -3,8 +3,9 @@ var savedAttrId = null;
 var savedRouteRid = null;
 var userName = null;
 
-function clickAttr(index)	{
-	savedAttrId = index;
+function clickAttr(aid)	{
+	savedAttrId = aid;
+	console.log(aid);
 	location.href = 'route.html';
 }
 
