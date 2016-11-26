@@ -81,7 +81,7 @@
       <h1>Popular Attractions</h1>
       <div class="w3-center">
 	<div class="w3-padding-32">
-	<form class="w3-container w3-bottombar w3-blue w3-border-white w3-padding" style = "box-shadow: 10px 10px 5px #888888" onchange="getAttractions('attrList',offset)">
+	<form class="w3-container w3-bottombar w3-blue w3-border-white w3-padding" style = "box-shadow: 10px 10px 5px #888888" onchange="updateCheckBoxs()">
 	<h3>Location</h3>
 	<div class="w3-row-padding">
   		<div class="w3-third">
@@ -189,6 +189,13 @@ function proceed(bool)	{
 	}
 	return;
 }
+
+function updateCheckBoxs(){
+	for(var y = 0;y<offsetNum;y++){
+		getAttractions("attrList",offset)
+	}
+}
+
 function attrListPlus()	{
 	document.getElementById('backBtn').style.display="inline";
 	attrNum=attrNum+1;
