@@ -81,7 +81,7 @@
       <h1>Popular Attractions</h1>
       <div class="w3-center">
 	<div class="w3-padding-32">
-	<form class="w3-container w3-bottombar w3-blue w3-border-white w3-padding" style = "box-shadow: 10px 10px 5px #888888" onchange="getAttractions('attrList')">
+	<form class="w3-container w3-bottombar w3-blue w3-border-white w3-padding" style = "box-shadow: 10px 10px 5px #888888" onchange="getAttractions('attrList',offset)">
 	<h3>Location</h3>
 	<div class="w3-row-padding">
   		<div class="w3-third">
@@ -140,13 +140,14 @@
 var y = 0;
 var z = 0;
 var x = 0;
+var offsetNum = 4
+var offset = 0;
 for(x = 0; x < 2; x++){
 	getRecommendedRoutes("recRouteList");
 }
-for(x=0; x < 10; x++) {
-	getPopularAttractions("attrList");
+for(x=0; x < offsetNum; x++) {
+	getPopularAttractions("attrList",offset);
 }
-
 var attrNum = 0;
 var routeNum = 0;
 var x = document.getElementById("currLoc");
@@ -187,14 +188,15 @@ function proceed(bool)	{
 function attrListPlus()	{
 	document.getElementById('backBtn').style.display="inline";
 	attrNum=attrNum+1;
+	offset= offset+offsetNum;
 	//database page stuff here
 }
 function attrListMinus()	{
 	attrNum=attrNum-1;
+	offset= offset-offsetNum;
 	if(attrNum == 0){
 		document.getElementById('backBtn').style.display="none";
 	}
 	//-database stuff here
 }
-
 </script>
