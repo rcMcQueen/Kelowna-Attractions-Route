@@ -124,7 +124,7 @@ function getAttractions(listId,offset) {
                      var spanNodeTwo = document.createElement("span");
                      spanNodeTwo.innerHTML = jsonTypeAttr[x+offset].description;
                      var spanNodeThree = document.createElement("span");
-                     spanNodeThree.innerHTML = 'Rating: ' + jsonTypeAttr[x].rating + '/5';
+                     spanNodeThree.innerHTML = 'Rating: ' + jsonTypeAttr[x+offset].rating + '/5';
                      listNode.appendChild(imageNode);
                      listNode.appendChild(spanNodeOne);
 		     listNode.appendChild(document.createElement("BR"));
