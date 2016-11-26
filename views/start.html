@@ -157,6 +157,7 @@ function getLocation(idTag) {
         x.innerHTML = "Geolocation is not supported by this browser.";
     }
 }
+
 function showPosition(position) {
 	var latlng = {lat: position.coords.latitude, lng: position.coords.longitude};
 	var geocoder = new google.maps.Geocoder;
