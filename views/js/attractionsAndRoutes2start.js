@@ -1,4 +1,12 @@
 
+var savedAttrId = null;
+var savedRouteSid = null;
+var savedRouteRid = null;
+var userName = null;
+
+function clickAttr(item)	{
+	savedAttrId = item.aid
+}
 function getPopularAttractions(listId) {
     $(document).ready(function () {
         $.ajax({
@@ -9,7 +17,7 @@ function getPopularAttractions(listId) {
                 var jsonPopAttr = data;
                 var listNode = document.createElement("LI");
                 listNode.setAttribute('class', 'w3-padding-16 w3-border-bottom w3-border-white');
-                listNode.setAttribute('onclick', "this.style.display='none'");
+                listNode.setAttribute('onclick', "clickAttr(this);location.href = 'route.html';");
                 var imageNode = document.createElement("IMG");
                 imageNode.setAttribute('src', 'img/best_dog.jpg');
                 imageNode.setAttribute('class', 'w3-left w3-circle');
@@ -43,7 +51,7 @@ function getRecommendedRoutes(listId) {
 		var jsonRecRoutes = data;
 		var listNode = document.createElement("LI");
 		listNode.setAttribute('class', 'w3-padding-16 w3-border-bottom w3-border-white');
-		listNode.setAttribute('onclick', "this.style.display='none'");
+		listNode.setAttribute('onclick', "clickAttr(this);location.href = 'route.html';");
 		var imageNode = document.createElement("IMG");
 		imageNode.setAttribute('src', 'img/best_dog.jpg');
 		imageNode.setAttribute('class', 'w3-left w3-circle');
