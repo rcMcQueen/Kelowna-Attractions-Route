@@ -14,16 +14,16 @@ function getPopularAttractions(listId) {
                 imageNode.setAttribute('class', 'w3-left w3-circle');
                 imageNode.setAttribute('style', 'width:60px');
                 var spanNodeOne = document.createElement('span');
-                spanNodeOne.innerHTML = jsonPopAttr[y].name;
+                spanNodeOne.innerHTML = jsonPopAttr[z].name;
                 spanNodeOne.setAttribute('class','w3-xlarge');
                 var spanNodeTwo = document.createElement("span");
-                spanNodeTwo.innerHTML = jsonPopAttr[y].description;
+                spanNodeTwo.innerHTML = jsonPopAttr[z].description;
                 listNode.appendChild(imageNode);
                 listNode.appendChild(spanNodeOne);
                 listNode.appendChild(document.createElement("BR"));
                 listNode.appendChild(spanNodeTwo);
                 document.getElementById(listId).appendChild(listNode);
-                y += 1;
+               	z += 1;
             },
             error: function (err) {
                 console.log('Error, Ajax call unsuccessful.', err);
@@ -40,7 +40,6 @@ function getRecommendedRoutes(listId) {
              dataType: 'json',
              success: function(data) {
 		var jsonRecRoutes = data;
-		console.log(y)
 		var listNode = document.createElement("LI");
 		listNode.setAttribute('class', 'w3-padding-16 w3-border-bottom w3-border-white');
 		listNode.setAttribute('onclick', "this.style.display='none'");
@@ -104,7 +103,7 @@ function getAttractions(listId) {
                  var dataLength = Object.keys(jsonTypeAttr).length;
 
                  // reset node content, so new result could be displayed
-                 $(listId).empty();
+		 $(document.getElementById(listId)).empty();                 
 
                  // Alternative way:
                  //var node = document.getElementById(listId);
@@ -112,7 +111,7 @@ function getAttractions(listId) {
                  //    node.removeChild(node.firstChild);
                  //}
 
-                 for(x = 0; x < dataLength ; x++){
+                 for(var x = 0; x < dataLength ; x++){
                      var listNode = document.createElement("LI");
                      listNode.setAttribute('class', 'w3-padding-16 w3-border-bottom w3-border-white');
                      listNode.setAttribute('onclick', "this.style.display='none'");
@@ -126,9 +125,10 @@ function getAttractions(listId) {
                      var spanNodeTwo = document.createElement("span");
                      spanNodeTwo.innerHTML = jsonTypeAttr[x].description;
                      var spanNodeThree = document.createElement("span");
-                     spanNodeThree.innerHTML = jsonTypeAttr[x].rating;
+                     spanNodeThree.innerHTML = 'Rating: ' + jsonTypeAttr[x].rating + '/5';
                      listNode.appendChild(imageNode);
                      listNode.appendChild(spanNodeOne);
+		     listNode.appendChild(document.createElement("BR"));
                      listNode.appendChild(spanNodeThree);
                      listNode.appendChild(document.createElement("BR"));
                      listNode.appendChild(spanNodeTwo);

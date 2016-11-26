@@ -81,7 +81,7 @@
       <h1>Popular Attractions</h1>
       <div class="w3-center">
 	<div class="w3-padding-32">
-	<form class="w3-container w3-bottombar w3-blue w3-border-white w3-padding" style = "box-shadow: 10px 10px 5px #888888" onchange="getAttractions("attrList")">
+	<form class="w3-container w3-bottombar w3-blue w3-border-white w3-padding" style = "box-shadow: 10px 10px 5px #888888" onchange="getAttractions('attrList')">
 	<h3>Location</h3>
 	<div class="w3-row-padding">
   		<div class="w3-third">
@@ -115,10 +115,10 @@
 	<br>
 	</form>
 	<form class="w3-container w3-blue w3-padding-4" style = "box-shadow: 10px 10px 5px #888888">
+	<button onclick ="attrListMinus();return false" style = 'display:none' id = 'backBtn'>Go Back </button>
+	<button onclick ='attrListPlus();return false'>Load More </button>
+	<hr>
 	<ul class="w3-ul w3-card-4" id ="attrList">
-		<button onclick ="attrListMinus();return false" style = 'display:none' id = 'backBtn'>Go Back</button>
-		<button onclick = 'attrListPlus();return false'>Load More</button>
-		<hr>
 	</ul>
 	<br>
 	</form>
@@ -138,7 +138,9 @@
 <script src="js/attractionsAndRoutes2start.js"></script>
 <script>
 var y = 0;
-for(x = 0;x<2;x++){
+var z = 0;
+var x = 0;
+for(x = 0; x < 2; x++){
 	getRecommendedRoutes("recRouteList");
 }
 for(x=0; x < 10; x++) {
