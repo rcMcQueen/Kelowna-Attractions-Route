@@ -1,11 +1,10 @@
 
 var savedAttrId = null;
-var savedRouteSid = null;
 var savedRouteRid = null;
 var userName = null;
 
 function clickAttr(index)	{
-	savedAttrId = index
+	savedAttrId = index;
 	location.href = 'route.html';
 }
 
@@ -140,11 +139,11 @@ function getAttractions(listId,offset) {
                      spanNodeThree.innerHTML = 'Rating: ' + jsonTypeAttr[x+offset].rating + '/5';
                      listNode.appendChild(imageNode);
                      listNode.appendChild(spanNodeOne);
-		     listNode.appendChild(document.createElement("BR"));
+					listNode.appendChild(document.createElement("BR"));
                      listNode.appendChild(spanNodeThree);
                      listNode.appendChild(document.createElement("BR"));
                      listNode.appendChild(spanNodeTwo);
-					 listNode.addEventListener("click",clickAttr(jsonTypeAttr[x+offset].aid));
+					 listNode.addEventListener('click',clickAttr(jsonTypeAttr[x+offset].aid));
                      document.getElementById(listId).appendChild(listNode);
 				 }
              },
