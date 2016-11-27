@@ -197,8 +197,8 @@ function clickAttr(aid)	{
 	console.log(aid);
 	sessionStorage.aid = aid;
 	if(sessionStorage.rid)	{
-		sessionStorage.remove(rid);
-		sessionStorage.remove(uname);
+		sessionStorage.removeItem(rid);
+		sessionStorage.removeItem(uname);
 	}
 	proceed(true);
 }
@@ -207,7 +207,7 @@ function clickRoute(rid,uname)	{
 	sessionStorage.rid = rid;
 	sessionStorage.uname = uname;
 	if(sessionStorage.aid)	{
-		sessionStorage.remove(aid);
+		sessionStorage.removeItem(aid);
 	}
 	proceed(true);
 }
