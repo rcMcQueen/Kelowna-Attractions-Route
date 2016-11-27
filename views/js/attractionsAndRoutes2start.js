@@ -94,6 +94,7 @@ function passAttraction(listId, aid){
     attractionParam = {"aid": aid};
 	if(aid == null)
 		return;
+	console.log("this shouldnt print");
     $(document).ready(function () {
         $.ajax({
             type: 'GET',
