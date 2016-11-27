@@ -90,9 +90,44 @@ function updateAttractions() {
     return selectedAttr;
 }
 
-function passAttraction(aid){
-	
+function passAttraction(listId, aid){
+    attractionParam = {"aid": aid};
+    $(document).ready(function () {
+        $.ajax({
+            type: 'GET',
+            data: attractionParam,
+            dataType: 'json',
+            url: 'http://159.203.47.53:8080/selectedAttr',
+            success: function (data) {
+                console.log(JSON.stringify(data))
+                // returned is : name, lat, lng, description, rating  ... from the Attraction table
+            },
+            error: function (err) {
+                console.log('Error, Ajax call unsuccessful.', err);
+            }
+        });
+    });
 }
+
+function displayRecommendedRoutes(listId,rid, uname){
+    var routeParams = {"rid": rid, "username": uname};
+    $(document).ready(function () {
+        $.ajax({
+            type: 'GET',
+            data: routeParams,
+            dataType: 'json',
+            url: 'http://159.203.47.53:8080/showRecRoute',
+            success: function (data) {
+                console.log(JSON.stringify(data))
+                // returns A.name, A.description, A.rating, A.lat, A.lng
+            },
+            error: function (err) {
+                console.log('Error, Ajax call unsuccessful.', err);
+            }
+        });
+    });
+}
+
 
 function getAttractions(listId,offset,x) {
      var attrTypes = {};

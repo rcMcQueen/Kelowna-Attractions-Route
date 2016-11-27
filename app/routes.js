@@ -122,18 +122,18 @@ module.exports = function(app, passport) {
 	// ROUTES AND MAP  =====================
 	// =====================================
 	app.get('/showRecRoute', function(req, res) {
-		if(!req.query.uname && !req.query.rid){
+		if(!req.query.username && !req.query.rid){
 			// return empty set, since there are no parameters passed or not all of them are passed
 			res.json([]);
 		}
 		else{
-			var stringify_uname = JSON.stringify(req.query.uname);
+			var stringify_uname = JSON.stringify(req.query.username);
 			var uname = JSON.parse(stringify_uname);
 
 			var stringify_rid = JSON.stringify(req.query.rid);
 			var rid = JSON.parse(stringify_rid);
 
-			var sql = 'SELECT A.aid, A.name, A.lat, A.lng FROM StoredRoute S, Attraction A, RouteStop R WHERE S.rid = R.rid and R.aid = A.aid and S.uname = ? and S.rid = ? ORDER BY R.id ASC;';
+			var sql = 'SELECT A.name, A.description, A.rating, A.lat, A.lng FROM StoredRoute S, Attraction A, RouteStop R WHERE S.rid = R.rid and R.aid = A.aid and S.uname = ? and S.rid = ? ORDER BY R.id ASC;';
 
 			var prepStatements = [];
 			prepStatements.push(uname);
@@ -154,6 +154,29 @@ module.exports = function(app, passport) {
 		}
 	});
 
+	app.get('/selectedAttr', function(req, res) {
+		if(!req.query.aid){
+			// return empty set, since there are no parameters passed or not all of them are passed
+			res.json([]);
+		}
+		else{
+			var stringify_aid = JSON.stringify(req.query.aid);
+			var aid = JSON.parse(stringify_aid);
+			var sql = 'SELECT name, lat, lng, description, rating FROM Attraction WHERE aid = ? ;';
+
+			connection.query(sql, [aid], function(err, results) {
+				if(!err){
+					res.json(results);
+				} else {
+					res.json({
+						"code" : 50,
+						"status" : "Error in connection to database."
+					});
+				}
+			});
+		}
+	});
+
 	app.get('/displayMap', function(req, res) {
 		connection.query("SELECT name, lat, lng, description FROM Attraction", function(err, results) {
 			if(!err) {
@@ -166,7 +189,6 @@ module.exports = function(app, passport) {
 			}
 		});
 	});
-
 
 
 	// =====================================
