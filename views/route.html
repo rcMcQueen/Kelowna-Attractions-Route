@@ -152,6 +152,10 @@ if(sessionStorage.aid != "null")	{
     console.log(sessionStorage.aid);
 	passAttraction("selectedList",Number(sessionStorage.aid));
 }
+
+if(sessionStorage.rid != "null)	{
+	displayRecommendedRoutes("selectedList",Number(sessionStorage.rid),Number(sessionStorage.uname));
+}
 	
 	function openTab(tabName) {
 		var i;
