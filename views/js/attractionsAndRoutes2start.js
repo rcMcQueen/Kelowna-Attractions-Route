@@ -108,19 +108,18 @@ function passAttraction(listId, aid){
                      imageNode.setAttribute('class', 'w3-left w3-circle');
                      imageNode.setAttribute('style', 'width:60px');
                      var spanNodeOne = document.createElement('span');
-                     spanNodeOne.innerHTML = data.name;
+                     spanNodeOne.innerHTML = data[0].name;
                      spanNodeOne.setAttribute('class','w3-xlarge');
                      var spanNodeTwo = document.createElement("span");
-                     spanNodeTwo.innerHTML = data.description;
+                     spanNodeTwo.innerHTML = data[0].description;
                      var spanNodeThree = document.createElement("span");
-                     spanNodeThree.innerHTML = 'Rating: ' + data.rating + '/5';
+                     spanNodeThree.innerHTML = 'Rating: ' + data[0].rating + '/5';
                      listNode.appendChild(imageNode);
                      listNode.appendChild(spanNodeOne);
 					listNode.appendChild(document.createElement("BR"));
                      listNode.appendChild(spanNodeThree);
                      listNode.appendChild(document.createElement("BR"));
                      listNode.appendChild(spanNodeTwo);
-					 listNode.addEventListener('click',function(){clickAttr(data.aid);});
                      document.getElementById(listId).appendChild(listNode);
             },
             error: function (err) {
