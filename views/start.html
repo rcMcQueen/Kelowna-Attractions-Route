@@ -212,14 +212,20 @@ function attrListPlus()	{
 	attrNum=attrNum+1;
 	offset= offset+offsetNum;
 	y=0;
-	getAttractions('attrList',offset)
+	(document.getElementById('attrList')).empty();
+	for(var x = 0;x<offsetNum;x++)	{
+		getAttractions("attrList",offset,x);
+	}
 	//database page stuff here
 }
 function attrListMinus()	{
 	attrNum=attrNum-1;
 	offset= offset-offsetNum;
 	y=0;
-	getAttractions('attrList',offset)
+	(document.getElementById('attrList')).empty();
+	for(var x = 0;x<offsetNum;x++)	{
+		getAttractions("attrList",offset,x);
+	}
 	if(attrNum == 0){
 		document.getElementById('backBtn').style.display="none";
 	}
