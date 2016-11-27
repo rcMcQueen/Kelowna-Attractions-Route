@@ -196,7 +196,13 @@ function proceed(bool)	{
 
 function clickAttr(aid)	{
 	sessionStorage.aid = aid;
-	console.log(aid);
+	proceed(true);
+}
+
+function clickRoute(rid,uname)	{
+	sessionStorage.rid = rid;
+	sessionStorage.uname = uname;
+	console.log(rid+" "+uname);
 	proceed(true);
 }
 
