@@ -101,7 +101,7 @@ function passAttraction(listId, aid){
             success: function (data) {
                 console.log(JSON.stringify(data))
                 // returned is : name, lat, lng, description, rating  ... from the Attraction table
-					var listNode = document.createElement("LI");
+					 var listNode = document.createElement("LI");
                      listNode.setAttribute('class', 'w3-padding-16 w3-border-bottom w3-border-white');
                      var imageNode = document.createElement("IMG");
                      imageNode.setAttribute('src', 'img/best_dog.jpg');
@@ -116,11 +116,14 @@ function passAttraction(listId, aid){
                      spanNodeThree.innerHTML = 'Rating: ' + data[0].rating + '/5';
                      listNode.appendChild(imageNode);
                      listNode.appendChild(spanNodeOne);
-					listNode.appendChild(document.createElement("BR"));
+					 listNode.appendChild(document.createElement("BR"));
                      listNode.appendChild(spanNodeThree);
                      listNode.appendChild(document.createElement("BR"));
                      listNode.appendChild(spanNodeTwo);
                      document.getElementById(listId).appendChild(listNode);
+
+                // display attraction to the map
+                     buildRouteWithOneAttraction(data);
             },
             error: function (err) {
                 console.log('Error, Ajax call unsuccessful.', err);
