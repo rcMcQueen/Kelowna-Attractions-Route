@@ -40,8 +40,8 @@
 	class = "w3-blue">
 	<a href="map.html"><img border="0" src="img/back.png" width="50" height="50"></a>
 	<button onclick="alert('Directions: Add more attractions to visit on route, hit next button when ready to proceed');" class="btn btn-secondary" type="button"><i class="material-icons w3-xxxlarge">help</i></button>
-  <li style="float:right"><a class="active" href="/signup"><b>Sign Up</b></a></li>
-  <li style="float:right"><a class="active" href="/login"><b>Login</b></a></li>
+	<li style="float:right"><a class="active" href="#about"><b>Sign Up</b></a></li>
+	<li style="float:right"><a class="active" href="#about"><b>Login</b></a></li>
 </ul>
 <!-- First Grid: Logo & About -->
 <div class="w3-row">
@@ -135,7 +135,6 @@
 			<script src="js/attractionsAndRoutes2start.js"></script>
 			<script src="js/routes2map.js"></script>
 			<script>
-				document.write(sessionStorage.aid);
 				openTab("Attraction")
 				for(x = 0;x<3;x++){
 					printAttractions("attrList");
