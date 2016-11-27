@@ -91,7 +91,11 @@ function updateAttractions() {
     return selectedAttr;
 }
 
-function getAttractions(listId,offset) {
+function passAttraction(aid){
+	
+}
+
+function getAttractions(listId,offset,x) {
      var attrTypes = {};
      attrTypes = updateAttractions();
      $(document).ready(function () {
@@ -104,15 +108,14 @@ function getAttractions(listId,offset) {
                  var jsonTypeAttr = data;
                  var dataLength = Object.keys(jsonTypeAttr).length;
 
-                 // reset node content, so new result could be displayed
-		 $(document.getElementById(listId)).empty();                 
+                 // reset node content, so new result could be displayed                 
 
                  // Alternative way:
                  //var node = document.getElementById(listId);
                  //while (node.hasChildNodes()) {
                  //    node.removeChild(node.firstChild);
                  //}
-				 for(var x = 0;x<4;x++)	{
+				
                      var listNode = document.createElement("LI");
                      listNode.setAttribute('class', 'w3-padding-16 w3-border-bottom w3-border-white');
                      var imageNode = document.createElement("IMG");
@@ -126,20 +129,14 @@ function getAttractions(listId,offset) {
                      spanNodeTwo.innerHTML = jsonTypeAttr[x+offset].description;
                      var spanNodeThree = document.createElement("span");
                      spanNodeThree.innerHTML = 'Rating: ' + jsonTypeAttr[x+offset].rating + '/5';
-					 var aid = jsonTypeAttr[x+offset].aid;
-					 var aidNode = document.createElement("INPUT");
-					aidNode.setAttribute("type", "hidden");
-					aidNode.setAttribute("value",jsonTypeAttr[x+offset].aid);
-					aidNode.setAttribute("id",x);
                      listNode.appendChild(imageNode);
                      listNode.appendChild(spanNodeOne);
 					listNode.appendChild(document.createElement("BR"));
                      listNode.appendChild(spanNodeThree);
                      listNode.appendChild(document.createElement("BR"));
                      listNode.appendChild(spanNodeTwo);
-					 listNode.addEventListener('click',function(){clickAttr(aid);});
+					 listNode.addEventListener('click',function(){clickAttr(jsonTypeAttr[x+offset].aid);});
                      document.getElementById(listId).appendChild(listNode);
-				 }
              },
              error: function (err) {
                  console.log('Error, Ajax call unsuccessful.', err);

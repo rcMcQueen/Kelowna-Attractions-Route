@@ -115,8 +115,8 @@
 	<br>
 	</form>
 	<form class="w3-container w3-blue w3-padding-4" style = "box-shadow: 10px 10px 5px #888888">
-	<button onclick ="attrListMinus();return false" style = 'display:none' id = 'backBtn'>Go Back </button>
-	<button onclick ='attrListPlus();return false'>Load More </button>
+	<button onclick ="attrListMinus();return false;" style = 'display:none' id = 'backBtn'>Go Back </button>
+	<button onclick ='attrListPlus();return false;'>Load More </button>
 	<hr>
 	<ul class="w3-ul w3-card-4" id ="attrList">
 	</ul>
@@ -142,6 +142,11 @@ var z = 0;
 var x = 0;
 var offsetNum = 4
 var offset = 0;
+
+for(var x = 0;x<offsetNum;x++)	{
+		getAttractions("attrList",offset,x);
+	}
+	
 for(x = 0; x < 2; x++){
 	getRecommendedRoutes("recRouteList");
 }
@@ -196,7 +201,10 @@ function clickAttr(aid)	{
 }
 
 function updateCheckBoxs(){
-	getAttractions("attrList",offset)
+	$(document.getElementById('attrList')).empty();
+	for(var x = 0;x<offsetNum;x++)	{
+		getAttractions("attrList",offset,x);
+	}
 }
 
 function attrListPlus()	{
@@ -204,14 +212,20 @@ function attrListPlus()	{
 	attrNum=attrNum+1;
 	offset= offset+offsetNum;
 	y=0;
-	getAttractions('attrList',offset)
+	$(document.getElementById('attrList')).empty();
+	for(var x = 0;x<offsetNum;x++)	{
+		getAttractions("attrList",offset,x);
+	}
 	//database page stuff here
 }
 function attrListMinus()	{
 	attrNum=attrNum-1;
 	offset= offset-offsetNum;
 	y=0;
-	getAttractions('attrList',offset)
+	$(document.getElementById('attrList')).empty();
+	for(var x = 0;x<offsetNum;x++)	{
+		getAttractions("attrList",offset,x);
+	}
 	if(attrNum == 0){
 		document.getElementById('backBtn').style.display="none";
 	}
