@@ -154,6 +154,8 @@ var options = {
 };
 
 autocomplete = new google.maps.places.Autocomplete(input, options);
+input = document.getElementById('currPos');
+autocomplete = new google.maps.places.Autocomplete(input, options);
 
 for(var x = 0;x<offsetNum;x++)	{
 		getAttractions("attrList",offset,x);
