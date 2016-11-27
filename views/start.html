@@ -142,6 +142,11 @@ var z = 0;
 var x = 0;
 var offsetNum = 4
 var offset = 0;
+
+for(var x = 0;x<offsetNum;x++)	{
+		getAttractions("attrList",offset,x);
+	}
+	
 for(x = 0; x < 2; x++){
 	getRecommendedRoutes("recRouteList");
 }
@@ -196,7 +201,10 @@ function clickAttr(aid)	{
 }
 
 function updateCheckBoxs(){
-	getAttractions("attrList",offset)
+	(document.getElementById('attrList')).empty();
+	for(var x = 0;x<offsetNum;x++)	{
+		getAttractions("attrList",offset,x);
+	}
 }
 
 function attrListPlus()	{
