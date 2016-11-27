@@ -55,7 +55,7 @@ module.exports = function(app, passport) {
 	});
 
 	app.get('/recRoute', function(req, res) {
-		var sql = 'SELECT name, description, rating, picture FROM StoredRoute ORDER BY rating DESC LIMIT 2;' ;
+		var sql = 'SELECT * FROM StoredRoute ORDER BY rating DESC LIMIT 2;' ;
 		connection.query(sql, function(err, results) {
 			if(!err){
 				res.json(results);
@@ -71,18 +71,7 @@ module.exports = function(app, passport) {
 	app.get('/makeAttr', function(req, res) {
 		if(!req.query.type){
 			// return empty set, since there are no parameters passed
-			// fix this, there has to be a better way to return an empty set
-			var sql = "SELECT * FROM Attraction WHERE type = 'nothing';" ;
-			connection.query(sql, function(err, results) {
-				if(!err){
-					res.json(results);
-				} else {
-					res.json({
-						"code" : 50,
-						"status" : "Error in connection to database."
-					});
-				}
-			});
+			res.json([]);
 		}
 		else{
 			var stringify = JSON.stringify(req.query.type);
@@ -115,7 +104,6 @@ module.exports = function(app, passport) {
 				});
 			} else {
 				var sql = 'SELECT * FROM Attraction WHERE ' + types.where + ' ORDER BY rating DESC;' ;
-				console.log(prepStatements);
 				connection.query(sql, prepStatements, function(err, results) {
 					if(!err){
 						res.json(results);
@@ -133,18 +121,40 @@ module.exports = function(app, passport) {
 	// =====================================
 	// ROUTES AND MAP  =====================
 	// =====================================
-
 	app.get('/showRecRoute', function(req, res) {
-		if(!req.query.sid){
-			// return empty set, since there are no parameters passed
+		if(!req.query.uname && !req.query.rid){
+			// return empty set, since there are no parameters passed or not all of them are passed
+			res.json([]);
 		}
 		else{
-			var stringify = JSON.stringify(req.query.sid);
-			var content = JSON.parse(stringify);
-			// write query to return all route stops and their coordinates based on the stored route is
+			var stringify_uname = JSON.stringify(req.query.uname);
+			var uname = JSON.parse(stringify_uname);
+
+			var stringify_rid = JSON.stringify(req.query.rid);
+			var rid = JSON.parse(stringify_rid);
+
+			var sql = 'SELECT A.aid, A.name, A.lat, A.lng FROM StoredRoute S, Attraction A, RouteStop R WHERE S.rid = R.rid and R.aid = A.aid and S.uname = ? and S.rid = ? ORDER BY R.id ASC;';
+
+			var prepStatements = [];
+			prepStatements.push(uname);
+			prepStatements.push(rid);
+
+			connection.query(sql, prepStatements, function(err, results) {
+				if(!err){
+					res.json(results);
+				} else {
+					res.json({
+						"code" : 50,
+						"status" : "Error in connection to database."
+					});
+				}
+			});
+
+
 		}
 	});
 
+<<<<<<< HEAD
 	app.get('/displayMap', function(req, res) {
 		connection.query("SELECT name, lat, lng, description FROM Attraction", function(err, results) {
 			if(!err) {
@@ -157,6 +167,9 @@ module.exports = function(app, passport) {
 			}
 		});
 	});
+=======
+
+>>>>>>> 5f31f2d8cf095c8f85adec9fa95cd1a4df1e4497
 
 	// =====================================
 	// LOGIN ===============================
