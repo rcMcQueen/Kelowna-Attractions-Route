@@ -41,17 +41,20 @@
 	class = "w3-blue">
 	<a href="start.html"><img border="0" src="img/back.png" width="50" height="50"></a>
 	<button onclick="alert('Directions: click directions as you finish them to remove them until you are done, have a nice trip!');" class="btn btn-secondary" type="button"><i class="material-icons w3-xxxlarge">help</i></button>
-  <li style="float:right"><a class="active" href="#about"><b>Sign Up</b></a></li>
-  <li style="float:right"><a class="active" href="#about"><b>Login</b></a></li>
+  <li style="float:right"><a class="active" href="/signup"><b>Sign Up</b></a></li>
+  <li style="float:right"><a class="active" href="/login"><b>Login</b></a></li>
 </ul>
 <!-- First Grid: Logo & About -->
 <div class="w3-row">
   <div class="w3-quarter w3-container w3-center" style="height:700px">
     <div class="w3-padding-16">
-      <h1>Route Directions</h1>
+      <br> <br> <br>
     </div>
-<form class="w3-container w3-blue w3-border-white w3-padding" style = "box-shadow: 10px 10px 5px #888888">
+<form id="directionsPanel" class="w3-container w3-blue w3-border-white w3-padding" style = "box-shadow: 10px 10px 5px #888888">
 <div id="Selected" class="w3-container tab">
+  <div id="distance">
+      <p id="total"> Memes</p>
+  </div>
 	<ul class="w3-ul w3-card-4" id = "attrList" >
 	</ul>
     </div>
@@ -60,18 +63,8 @@
     <div class="w3-padding-16 w3-center">
       <h1>Map</h1>
      	<div class = "w3-spi" id="map"></div>
-    <script>
-      function initMap() {
-        var uluru = {lat: 49.8880, lng: -119.4960};
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 12,
-          center: uluru
-        });
-      }
-    </script>
-     <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmVV2Ab0atjhri97nB2q1OGD_Eb6xW-Hw&callback=initMap">
-    </script>
+
+
       <div class="w3-left-align w3-padding-xxlarge">
       </div>
     </div>
@@ -117,6 +110,10 @@ function decrementDirection(item) {
 	}
 }
 </script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmVV2Ab0atjhri97nB2q1OGD_Eb6xW-Hw&callback=initMap"></script>
+<script src="js/map_data.js"></script>
+
 <!-- Footer -->
 
 </body>

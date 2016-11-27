@@ -56,17 +56,18 @@
 							<li><a href="javascript:void(0)" onclick="openTab('Selected')">Selected</a></li>
 							<li style = "float:right"><a href="javascript:void(0)" onclick="openTab('Finalize')">Finalize</a></li>
 						</ul>
+						<!--Finalize-->
 						<div id="Finalize" class="w3-container tab">
 							<br>
 							<h3>Are you sure your route is ready?</h3>
 							<br>
 							<a href = "map.html"><button class="btn btn-secondary" type="button">Yes, Proceed</button></a>
 						</div>
+						<!--Attraction List-->
 						<div id="Attraction" class="w3-container tab">
 							<form class="w3-container w3-bottombar w3-blue w3-border-white w3-padding" style = "box-shadow: 10px 10px 5px #888888" onchange="getAttractions('attrList')">
 								<br>
-								<ul class="w3-ul w3-card-8 w3-padding-8">
-									<div class="w3-row-padding">
+								<div class="w3-row-padding">
 										<div class="w3-half">
 											<input id="Winery" type="checkbox" name="Winery" value="Winery" checked>
 											<label class="w3-validate">Wineries</label>
@@ -96,6 +97,8 @@
 											<label class="w3-validate">Entertainment</label>
 										</div>
 									</div>
+								<ul class="w3-ul w3-card-8 w3-padding-8">
+									
 								</ul>
 								<br>
 								<button onclick ="attrListMinus();return false" style = 'display:none' id = 'backBtn'>Go Back </button>
@@ -105,6 +108,7 @@
 							<ul class="w3-ul w3-card-4" id = "attrList">
 							</ul>
 						</div>
+						<!--Selected Attractions-->
 						<form class="w3-container w3-bottombar w3-blue w3-border-white w3-padding" style = "box-shadow: 10px 10px 5px #888888">
 							<div id="Selected" class="w3-container tab">
 								<ul class="w3-ul w3-card-4" id = "selectedList" >
@@ -133,9 +137,7 @@
 					src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmVV2Ab0atjhri97nB2q1OGD_Eb6xW-	Hw&callback=initMap">
 			</script>
 			<script src="js/attractionsAndRoutes2start.js"></script>
-			<script src="js/routes2map.js"></script>
 			<script>
-				document.write(sessionStorage.aid);
 				openTab("Attraction")
 				for(x = 0;x<3;x++){
 					printAttractions("attrList");
