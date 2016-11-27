@@ -147,6 +147,11 @@ var offsetNum = 4
 var offset = 0;
 var selectedAids = [];
 
+function clickAttr(aid)	{
+	routeAids.push(aid);
+	passAttraction("selectedList",aid);
+	}
+
 for(var x = 0;x<offsetNum;x++)	{
 		getAttractions("attrList",offset,x);
 	}
@@ -190,11 +195,6 @@ if(sessionStorage.rid != "null")	{
 	$(document.getElementById('attrList')).empty();
 	for(var x = 0;x<offsetNum;x++)	{
 		getAttractions("attrList",offset,x);
-	}
-	
-	function clickAttr(aid)	{
-	routeAids.push(aid);
-	passAttraction("selectedList",aid);
 	}
 	
 	function finalizeRoute()	{
