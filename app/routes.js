@@ -133,6 +133,9 @@ module.exports = function(app, passport) {
 			var stringify_rid = JSON.stringify(req.query.rid);
 			var rid = JSON.parse(stringify_rid);
 
+			console.log("rid = " + rid);
+			console.log("uname = " + uname);
+
 			var sql = 'SELECT A.name, A.description, A.rating, A.lat, A.lng FROM StoredRoute S, Attraction A, RouteStop R WHERE S.rid = R.rid and R.aid = A.aid and S.uname = ? and S.rid = ? ORDER BY R.id ASC;';
 
 			var prepStatements = [];
@@ -162,6 +165,7 @@ module.exports = function(app, passport) {
 		else{
 			var stringify_aid = JSON.stringify(req.query.aid);
 			var aid = JSON.parse(stringify_aid);
+			console.log("aid = " + aid);
 			var sql = 'SELECT name, lat, lng, description, rating FROM Attraction WHERE aid = ? ;';
 
 			connection.query(sql, [aid], function(err, results) {
