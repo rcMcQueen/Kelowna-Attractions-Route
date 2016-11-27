@@ -93,6 +93,7 @@ function updateAttractions() {
 
 function getAttractions(listId,offset) {
      var attrTypes = {};
+	 var idNum = 0;
      attrTypes = updateAttractions();
      $(document).ready(function () {
          $.ajax({
@@ -112,6 +113,7 @@ function getAttractions(listId,offset) {
                  //while (node.hasChildNodes()) {
                  //    node.removeChild(node.firstChild);
                  //}
+				 
 				 for(var x = 0;x<4;x++)	{
                      var listNode = document.createElement("LI");
                      listNode.setAttribute('class', 'w3-padding-16 w3-border-bottom w3-border-white');
@@ -137,8 +139,9 @@ function getAttractions(listId,offset) {
                      listNode.appendChild(spanNodeThree);
                      listNode.appendChild(document.createElement("BR"));
                      listNode.appendChild(spanNodeTwo);
-					 listNode.addEventListener('click',function(){clickAttr(x);});
+					 listNode.addEventListener('click',function(){clickAttr(idNum);});
                      document.getElementById(listId).appendChild(listNode);
+					 idNum=idNum+1;
 				 }
              },
              error: function (err) {
