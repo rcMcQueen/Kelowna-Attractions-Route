@@ -57,7 +57,7 @@ function getRecommendedRoutes(listId,y) {
 		listNode.appendChild(spanNodeOne);
 		listNode.appendChild(document.createElement("BR"));
 		listNode.appendChild(spanNodeTwo);
-		listNode.addEventListener('click',function(){clickAttr(jsonTypeAttr[y].rid,jsonTypeAttr[y].uname);});
+		listNode.addEventListener('click',function(){clickRoute(jsonTypeAttr[y].rid,jsonTypeAttr[y].uname);});
 		document.getElementById(listId).appendChild(listNode);
 		},
              error: function (err) {
