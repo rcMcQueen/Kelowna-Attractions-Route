@@ -100,13 +100,14 @@ function getAttractions(listId,offset) {
              type: 'GET',
              data: attrTypes,
              url: 'http://159.203.47.53:8080/makeAttr',
+			 async: false,
              dataType: 'json',
              success: function (data) {
                  var jsonTypeAttr = data;
                  var dataLength = Object.keys(jsonTypeAttr).length;
 
                  // reset node content, so new result could be displayed
-		 $(document.getElementById(listId)).empty();                 
+				$(document.getElementById(listId)).empty();                 
 
                  // Alternative way:
                  //var node = document.getElementById(listId);
