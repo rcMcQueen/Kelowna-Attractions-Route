@@ -143,10 +143,6 @@ var x = 0;
 var offsetNum = 4
 var offset = 0;
 
-sessionStorage.aid = null;
-sessionStorage.rid = null;
-sessionStorage.uname = null;
-
 for(var x = 0;x<offsetNum;x++)	{
 		getAttractions("attrList",offset,x);
 	}
@@ -200,12 +196,19 @@ function proceed(bool)	{
 function clickAttr(aid)	{
 	console.log(aid);
 	sessionStorage.aid = aid;
+	if(sessionStorage.rid)	{
+		sessionStorage.rid = null;
+		sessionStorage.uname = null;
+	}
 	proceed(true);
 }
 
 function clickRoute(rid,uname)	{
 	sessionStorage.rid = rid;
 	sessionStorage.uname = uname;
+	if(sessionStorage.aid)	{
+		sessionStorage.aid = null;
+	}
 	proceed(true);
 }
 
