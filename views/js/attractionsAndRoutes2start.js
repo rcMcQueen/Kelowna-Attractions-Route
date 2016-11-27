@@ -99,28 +99,32 @@ function passAttraction(listId, aid){
             dataType: 'json',
             url: 'http://159.203.47.53:8080/selectedAttr',
             success: function (data) {
-                console.log(JSON.stringify(data))
+                console.log(JSON.stringify(data));
+                var jsonPassedAttr = data;
                 // returned is : name, lat, lng, description, rating  ... from the Attraction table
-					var listNode = document.createElement("LI");
-                     listNode.setAttribute('class', 'w3-padding-16 w3-border-bottom w3-border-white');
-                     var imageNode = document.createElement("IMG");
-                     imageNode.setAttribute('src', 'img/best_dog.jpg');
-                     imageNode.setAttribute('class', 'w3-left w3-circle');
-                     imageNode.setAttribute('style', 'width:60px');
-                     var spanNodeOne = document.createElement('span');
-                     spanNodeOne.innerHTML = data.name;
-                     spanNodeOne.setAttribute('class','w3-xlarge');
-                     var spanNodeTwo = document.createElement("span");
-                     spanNodeTwo.innerHTML = data.description;
-                     var spanNodeThree = document.createElement("span");
-                     spanNodeThree.innerHTML = 'Rating: ' + data.rating + '/5';
-                     listNode.appendChild(imageNode);
-                     listNode.appendChild(spanNodeOne);
-					listNode.appendChild(document.createElement("BR"));
-                     listNode.appendChild(spanNodeThree);
-                     listNode.appendChild(document.createElement("BR"));
-                     listNode.appendChild(spanNodeTwo);
-                     document.getElementById(listId).appendChild(listNode);
+                var listNode = document.createElement("LI");
+                listNode.setAttribute('class', 'w3-padding-16 w3-border-bottom w3-border-white');
+                var imageNode = document.createElement("IMG");
+                imageNode.setAttribute('src', 'img/best_dog.jpg');
+                imageNode.setAttribute('class', 'w3-left w3-circle');
+                imageNode.setAttribute('style', 'width:60px');
+                var spanNodeOne = document.createElement('span');
+                spanNodeOne.innerHTML = jsonPassedAttr[0].name;
+                spanNodeOne.setAttribute('class','w3-xlarge');
+                var spanNodeTwo = document.createElement("span");
+                spanNodeTwo.innerHTML = jsonPassedAttr[0].description;
+                var spanNodeThree = document.createElement("span");
+                spanNodeThree.innerHTML = 'Rating: ' + jsonPassedAttr[0].rating + '/5';
+                listNode.appendChild(imageNode);
+                listNode.appendChild(spanNodeOne);
+                listNode.appendChild(document.createElement("BR"));
+                listNode.appendChild(spanNodeThree);
+                listNode.appendChild(document.createElement("BR"));
+                listNode.appendChild(spanNodeTwo);
+                document.getElementById(listId).appendChild(listNode);
+
+                // display attraction to the map
+                buildRouteWithOneAttraction(jsonPassedAttr);
             },
             error: function (err) {
                 console.log('Error, Ajax call unsuccessful.', err);
