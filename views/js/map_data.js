@@ -115,3 +115,40 @@ function displayRoute(originPoint, destinationPoint, waypts, service, display, d
     directionsDisplay.setMap(map);
     directionsDisplay.setPanel(document.getElementById('directionsPanel'));
   }
+
+
+
+// display only one attraction on the map
+function buildRouteWithOneAttraction(data){
+    directionsService = new google.maps.DirectionsService();
+    directionsDisplay = new google.maps.DirectionsRenderer({
+        suppressMarkers: true
+    });
+    var waypts = [];
+
+    waypts.push({
+        location: (data[0].lat + ", " + data[0].lng)
+    });
+
+    var currPos = {lat: data[0].lat, lng: data[0].lng}
+    var marker = new google.maps.Marker({
+        position: currPos,
+        map: map
+    });
+    attachInfoWindow(marker, data[0].description, data[0].name);
+    markerArray[0] = marker;
+
+    directionsService.route({
+        waypoints: waypts,
+        optimizeWaypoints: true,
+        travelMode: 'DRIVING'
+    }, function(res, status) {
+        if (status === 'OK') {
+            directionsDisplay.setDirections(res);
+            var route = res.routes[0];
+        }
+    });
+    directionsDisplay.setMap(map);
+}
+
+
