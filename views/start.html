@@ -196,12 +196,19 @@ function proceed(bool)	{
 function clickAttr(aid)	{
 	console.log(aid);
 	sessionStorage.aid = aid;
+	if(sessionStorage.rid)	{
+		sessionStorage.remove(rid);
+		sessionStorage.remove(uname);
+	}
 	proceed(true);
 }
 
 function clickRoute(rid,uname)	{
 	sessionStorage.rid = rid;
 	sessionStorage.uname = uname;
+	if(sessionStorage.aid)	{
+		sessionStorage.remove(aid);
+	}
 	proceed(true);
 }
 
