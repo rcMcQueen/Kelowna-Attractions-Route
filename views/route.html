@@ -147,7 +147,8 @@ var offset = 0;
 for(var x = 0;x<offsetNum;x++)	{
 		getAttractions("attrList",offset,x);
 	}
-if(sessionStorage.aid == 16)	{
+	
+if(sessionStorage.aid)	{
     console.log(sessionStorage.aid);
 	passAttraction("selectedList",sessionStorage.aid);
 }
