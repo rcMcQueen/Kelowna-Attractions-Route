@@ -143,6 +143,17 @@ var x = 0;
 var offsetNum = 4
 var offset = 0;
 
+var defaultBounds = new google.maps.LatLngBounds(
+  new google.maps.LatLng(49.788846, -119.710645),
+  new google.maps.LatLng(49.990570, -119.289860));
+
+var input = document.getElementById('currPos');
+var options = {
+  bounds: defaultBounds
+};
+
+autocomplete = new google.maps.places.Autocomplete(input, options);
+
 for(var x = 0;x<offsetNum;x++)	{
 		getAttractions("attrList",offset,x);
 	}
@@ -243,4 +254,6 @@ function attrListMinus()	{
 	}
 	//-database stuff here
 }
+
+
 </script>
