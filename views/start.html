@@ -148,9 +148,8 @@ for(var x = 0;x<offsetNum;x++)	{
 	}
 	
 for(x = 0; x < 2; x++){
-	getRecommendedRoutes("recRouteList");
+	getRecommendedRoutes("recRouteList",x);
 }
-getAttractions("attrList",offset);
 var attrNum = 0;
 var routeNum = 0;
 var x = document.getElementById("currLoc");
@@ -196,7 +195,13 @@ function proceed(bool)	{
 
 function clickAttr(aid)	{
 	sessionStorage.aid = aid;
-	console.log(aid);
+	proceed(true);
+}
+
+function clickRoute(rid,uname)	{
+	sessionStorage.rid = rid;
+	sessionStorage.uname = uname;
+	console.log(rid+" "+uname);
 	proceed(true);
 }
 

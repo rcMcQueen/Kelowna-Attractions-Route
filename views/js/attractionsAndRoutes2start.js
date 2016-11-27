@@ -34,7 +34,7 @@ function getPopularAttractions(listId) {
     });
  };
 
-function getRecommendedRoutes(listId) {
+function getRecommendedRoutes(listId,y) {
 	$(document).ready(function() {
 	$.ajax({
              type: 'GET',
@@ -44,7 +44,6 @@ function getRecommendedRoutes(listId) {
 		var jsonRecRoutes = data;
 		var listNode = document.createElement("LI");
 		listNode.setAttribute('class', 'w3-padding-16 w3-border-bottom w3-border-white');
-		listNode.setAttribute('onclick', "clickAttr(this);location.href = 'route.html';");
 		var imageNode = document.createElement("IMG");
 		imageNode.setAttribute('src', 'img/best_dog.jpg');
 		imageNode.setAttribute('class', 'w3-left w3-circle');
@@ -58,8 +57,8 @@ function getRecommendedRoutes(listId) {
 		listNode.appendChild(spanNodeOne);
 		listNode.appendChild(document.createElement("BR"));
 		listNode.appendChild(spanNodeTwo);
+		listNode.addEventListener('click',function(){clickRoute(jsonRecRoutes[y].rid,jsonRecRoutes[y].uname);});
 		document.getElementById(listId).appendChild(listNode);
-		y +=1
 		},
              error: function (err) {
                  console.log('Error, Ajax call unsuccessful.', err);
@@ -89,6 +88,10 @@ function updateAttractions() {
         selectedAttr["type"].push("Entertainment");
     }
     return selectedAttr;
+}
+
+function passAttraction(aid){
+	
 }
 
 function getAttractions(listId,offset,x) {
