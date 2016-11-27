@@ -201,7 +201,7 @@ function clickAttr(aid)	{
 }
 
 function updateCheckBoxs(){
-	(document.getElementById('attrList')).empty();
+	$(document.getElementById('attrList')).empty();
 	for(var x = 0;x<offsetNum;x++)	{
 		getAttractions("attrList",offset,x);
 	}
@@ -222,7 +222,7 @@ function attrListMinus()	{
 	attrNum=attrNum-1;
 	offset= offset-offsetNum;
 	y=0;
-	(document.getElementById('attrList')).empty();
+	$(document.getElementById('attrList')).empty();
 	for(var x = 0;x<offsetNum;x++)	{
 		getAttractions("attrList",offset,x);
 	}
