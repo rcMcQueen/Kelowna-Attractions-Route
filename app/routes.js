@@ -145,6 +145,19 @@ module.exports = function(app, passport) {
 		}
 	});
 
+	app.get('/displayMap', function(req, res) {
+		connection.query("SELECT name, lat, lng, description FROM Attraction", function(err, results) {
+			if(!err) {
+				res.json(results);
+			} else {
+				res.json({
+					"code": 50,
+					"status": "Error in connection to database."
+				});
+			}
+		});
+	});
+
 	// =====================================
 	// LOGIN ===============================
 	// =====================================
