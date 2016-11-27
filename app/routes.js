@@ -154,7 +154,6 @@ module.exports = function(app, passport) {
 		}
 	});
 
-<<<<<<< HEAD
 	app.get('/displayMap', function(req, res) {
 		connection.query("SELECT name, lat, lng, description FROM Attraction", function(err, results) {
 			if(!err) {
@@ -167,9 +166,8 @@ module.exports = function(app, passport) {
 			}
 		});
 	});
-=======
 
->>>>>>> 5f31f2d8cf095c8f85adec9fa95cd1a4df1e4497
+
 
 	// =====================================
 	// LOGIN ===============================
