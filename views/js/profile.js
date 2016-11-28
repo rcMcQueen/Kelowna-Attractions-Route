@@ -13,10 +13,10 @@ $(document).ready(function () {
 function displayProfileInformation(data) {
   document.getElementById('username').innerHTML = data[0].uname;
   document.getElementById('email').innerHTML = data[0].email;
-  if (data[0].first_name) {
-    document.getElementById('firstname').innerHTML = data[0].first_name;
+  if (data[0].first_name != 'null') {
+    document.getElementById('firstName').innerHTML = data[0].first_name;
   }
-  if (data[0].last_name) {
-    document.getElementById('lastname').innerHTML = data[0].last_name;
+  if (data[0].last_name != 'null') {
+    document.getElementById('lastName').innerHTML = data[0].last_name;
   }
 }

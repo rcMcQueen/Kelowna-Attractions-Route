@@ -267,18 +267,22 @@ app.get('/editProfile', isLoggedIn, function(req, res) {
 });
 
 app.post('/editProfile', function(req, res) {
-	var email = req.body.email;
-	var pwd = bcrypt.hashSync(req.body.pwd);
-	var firstName = req.body.first_name;
-	var lastName = req.body.lastName;
-	var sql = "UPDATE User SET email = ? WHERE uname = ?";
-	connection.query(sql, [email, req.user.uname], function(err, results) {
-		if(!err) {
-				res.redirect('/profile');
-				req.flash('success', 'Profile Successfully Updated!');
-		} else {
-			req.flash('fail', 'Error, Edit failed!')
-		}
+	// Checks if they set to enter a new password, and matches it to the schema layout
+	if (req.body.pwd != '') {
+		req.body.pwd = bcrypt.hashSync(req.body.pwd);
+    req.body["upass"] = req.body["pwd"];
+    delete req.body["pwd"];
+    }
+	else {
+		delete req.body["pwd"];
+	}
+	connection.query("UPDATE User SET ? WHERE uname = ?", [req.body, req.user.uname], function(err, results) {
+	if(!err) {
+			res.redirect('/profile');
+			req.flash('success', 'Profile Successfully Updated!');
+	} else {
+		req.flash('fail', 'Error, Edit failed!')
+	}
 	});
 });
 
