@@ -57,7 +57,7 @@ module.exports = function(passport) {
         var newUser = new Model.User();
         newUser.uname = uname;
         newUser.password = bcrypt.hashSync(password);
-	newUser.email = req.body.email;
+	      newUser.email = req.body.email;
         connection.query("INSERT INTO User (uname, upass, email) VALUES (?, ?, ?)", [newUser.uname, newUser.password, newUser.email]);
         return done(null, newUser);
       }

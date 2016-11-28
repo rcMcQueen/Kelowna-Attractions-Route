@@ -1,5 +1,6 @@
 var configDB = require('../config/database.js');
 var mysql = require('mysql');
+var bcrypt = require('bcrypt-nodejs');
 var connection = mysql.createConnection({
 	host: 'localhost',
 	user: 'root',
@@ -152,8 +153,6 @@ module.exports = function(app, passport) {
 					});
 				}
 			});
-
-
 		}
 	});
 
@@ -228,17 +227,6 @@ module.exports = function(app, passport) {
 		failureFlash : true // allow flash messages
 	}));
 
-	// =====================================
-	// PROFILE SECTION =========================
-	// =====================================
-	// we will want this protected so you have to be logged in to visit
-	// we will use route middleware to verify this (the isLoggedIn function)
-	app.get('/profile', isLoggedIn, function(req, res) {
-		console.log(req.user);
-		res.render('profile.html', {
-			user : req.user // get the user out of session and pass to template
-		});
-	});
 
 	// =====================================
 	// LOGOUT ==============================
@@ -247,9 +235,55 @@ module.exports = function(app, passport) {
 		req.logout();
 		res.redirect('/');
 	});
-};
+	// =====================================
+	// PROFILE SECTION =========================
+	// =====================================
+	// we will want this protected so you have to be logged in to visit
+	// we will use route middleware to verify this (the isLoggedIn function)
+	app.get('/profile', isLoggedIn, function(req, res) {
+			res.render('profile.html');
+	});
 
-// route middleware to make sure
+
+// Display the User's information on their profile
+	app.get('/displayProfile', function(req, res) {
+		connection.query("SELECT uname, email, first_name, last_name FROM User WHERE uname = ?", [req.user.uname], function(err, results) {
+			if(!err) {
+				res.json(results);
+			} else {
+				res.json({
+					"code": 50,
+					"status": "Error in connection to database."
+				});
+			}
+		});
+	});
+
+// =====================================
+// Edit Profile ========================
+// =====================================
+app.get('/editProfile', isLoggedIn, function(req, res) {
+		res.render('editprofile.html');
+});
+
+app.post('/editProfile', function(req, res) {
+	var email = req.body.email;
+	var pwd = bcrypt.hashSync(req.body.pwd);
+	var firstName = req.body.first_name;
+	var lastName = req.body.lastName;
+	var sql = "UPDATE User SET email = ? WHERE uname = ?";
+	connection.query(sql, [email, req.user.uname], function(err, results) {
+		if(!err) {
+				res.redirect('/profile');
+				req.flash('success', 'Profile Successfully Updated!');
+		} else {
+			req.flash('fail', 'Error, Edit failed!')
+		}
+	});
+});
+
+
+// route middleware to make sure user is logged in
 function isLoggedIn(req, res, next) {
 
 	// if user is authenticated in the session, carry on
@@ -259,3 +293,4 @@ function isLoggedIn(req, res, next) {
 	// if they aren't redirect them to the home page
 	res.redirect('/');
 }
+};
