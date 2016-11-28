@@ -65,7 +65,7 @@
 						</div>
 						<!--Attraction List-->
 						<div id="Attraction" class="w3-container tab">
-							<form class="w3-container w3-bottombar w3-blue w3-border-white w3-padding" style = "box-shadow: 10px 10px 5px #888888" onchange="getAttractions('attrList')">
+							<form class="w3-container w3-bottombar w3-blue w3-border-white w3-padding" style = "box-shadow: 10px 10px 5px #888888" onchange="updateCheckBoxs()">
 								<br>
 								<div class="w3-row-padding">
 										<div class="w3-half">
@@ -201,6 +201,13 @@ if(sessionStorage.rid != "null")	{
 	sessionStorage.routeAids = JSON.stringify(routeAids);
 	window.location.href = "map.html";
 	}
+	
+	function updateCheckBoxs(){
+	$(document.getElementById('attrList')).empty();
+	for(var x = 0;x<offsetNum;x++)	{
+		getAttractions("attrList",offset,x);
+	}
+}
 }
 </script>
 <!-- Footer -->
