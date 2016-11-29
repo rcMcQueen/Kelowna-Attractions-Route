@@ -65,7 +65,7 @@
 						</div>
 						<!--Attraction List-->
 						<div id="Attraction" class="w3-container tab">
-							<form class="w3-container w3-bottombar w3-blue w3-border-white w3-padding" style = "box-shadow: 10px 10px 5px #888888" onchange="updateCheckBoxs();alert('kill me now')">
+							<form class="w3-container w3-bottombar w3-blue w3-border-white w3-padding" style = "box-shadow: 10px 10px 5px #888888" onchange="updateCheckBoxs()">
 								<br>
 								<div class="w3-row-padding">
 										<div class="w3-half">
@@ -97,11 +97,11 @@
 											<label class="w3-validate">Entertainment</label>
 										</div>
 									</div>
+								</form>
 								<br>
 								<button onclick ="attrListMinus();return false" style = 'display:none' id = 'backBtn'>Go Back </button>
 								<button onclick ='attrListPlus();return false'>Load More </button>
 								<hr>
-							</form>
 							<!--AttrList-->
 							<ul class="w3-ul" id = "attrList">
 							</ul>
