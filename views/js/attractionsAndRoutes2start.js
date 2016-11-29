@@ -212,8 +212,7 @@ function getAttractionsForRoutes(listId,offset,x) {
                 var currentAid = jsonTypeAttr[x+offset].aid;
                 var result = $.inArray(currentAid, selectedAids);
                 if(result != -1){
-                    offset--;
-
+                    return;
                 }
                 else {
                     var listNode = document.createElement("LI");
