@@ -167,7 +167,7 @@ function removeSelected(aid)	{
 	var magicalIndex = selectedAids.indexOf(aid);
 	console.log(magicalIndex + " " + aid);
 	if(magicalIndex > -1)	{
-		selectedAids = selectedAids.splice(magicalIndex, 1);
+		selectedAids.splice(magicalIndex, 1);
 	}
 	console.log(selectedAids);
 }
