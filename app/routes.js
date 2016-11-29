@@ -180,6 +180,36 @@ module.exports = function(app, passport) {
 		}
 	});
 
+	app.get('/createRouteStops', function(req, res) {
+		var stringify = JSON.stringify(req.query.aid);
+		var routeStops = JSON.parse(stringify);
+		var aidSize = Object.size(routeStops);
+
+		if(!req.query.aid){
+			return;
+		} else {
+			var rid = 0;
+			connection.query('INSERT INTO Route(travel_time) VALUES (0)', function(err,res){
+				if(err) throw err;
+				rid = res.insertId;
+			});
+			var aid = 0;
+			var routeStopInsert = 'INSERT INTO RouteStop(rid, aid) VALUES (?, ?)';
+			for(var i = 0; i < aidSize; i++){
+				aid = routeStops[i];
+				connection.query(routeStopInsert, [rid], [aid], function(err,res){
+					if(err){
+						console.log('Last insert ID:', res.insertId);
+						throw err;
+					}
+				});
+			}
+
+			// OPTIONAL: insert a stored route into the DB with INSERT INTO StoredRoute(uname, rid) VALUES (? , ?)
+			// can't do it at this moment since I do not have username, and I do not even know if the user is logged in
+		}
+	});
+
 	app.get('/displayMap', function(req, res) {
 		connection.query("SELECT name, lat, lng, description FROM Attraction", function(err, results) {
 			if(!err) {
