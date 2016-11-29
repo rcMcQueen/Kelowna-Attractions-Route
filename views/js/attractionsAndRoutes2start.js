@@ -166,14 +166,6 @@ function getAttractions(listId,offset,x) {
              success: function (data) {
                  var jsonTypeAttr = data;
                  var dataLength = Object.keys(jsonTypeAttr).length;
-
-                 // reset node content, so new result could be displayed                 
-
-                 // Alternative way:
-                 //var node = document.getElementById(listId);
-                 //while (node.hasChildNodes()) {
-                 //    node.removeChild(node.firstChild);
-                 //}
 				
                      var listNode = document.createElement("LI");
                      listNode.setAttribute('class', 'w3-padding-16 w3-border-bottom w3-border-white');
@@ -202,4 +194,56 @@ function getAttractions(listId,offset,x) {
              }
          });
      });
+};
+
+function getAttractionsForRoutes(listId,offset,x) {
+    var attrTypes = {};
+    attrTypes = updateAttractions();
+    $(document).ready(function () {
+        $.ajax({
+            type: 'GET',
+            data: attrTypes,
+            url: 'http://159.203.47.53:8080/makeAttr',
+            dataType: 'json',
+            success: function (data) {
+                var jsonTypeAttr = data;
+                var dataLength = Object.keys(jsonTypeAttr).length;
+
+                var currentAid = jsonTypeAttr[x+offset].aid;
+                var result = $.inArray(currentAid, selectedAids);
+                if(result != -1){
+                    offset--;
+
+                }
+                else {
+                    var listNode = document.createElement("LI");
+                    listNode.setAttribute('class', 'w3-padding-16 w3-border-bottom w3-border-white');
+                    var imageNode = document.createElement("IMG");
+                    imageNode.setAttribute('src', 'img/best_dog.jpg');
+                    imageNode.setAttribute('class', 'w3-left w3-circle');
+                    imageNode.setAttribute('style', 'width:60px');
+                    var spanNodeOne = document.createElement('span');
+                    spanNodeOne.innerHTML = jsonTypeAttr[x + offset].name;
+                    spanNodeOne.setAttribute('class', 'w3-xlarge');
+                    var spanNodeTwo = document.createElement("span");
+                    spanNodeTwo.innerHTML = jsonTypeAttr[x + offset].description;
+                    var spanNodeThree = document.createElement("span");
+                    spanNodeThree.innerHTML = 'Rating: ' + jsonTypeAttr[x + offset].rating + '/5';
+                    listNode.appendChild(imageNode);
+                    listNode.appendChild(spanNodeOne);
+                    listNode.appendChild(document.createElement("BR"));
+                    listNode.appendChild(spanNodeThree);
+                    listNode.appendChild(document.createElement("BR"));
+                    listNode.appendChild(spanNodeTwo);
+                    listNode.addEventListener('click', function () {
+                        clickAttr(jsonTypeAttr[x + offset].aid);
+                    });
+                    document.getElementById(listId).appendChild(listNode);
+                }
+            },
+            error: function (err) {
+                console.log('Error, Ajax call unsuccessful.', err);
+            }
+        });
+    });
 };
