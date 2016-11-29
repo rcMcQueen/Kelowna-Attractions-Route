@@ -1,5 +1,4 @@
 
-
 function getPopularAttractions(listId) {
     $(document).ready(function () {
         $.ajax({
@@ -114,10 +113,15 @@ function passAttraction(listId, aid){
                      spanNodeTwo.innerHTML = data[0].description;
                      var spanNodeThree = document.createElement("span");
                      spanNodeThree.innerHTML = 'Rating: ' + data[0].rating + '/5';
+					 var spanNodeFour = document.createElement("span");
+					 spanNodeFour.setAttribute("class","w3-closebtn w3-margin-right w3-xlarge");
+					 spanNodeFour.innerHTML = "&times";
+					 spanNodeFour.addEventListener('click',function(){removeSelected(data[0].aid);this.parentElement.style.display='none'});
                      listNode.appendChild(imageNode);
                      listNode.appendChild(spanNodeOne);
 					 listNode.appendChild(document.createElement("BR"));
                      listNode.appendChild(spanNodeThree);
+					 listNode.appendChild(spanNodeFour);
                      listNode.appendChild(document.createElement("BR"));
                      listNode.appendChild(spanNodeTwo);
                      document.getElementById(listId).appendChild(listNode);
@@ -196,7 +200,7 @@ function getAttractions(listId,offset,x) {
      });
 };
 
-function getAttractionsForRoutes(listId,offset,x) {
+function getAttractionsForRoutes(listId,offset,x,isLast) {
     var attrTypes = {};
     attrTypes = updateAttractions();
     $(document).ready(function () {
@@ -211,10 +215,8 @@ function getAttractionsForRoutes(listId,offset,x) {
 
                 var currentAid = jsonTypeAttr[x+offset].aid;
                 var result = $.inArray(currentAid, selectedAids);
-                if(result != -1){
-                    return;
-                }
-                else {
+                
+                if(result == -1) {
                     var listNode = document.createElement("LI");
                     listNode.setAttribute('class', 'w3-padding-16 w3-border-bottom w3-border-white');
                     var imageNode = document.createElement("IMG");
@@ -239,6 +241,12 @@ function getAttractionsForRoutes(listId,offset,x) {
                     });
                     document.getElementById(listId).appendChild(listNode);
                 }
+				if(isLast == true)	{
+						var count = $(document.getElementById(listId)).children("li").length;
+						if(count < 4)	{
+							getAttractionsForRoutes(listId,offset,x+1,true);
+						}
+				}
             },
             error: function (err) {
                 console.log('Error, Ajax call unsuccessful.', err);
