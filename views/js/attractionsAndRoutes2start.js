@@ -122,8 +122,8 @@ function passAttraction(listId, aid){
                      listNode.appendChild(spanNodeTwo);
                      document.getElementById(listId).appendChild(listNode);
 
-                // display attraction to the map
-                     buildRouteWithOneAttraction(data);
+                     // display attraction to the map
+                     // buildRouteWithOneAttraction(data);
             },
             error: function (err) {
                 console.log('Error, Ajax call unsuccessful.', err);
@@ -142,6 +142,8 @@ function displayRecommendedRoutes(listId,rid, uname){
             url: 'http://159.203.47.53:8080/showRecRoute',
             success: function (data) {
                 console.log(JSON.stringify(data))
+                var jsonClicked_recRoute = data;
+                var dataLength = Object.keys(jsonClicked_recRoute).length;
                 // returns A.name, A.description, A.rating, A.lat, A.lng
             },
             error: function (err) {
@@ -188,7 +190,7 @@ function getAttractions(listId,offset,x) {
                      spanNodeThree.innerHTML = 'Rating: ' + jsonTypeAttr[x+offset].rating + '/5';
                      listNode.appendChild(imageNode);
                      listNode.appendChild(spanNodeOne);
-					listNode.appendChild(document.createElement("BR"));
+					 listNode.appendChild(document.createElement("BR"));
                      listNode.appendChild(spanNodeThree);
                      listNode.appendChild(document.createElement("BR"));
                      listNode.appendChild(spanNodeTwo);
