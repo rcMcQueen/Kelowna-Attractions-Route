@@ -65,7 +65,7 @@
 						</div>
 						<!--Attraction List-->
 						<div id="Attraction" class="w3-container tab">
-							<form class="w3-container w3-bottombar w3-blue w3-border-white w3-padding" style = "box-shadow: 10px 10px 5px #888888" onchange="updateCheckBoxs()">
+							<form class="w3-container w3-bottombar w3-blue w3-border-white w3-padding" style = "box-shadow: 10px 10px 5px #888888" onchange="updateCheckBoxs();alert('kill me now')">
 								<br>
 								<div class="w3-row-padding">
 										<div class="w3-half">
@@ -139,20 +139,17 @@
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmVV2Ab0atjhri97nB2q1OGD_Eb6xW-	Hw&callback=initMap"> </script>
 <script src="js/attractionsAndRoutes2start.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
 <script>
 openTab("Attraction")
 var offsetNum = 4
 var offset = 0;
 var selectedAids = [];
-
 function clickAttr(aid)	{
 	selectedAids.push(aid);
 	passAttraction("selectedList",aid);
 	}
-
 for(var x = 0;x<offsetNum;x++)	{
-		getAttractions("attrList",offset,x);
+		getAttractionsForRoutes("attrList",offset,x);
 	}
 	
 if(sessionStorage.aid != "null")	{
@@ -160,7 +157,6 @@ if(sessionStorage.aid != "null")	{
 	selectedAids.push(sessionStorage.aid);
 	passAttraction("selectedList",Number(sessionStorage.aid));
 }
-
 if(sessionStorage.rid != "null")	{
 	displayRecommendedRoutes("selectedList",Number(sessionStorage.rid),Number(sessionStorage.uname));
 }
@@ -173,7 +169,6 @@ if(sessionStorage.rid != "null")	{
 		}
 		document.getElementById(tabName).style.display = "block";
 	}
-
 	
 	function attrListPlus()	{
 	document.getElementById('backBtn').style.display="inline";
@@ -182,7 +177,7 @@ if(sessionStorage.rid != "null")	{
 	y=0;
 	$(document.getElementById('attrList')).empty();
 	for(var x = 0;x<offsetNum;x++)	{
-		getAttractions("attrList",offset,x);
+		getAttractionsForRoutes("attrList",offset,x);
 	}
 }
 	
@@ -193,7 +188,7 @@ if(sessionStorage.rid != "null")	{
 	y=0;
 	$(document.getElementById('attrList')).empty();
 	for(var x = 0;x<offsetNum;x++)	{
-		getAttractions("attrList",offset,x);
+		getAttractionsForRoutes("attrList",offset,x);
 	}
 }
 	
@@ -205,7 +200,7 @@ if(sessionStorage.rid != "null")	{
 	function updateCheckBoxs(){
 	$(document.getElementById('attrList')).empty();
 	for(var x = 0;x<offsetNum;x++)	{
-		getAttractions("attrList",offset,x);
+		getAttractionsForRoutes("attrList",offset,x);
 	}
 	}
 </script>
