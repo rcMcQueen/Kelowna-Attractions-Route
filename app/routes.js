@@ -2,7 +2,7 @@ var configDB = require('../config/database.js');
 var mysql = require('mysql');
 var bcrypt = require('bcrypt-nodejs');
 var connection = mysql.createConnection({
-	host: '159.203.47.53',
+	host: 'localhost',
 	user: 'root',
 	password: 'a4g443fds2A',
 	database: 'routes'
