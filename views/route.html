@@ -211,7 +211,7 @@ function removeSelected(aid)	{
 }
 	
 	function finalizeRoute()	{
-	sessionStorage.routeAids = JSON.stringify(routeAids);
+	sessionStorage.routeAids = JSON.stringify(selectedAids);
 	window.location.href = "map.html";
 	}
 	
