@@ -5,7 +5,7 @@ function getPopularAttractions(listId) {
             type: 'GET',
             url: 'http://159.203.47.53:8080/popAttr',
             dataType: 'json',
-            success: function (data) { 
+            success: function (data) {
                 var jsonPopAttr = data;
                 var listNode = document.createElement("LI");
                 listNode.setAttribute('class', 'w3-padding-16 w3-border-bottom w3-border-white');
@@ -40,29 +40,29 @@ function getRecommendedRoutes(listId,y) {
              url: 'http://159.203.47.53:8080/recRoute',
              dataType: 'json',
              success: function(data) {
-		var jsonRecRoutes = data;
-		var listNode = document.createElement("LI");
-		listNode.setAttribute('class', 'w3-padding-16 w3-border-bottom w3-border-white');
-		var imageNode = document.createElement("IMG");
-		imageNode.setAttribute('src', 'img/best_dog.jpg');
-		imageNode.setAttribute('class', 'w3-left w3-circle');
-		imageNode.setAttribute('style', 'width:60px');
-		var spanNodeOne = document.createElement('span');
-		spanNodeOne.innerHTML = jsonRecRoutes[y].name;
-		spanNodeOne.setAttribute('class','w3-xlarge');
-		var spanNodeTwo = document.createElement("span");
-		spanNodeTwo.innerHTML = jsonRecRoutes[y].description;
-		listNode.appendChild(imageNode);
-		listNode.appendChild(spanNodeOne);
-		listNode.appendChild(document.createElement("BR"));
-		listNode.appendChild(spanNodeTwo);
-		listNode.addEventListener('click',function(){clickRoute(jsonRecRoutes[y].rid,jsonRecRoutes[y].uname);});
-		document.getElementById(listId).appendChild(listNode);
-		},
+        		 var jsonRecRoutes = data;
+        		 var listNode = document.createElement("LI");
+        		 listNode.setAttribute('class', 'w3-padding-16 w3-border-bottom w3-border-white');
+        		 var imageNode = document.createElement("IMG");
+        		 imageNode.setAttribute('src', 'img/best_dog.jpg');
+        		 imageNode.setAttribute('class', 'w3-left w3-circle');
+        		 imageNode.setAttribute('style', 'width:60px');
+        		 var spanNodeOne = document.createElement('span');
+        		 spanNodeOne.innerHTML = jsonRecRoutes[y].name;
+        		 spanNodeOne.setAttribute('class','w3-xlarge');
+        		 var spanNodeTwo = document.createElement("span");
+        		 spanNodeTwo.innerHTML = jsonRecRoutes[y].description;
+        		 listNode.appendChild(imageNode);
+        		 listNode.appendChild(spanNodeOne);
+        		 listNode.appendChild(document.createElement("BR"));
+        		 listNode.appendChild(spanNodeTwo);
+        		 listNode.addEventListener('click',function(){clickRoute(jsonRecRoutes[y].rid,jsonRecRoutes[y].uname);});
+        		 document.getElementById(listId).appendChild(listNode);
+        		 },
              error: function (err) {
                  console.log('Error, Ajax call unsuccessful.', err);
              }
-	});
+	          });
     });
 }
 
@@ -98,9 +98,7 @@ function passAttraction(listId, aid){
             dataType: 'json',
             url: 'http://159.203.47.53:8080/selectedAttr',
             success: function (data) {
-                console.log(JSON.stringify(data))
-                // returned is : name, lat, lng, description, rating  ... from the Attraction table
-					 var listNode = document.createElement("LI");
+					           var listNode = document.createElement("LI");
                      listNode.setAttribute('class', 'w3-padding-16 w3-border-bottom w3-border-white');
                      var imageNode = document.createElement("IMG");
                      imageNode.setAttribute('src', 'img/best_dog.jpg');
@@ -113,19 +111,19 @@ function passAttraction(listId, aid){
                      spanNodeTwo.innerHTML = data[0].description;
                      var spanNodeThree = document.createElement("span");
                      spanNodeThree.innerHTML = 'Rating: ' + data[0].rating + '/5';
-					 var spanNodeFour = document.createElement("span");
-					 spanNodeFour.setAttribute("class","w3-closebtn w3-margin-right w3-xlarge");
-					 spanNodeFour.innerHTML = "&times";
-					 spanNodeFour.addEventListener('click',function(){removeSelected(aid);this.parentElement.style.display='none'});
+          					 var spanNodeFour = document.createElement("span");
+          					 spanNodeFour.setAttribute("class","w3-closebtn w3-margin-right w3-xlarge");
+          					 spanNodeFour.innerHTML = "&times";
+          					 spanNodeFour.addEventListener('click',function(){removeSelected(aid);this.parentElement.style.display='none'});
                      listNode.appendChild(imageNode);
                      listNode.appendChild(spanNodeOne);
-					 listNode.appendChild(document.createElement("BR"));
+					           listNode.appendChild(document.createElement("BR"));
                      listNode.appendChild(spanNodeThree);
-					 listNode.appendChild(spanNodeFour);
+					           listNode.appendChild(spanNodeFour);
                      listNode.appendChild(document.createElement("BR"));
                      listNode.appendChild(spanNodeTwo);
                      document.getElementById(listId).appendChild(listNode);
-
+                     makeMarker(data);
                      // display attraction to the map
                      // buildRouteWithOneAttraction(data);
             },
@@ -145,7 +143,6 @@ function displayRecommendedRoutes(listId,rid, uname){
             dataType: 'json',
             url: 'http://159.203.47.53:8080/showRecRoute',
             success: function (data) {
-                console.log(JSON.stringify(data))
                 var jsonClicked_recRoute = data;
                 var dataLength = Object.keys(jsonClicked_recRoute).length;
                 // returns A.name, A.description, A.rating, A.lat, A.lng
@@ -170,7 +167,7 @@ function getAttractions(listId,offset,x) {
              success: function (data) {
                  var jsonTypeAttr = data;
                  var dataLength = Object.keys(jsonTypeAttr).length;
-				
+
                      var listNode = document.createElement("LI");
                      listNode.setAttribute('class', 'w3-padding-16 w3-border-bottom w3-border-white');
                      var imageNode = document.createElement("IMG");
@@ -186,11 +183,11 @@ function getAttractions(listId,offset,x) {
                      spanNodeThree.innerHTML = 'Rating: ' + jsonTypeAttr[x+offset].rating + '/5';
                      listNode.appendChild(imageNode);
                      listNode.appendChild(spanNodeOne);
-					 listNode.appendChild(document.createElement("BR"));
+		                 listNode.appendChild(document.createElement("BR"));
                      listNode.appendChild(spanNodeThree);
                      listNode.appendChild(document.createElement("BR"));
                      listNode.appendChild(spanNodeTwo);
-					 listNode.addEventListener('click',function(){clickAttr(jsonTypeAttr[x+offset].aid);});
+			               listNode.addEventListener('click',function(){clickAttr(jsonTypeAttr[x+offset].aid);});
                      document.getElementById(listId).appendChild(listNode);
              },
              error: function (err) {
@@ -215,7 +212,7 @@ function getAttractionsForRoutes(listId,offset,x,isLast) {
 
                 var currentAid = jsonTypeAttr[x+offset].aid;
                 var result = $.inArray(currentAid, selectedAids);
-                
+
                 if(result == -1) {
                     var listNode = document.createElement("LI");
                     listNode.setAttribute('class', 'w3-padding-16 w3-border-bottom w3-border-white');

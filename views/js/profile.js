@@ -1,7 +1,7 @@
 $(document).ready(function () {
     $.ajax({
         type: 'GET',
-        url: 'http://159.203.47.53:8080/displayProfile',
+        url: 'http://localhost:8080/displayProfile',
         dataType: 'json',
         success: displayProfileInformation,
         error: function (err) {

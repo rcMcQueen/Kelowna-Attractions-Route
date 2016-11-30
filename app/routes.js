@@ -2,7 +2,7 @@ var configDB = require('../config/database.js');
 var mysql = require('mysql');
 var bcrypt = require('bcrypt-nodejs');
 var connection = mysql.createConnection({
-	host: 'localhost',
+	host: '159.203.47.53',
 	user: 'root',
 	password: 'a4g443fds2A',
 	database: 'routes'
@@ -164,11 +164,10 @@ module.exports = function(app, passport) {
 		else{
 			var stringify_aid = JSON.stringify(req.query.aid);
 			var aid = JSON.parse(stringify_aid);
-			console.log("aid = " + aid);
-			var sql = 'SELECT name, lat, lng, description, rating FROM Attraction WHERE aid = ? ;';
-
+			var sql = 'SELECT aid, name, lat, lng, description, rating FROM Attraction WHERE aid = ?';
 			connection.query(sql, [aid], function(err, results) {
 				if(!err){
+					console.log(results);
 					res.json(results);
 				} else {
 					res.json({

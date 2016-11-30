@@ -118,26 +118,19 @@
 		</div>
 	</div>
 	</div>
-	<div class="w3-twothird w3-lightgrey w3-container" style="height:700px">
+	<div class="w3-twothird w3-lightgrey w3-container" style="height:1000px">
 		<div class="w3-padding-16 w3-center">
 			<br><br>
 			<div class = "w3-spi" id="map" style = "box-shadow: 10px 10px 5px #888888"></div>
-			<script>
-				function initMap() {
-					var uluru = {lat: 49.8880, lng: -119.4960};
-					var map = new google.maps.Map(document.getElementById('map'), {
-						zoom: 12,
-						center: uluru
-					});
-				}
-			</script>
 		</div>
 	</div>
 </div>
 </body>
 </html>
+
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmVV2Ab0atjhri97nB2q1OGD_Eb6xW-	Hw&callback=initMap"> </script>
 <script src="js/attractionsAndRoutes2start.js"></script>
+<script src="js/routeMarker.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script>
 openTab("Attraction")
@@ -149,9 +142,8 @@ function clickAttr(aid)	{
 	passAttraction("selectedList",aid);
 	updateCheckBoxs();
 	}
-	
+
 if(sessionStorage.aid != "null")	{
-    console.log(sessionStorage.aid);
 	selectedAids.push(Number(sessionStorage.aid));
 	passAttraction("selectedList",Number(sessionStorage.aid));
 }
@@ -164,13 +156,13 @@ updateCheckBoxs();
 
 function removeSelected(aid)	{
 	var magicalIndex = selectedAids.indexOf(aid);
-	console.log(magicalIndex + " " + aid);
 	if(magicalIndex > -1)	{
 		selectedAids.splice(magicalIndex, 1);
 	}
 	updateCheckBoxs();
+	removeMarker(aid);
 }
-	
+
 	function openTab(tabName) {
 		var i;
 		var x = document.getElementsByClassName("tab");
@@ -179,7 +171,7 @@ function removeSelected(aid)	{
 		}
 		document.getElementById(tabName).style.display = "block";
 	}
-	
+
 	function attrListPlus()	{
 	document.getElementById('backBtn').style.display="inline";
 	offset= offset+offsetNum;
@@ -194,7 +186,7 @@ function removeSelected(aid)	{
 		}
 	}
 }
-	
+
 	function attrListMinus()	{
 		document.getElementById('backBtn').style.display="inline";
 	offset= offset-offsetNum;
@@ -209,12 +201,12 @@ function removeSelected(aid)	{
 		}
 	}
 }
-	
+
 	function finalizeRoute()	{
 	sessionStorage.routeAids = JSON.stringify(selectedAids);
 	window.location.href = "map.html";
 	}
-	
+
 	function updateCheckBoxs(){
 	$(document.getElementById('attrList')).empty();
 	for(var x = 0;x<offsetNum;x++)	{
