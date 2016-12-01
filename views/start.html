@@ -7,9 +7,6 @@
         width: 75%;
 		padding-left:50px;
        }
-  body {
-		background-image: url("img/background1.png");
-     }
  input[type="checkbox"]{
 		width: 20px;
 		height: 20px;
@@ -70,7 +67,7 @@
 	</form>
 	<form class="w3-container w3-blue" style = "box-shadow: 10px 10px 5px #888888">
 	<ul class="w3-ul w3-card-4" id = "recRouteList">
-  		
+
 	</ul>
 	<br>
 	</form>
@@ -160,7 +157,7 @@ autocomplete = new google.maps.places.Autocomplete(input, options);
 for(var x = 0;x<offsetNum;x++)	{
 		getAttractions("attrList",offset,x);
 	}
-	
+
 for(x = 0; x < 2; x++){
 	getRecommendedRoutes("recRouteList",x);
 }
