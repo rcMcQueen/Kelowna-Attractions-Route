@@ -136,6 +136,7 @@ function passAttraction(listId, aid){
 
 function displayRecommendedRoutes(listId,rid, uname){
     var routeParams = {"rid": rid, "username": uname};
+    console.log("Display Rec Route parameters: " + JSON.stringify(routeParams));
     $(document).ready(function () {
         $.ajax({
             type: 'GET',
