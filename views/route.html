@@ -58,6 +58,8 @@
 							<h3>Are you sure your route is ready?</h3>
 							<br>
 							<button class="btn btn-secondary" type="button" onclick = "finalizeRoute()">Yes, Proceed</button>
+							<br>
+							<button class="btn btn-secondary" type="button" onclick = "createRouteStops(routeAids)">Save Route</button>
 						</div>
 						<!--Attraction List-->
 						<div id="Attraction" class="w3-container tab">
@@ -201,7 +203,6 @@ function removeSelected(aid)	{
 }
 
 	function finalizeRoute()	{
-		createRouteStops(selectedAids);
 		sessionStorage.routeAids = JSON.stringify(selectedAids);
 		window.location.href = "map.html";
 	}
