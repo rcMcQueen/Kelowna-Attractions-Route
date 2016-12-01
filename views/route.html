@@ -141,6 +141,7 @@ function clickAttr(aid)	{
 	selectedAids.push(aid);
 	passAttraction("selectedList",aid);
 	updateCheckBoxs();
+	makeMarker(aid);
 	}
 
 if(sessionStorage.aid != "null")	{
