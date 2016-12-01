@@ -195,19 +195,25 @@ module.exports = function(app, passport) {
 					console.log("new rid = " + rid);
 				}
 			});
+
+			var callback = function(x) {
+				res.json(x);
+			}
 			// var getRidSql = 'SELECT LAST_INSERT_ID();'
 			// insert each new RouteStop into the Database
 			var aid = 0;
 			var routeStopInsert = 'INSERT INTO RouteStop(rid, aid) VALUES (?, ?)';
 			for(var i = 0; i < aidSize; i++){
 				aid = parseInt(req.query.aid[i]);
-				connection.query(routeStopInsert, [rid, aid], function(err,result){
+				connection.query(routeStopInsert, [rid, aid], function(i, err,result){
 					if(err){
 						throw err;
 					} else{
-						console.log("Successful RouteStop INSERT");
+							if (i == (req.query.length)){
+								console.log("Successful RouteStop INSERT");
+							}
 					}
-				});
+				}.bind(connection, i));
 			}
 
 			// create and insert the new Stored Route into the Database
