@@ -149,7 +149,7 @@ if(sessionStorage.aid != "null")	{
 }
 
 if(sessionStorage.rid != "null")	{
-	displayRecommendedRoutes("selectedList",Number(sessionStorage.rid),Number(sessionStorage.uname));
+	displayRecommendedRoutes("selectedList",Number(sessionStorage.rid),sessionStorage.uname);
 }
 
 updateCheckBoxs();
