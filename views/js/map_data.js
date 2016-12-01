@@ -113,5 +113,5 @@ function displayRoute(originPoint, destinationPoint, waypts, service, display, d
       }
     });
     directionsDisplay.setMap(map);
-    directionsDisplay.setPanel(document.getElementById('directionsPanel'));
+    directionsDisplay.setPanel(document.getElementById('directionScroll'));
   }
