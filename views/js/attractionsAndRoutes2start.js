@@ -145,8 +145,10 @@ function displayRecommendedRoutes(listId,rid, uname){
             success: function (data) {
                 var jsonClicked_recRoute = data;
                 var dataLength = Object.keys(jsonClicked_recRoute).length;
+				console.log(dataLength);
                 // returns A.name, A.description, A.rating, A.lat, A.lng
 				for(var x = 0;x<dataLength;x++)	{
+					console.log("making selected");
 					var listNode = document.createElement("LI");
                      listNode.setAttribute('class', 'w3-padding-16 w3-border-bottom w3-border-white');
                      var imageNode = document.createElement("IMG");
