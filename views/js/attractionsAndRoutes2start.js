@@ -147,7 +147,7 @@ function displayRecommendedRoutes(listId,rid, uname){
                 var jsonClicked_recRoute = data;
                 var dataLength = Object.keys(jsonClicked_recRoute).length;
 				console.log(dataLength);
-                // returns A.name, A.description, A.rating, A.lat, A.lng
+                // returns A.name, A.description, A.rating, A.lat, A.lng, A.aid
 				for(var x = 0;x<dataLength;x++)	{
 					console.log("making selected");
 					var listNode = document.createElement("LI");
@@ -175,8 +175,7 @@ function displayRecommendedRoutes(listId,rid, uname){
                      listNode.appendChild(document.createElement("BR"));
                      listNode.appendChild(spanNodeTwo);
                      document.getElementById(listId).appendChild(listNode);
-					 console.log(x+" "+jsonClicked_recRoute[x].aid);
-                     makeMarker(jsonClicked_recRoute[x]);
+					 selectedAids.push(jsonClicked_recRoute[x].aid);
 				}
             },
             error: function (err) {
