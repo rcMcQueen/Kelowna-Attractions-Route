@@ -128,20 +128,20 @@ module.exports = function(app, passport) {
 			res.json([]);
 		}
 		else{
-			var stringify_uname = JSON.stringify(req.query.username);
-			var uname = JSON.parse(stringify_uname);
+			//var stringify_uname = JSON.stringify(req.query.username);
+			//var uname = JSON.parse(stringify_uname);
 
-			var stringify_rid = JSON.stringify(req.query.rid);
-			var rid = JSON.parse(stringify_rid);
-
-			console.log("rid = " + rid);
-			console.log("uname = " + uname);
+			//var stringify_rid = JSON.stringify(req.query.rid);
+			//var rid = JSON.parse(stringify_rid);
+			
+			console.log("rid = " + req.query.rid);
+			console.log("uname = " + req.query.username);
 
 			var sql = 'SELECT A.name, A.description, A.rating, A.lat, A.lng FROM StoredRoute S, Attraction A, RouteStop R WHERE S.rid = R.rid and R.aid = A.aid and S.uname = ? and S.rid = ? ORDER BY R.id ASC;';
 
 			var prepStatements = [];
-			prepStatements.push(uname);
-			prepStatements.push(rid);
+			prepStatements.push(req.query.username);
+			prepStatements.push(req.query.rid);
 
 			connection.query(sql, prepStatements, function(err, results) {
 				if(!err){
