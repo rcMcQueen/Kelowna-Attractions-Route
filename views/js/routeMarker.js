@@ -15,14 +15,14 @@ function initMap() {
   }
 
 function makeMarker(data) {
-            var aid = data[0].aid;
-            var currPos = {lat: data[0].lat, lng: data[0].lng};
+            var aid = data.aid;
+            var currPos = {lat: data.lat, lng: data.lng};
             var marker = new google.maps.Marker({
               position: currPos,
               map: map
             });
             markers[aid] = marker;
-            attachInfoWindow(marker, data[0].description, data[0].name);
+            attachInfoWindow(marker, data.description, data.name);
 }
 
 function attachInfoWindow(marker, desc, name) {
