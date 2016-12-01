@@ -3,6 +3,7 @@ var directionsService;
 var directionsDisplay;
 var stepDisplay;
 var markerArray = [];
+var aids = {"aid": JSON.parse(sessionStorage.routeAids)};
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: 49.8880, lng: -119.4960},
@@ -20,17 +21,18 @@ function initMap() {
     directionsDisplay.setMap(map);
 }
 
-$(document).ready(function(){
-    $.ajax({
-      type: 'GET',
-      url: 'http://159.203.47.53:8080/displayMap',
-      dataType: 'json',
-      success: function(data){
-        buildRoute(data);
-    },
-      error: function(data){
-        console.log('Error, Ajax call unsuccessful.', data);
-      }
+  $(document).ready(function () {
+      $.ajax({
+        type: 'GET',
+        url: 'http://159.203.47.53:8080/displayMap',
+        data: aids,
+        dataType: 'json',
+        success: function(data) {
+          buildRoute(data);
+        },
+        error: function(data) {
+          console.log("error");
+        }
     });
   });
 
@@ -41,10 +43,10 @@ function buildRoute(data){
     });
     var waypts = [];
     var originPoint = data[0];
-    var destinationPoint = data[22];
+    var destinationPoint = data[data.length-1];
 
     // API ONLY ALLOWS FOR 23 ATTRACTIONS AT A TIME
-    for(var i = 1; i < 23; i++){
+    for(var i = 1; i < data.length; i++){
       waypts.push({
         location: (data[i].lat + ", " + data[i].lng)
       });
@@ -54,7 +56,7 @@ function buildRoute(data){
         //computeTotalTravelTime(directionsDisplay.getDirections();
         computeTotalDistance(directionsDisplay.getDirections());
     });
-    for (var i = 0; i < 23; i++) {
+    for (var i = 0; i < data.length; i++) {
       var currPos = {lat: data[i].lat, lng: data[i].lng}
       var marker = new google.maps.Marker({
         position: currPos,

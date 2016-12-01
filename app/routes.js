@@ -133,7 +133,7 @@ module.exports = function(app, passport) {
 
 			//var stringify_rid = JSON.stringify(req.query.rid);
 			//var rid = JSON.parse(stringify_rid);
-			
+
 			console.log("rid = " + req.query.rid);
 			console.log("uname = " + req.query.username);
 
@@ -223,17 +223,30 @@ module.exports = function(app, passport) {
 	});
 
 	app.get('/displayMap', function(req, res) {
-		connection.query("SELECT name, lat, lng, description FROM Attraction", function(err, results) {
-			if(!err) {
-				res.json(results);
-			} else {
+		var callback = function(x) {
+			res.json(x);
+		}
+
+		var attractions = req.query.aid;
+		var attractionsInfo = [];
+		for(var i = 0; i < attractions.length; i++) {
+			connection.query("SELECT name, lat, lng, description FROM Attraction WHERE aid = ?", [attractions[i]], function(i, err, results) {
+				if(!err) {
+					results = {"name": results[0].name, "lat": results[0].lat, "lng": results[0].lng, "description": results[0].description}
+					attractionsInfo.push(results);
+						if(i == (attractions.length - 1)) {
+							callback(attractionsInfo);
+						}
+				} else {
 				res.json({
 					"code": 50,
 					"status": "Error in connection to database."
 				});
 			}
-		});
-	});
+			}.bind(connection, i));
+		}
+});
+
 
 
 	// =====================================
