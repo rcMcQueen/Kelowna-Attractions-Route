@@ -180,23 +180,22 @@ module.exports = function(app, passport) {
 	});
 
 	app.get('/createRouteStops', function(req, res) {
-		var stringify = JSON.stringify(req.query.aid);
-		var routeStops = JSON.parse(stringify);
-		var aidSize = Object.size(routeStops);
-
-		if(!req.query.aid){
+		var aidSize = req.query.aid.length;
+		if(!req.query.aid || aidSize == 0){
 			return;
 		} else {
+			// create and insert the new Route into the Database
 			var rid = 0;
 			connection.query('INSERT INTO Route(travel_time) VALUES (0)', function(err,res){
 				if(err) throw err;
 				rid = res.insertId;
 			});
+			// insert each new RouteStop into the Database
 			var aid = 0;
 			var routeStopInsert = 'INSERT INTO RouteStop(rid, aid) VALUES (?, ?)';
 			for(var i = 0; i < aidSize; i++){
-				aid = routeStops[i];
-				connection.query(routeStopInsert, [rid], [aid], function(err,res){
+				aid = req.query.aid[i];
+				connection.query(routeStopInsert, [rid, aid], function(err,res){
 					if(err){
 						console.log('Last insert ID:', res.insertId);
 						throw err;
@@ -204,8 +203,20 @@ module.exports = function(app, passport) {
 				});
 			}
 
-			// OPTIONAL: insert a stored route into the DB with INSERT INTO StoredRoute(uname, rid) VALUES (? , ?)
-			// can't do it at this moment since I do not have username, and I do not even know if the user is logged in
+			/// create and insert the new Stored Route into the Database
+			if(!req.user.uname){
+				return;
+			} else {
+				var uname = req.user.uname;
+				connection.query('INSERT INTO StoredRoute(uname, rid) VALUES (? , ?)', [uname, rid] , function(err,res){
+					if(err){
+						console.log('Last insert ID:', res.insertId);
+						throw err;
+					}
+				});
+
+
+			}
 		}
 	});
 

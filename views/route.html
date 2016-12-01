@@ -203,8 +203,9 @@ function removeSelected(aid)	{
 }
 
 	function finalizeRoute()	{
-	sessionStorage.routeAids = JSON.stringify(selectedAids);
-	window.location.href = "map.html";
+		createRouteStops(selectedAids);
+		sessionStorage.routeAids = JSON.stringify(selectedAids);
+		window.location.href = "map.html";
 	}
 
 	function updateCheckBoxs(){
