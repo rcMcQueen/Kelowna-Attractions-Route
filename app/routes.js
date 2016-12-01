@@ -196,8 +196,8 @@ module.exports = function(app, passport) {
 				}
 			});
 
-			var callback = function(x) {
-				res.json(x);
+			var callback = function() {
+				res.json("Route saved");
 			}
 			// var getRidSql = 'SELECT LAST_INSERT_ID();'
 			// insert each new RouteStop into the Database
@@ -210,7 +210,7 @@ module.exports = function(app, passport) {
 						throw err;
 					} else{
 							if (i == (req.query.length)){
-								console.log("Successful RouteStop INSERT");
+								return;
 							}
 					}
 				}.bind(connection, i));
