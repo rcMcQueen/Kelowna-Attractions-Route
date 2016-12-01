@@ -137,7 +137,7 @@ module.exports = function(app, passport) {
 			console.log("rid = " + req.query.rid);
 			console.log("uname = " + req.query.username);
 
-			var sql = 'SELECT A.name, A.description, A.rating, A.lat, A.lng FROM StoredRoute S, Attraction A, RouteStop R WHERE S.rid = R.rid and R.aid = A.aid and S.uname = ? and S.rid = ? ORDER BY R.id ASC;';
+			var sql = 'SELECT A.aid, A.name, A.description, A.rating, A.lat, A.lng FROM StoredRoute S, Attraction A, RouteStop R WHERE S.rid = R.rid and R.aid = A.aid and S.uname = ? and S.rid = ? ORDER BY R.id ASC;';
 
 			var prepStatements = [];
 			prepStatements.push(req.query.username);
