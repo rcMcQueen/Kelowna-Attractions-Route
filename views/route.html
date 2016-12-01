@@ -153,6 +153,7 @@ if(sessionStorage.rid != "null")	{
 	displayRecommendedRoutes("selectedList",Number(sessionStorage.rid),sessionStorage.uname);
 	for(var x = 0;x<selectedAids.length;x++)	{
 		makeMarker(selectedAids[x]);
+	}
 }
 
 updateCheckBoxs();
