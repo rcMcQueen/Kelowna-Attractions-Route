@@ -123,7 +123,7 @@ function passAttraction(listId, aid){
                      listNode.appendChild(document.createElement("BR"));
                      listNode.appendChild(spanNodeTwo);
                      document.getElementById(listId).appendChild(listNode);
-                     makeMarker(data);
+                     makeMarker(data[0]);
                      // display attraction to the map
                      // buildRouteWithOneAttraction(data);
             },
