@@ -176,6 +176,7 @@ function displayRecommendedRoutes(listId,rid, uname){
                      listNode.appendChild(spanNodeTwo);
                      document.getElementById(listId).appendChild(listNode);
 					 selectedAids.push(jsonClicked_recRoute[x].aid);
+					 console.log(jsonClicked_recRoute[x]+ " "+ jsonClicked_recRoute[x].aid);
 					 makeMarker(jsonClicked_recRoute[x]);
 				}
             },
