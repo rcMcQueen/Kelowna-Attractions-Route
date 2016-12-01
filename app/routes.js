@@ -186,26 +186,22 @@ module.exports = function(app, passport) {
 		} else {
 			// create and insert the new Route into the Database
 			var rid = 0;
-			connection.query('INSERT INTO Route(travel_time) VALUES (0)', function(err,res){
+			connection.query('INSERT INTO Route(travel_time) VALUES (0)', function(err,result){
 				if(err){
 					 throw err;
 				} else {
 					console.log("Successful Route INSERT");
-					rid = parseInt(res.insertId);
+					rid = parseInt(result.insertId);
 				}
 			});
 
-			connection.query('SELECT LAST_INSERT_ID();', function(err, res){
-				if(err){
-					console.log("LAST_INSERT_ID() does not work");
-				} 
 			// insert each new RouteStop into the Database
 			var aid = 0;
 			var routeStopInsert = 'INSERT INTO RouteStop(rid, aid) VALUES (?, ?)';
 			console.log("Rid: "+ rid);
 			for(var i = 0; i < aidSize; i++){
 				aid = parseInt(req.query.aid[i]);
-				connection.query(routeStopInsert, [rid, aid], function(err,res){
+				connection.query(routeStopInsert, [rid, aid], function(err,result){
 					if(err){
 						throw err;
 					} else{
@@ -221,7 +217,7 @@ module.exports = function(app, passport) {
 				var uname = req.user.uname;
 				var name = uname + " Stored Route ";
 				var visible = 1;
-				connection.query('INSERT INTO StoredRoute(uname, rid, name, visible) VALUES (?, ?, ?, ?)', [uname, rid, name, visible] , function(err,res){
+				connection.query('INSERT INTO StoredRoute(uname, rid, name, visible) VALUES (?, ?, ?, ?)', [uname, rid, name, visible] , function(err,result){
 					if(err){
 						throw err;
 					} else {
