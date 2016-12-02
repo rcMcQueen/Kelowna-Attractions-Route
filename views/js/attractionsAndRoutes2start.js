@@ -133,7 +133,6 @@ function passAttraction(listId, aid){
         });
     });
 }
-
 function displayRecommendedRoutes(listId,rid, uname){
     var routeParams = {"rid": rid, "username": uname};
     console.log("Display Rec Route parameters: " + JSON.stringify(routeParams));
@@ -146,45 +145,51 @@ function displayRecommendedRoutes(listId,rid, uname){
             success: function (data) {
                 var jsonClicked_recRoute = data;
                 var dataLength = Object.keys(jsonClicked_recRoute).length;
-				console.log(dataLength);
                 // returns A.name, A.description, A.rating, A.lat, A.lng, A.aid
-				for(var x = 0;x<dataLength;x++)	{
-					console.log("making selected");
-					var listNode = document.createElement("LI");
-                     listNode.setAttribute('class', 'w3-padding-16 w3-border-bottom w3-border-white');
-                     var imageNode = document.createElement("IMG");
-                     imageNode.setAttribute('src', 'img/best_dog.jpg');
-                     imageNode.setAttribute('class', 'w3-left w3-circle');
-                     imageNode.setAttribute('style', 'width:60px');
-                     var spanNodeOne = document.createElement('span');
-                     spanNodeOne.innerHTML = jsonClicked_recRoute[x].name;
-                     spanNodeOne.setAttribute('class','w3-xlarge');
-                     var spanNodeTwo = document.createElement("span");
-                     spanNodeTwo.innerHTML = jsonClicked_recRoute[x].description;
-                     var spanNodeThree = document.createElement("span");
-                     spanNodeThree.innerHTML = 'Rating: ' + jsonClicked_recRoute[x].rating + '/5';
-          					 var spanNodeFour = document.createElement("span");
-          					 spanNodeFour.setAttribute("class","w3-closebtn w3-margin-right w3-xlarge");
-          					 spanNodeFour.innerHTML = "&times";
-          					 spanNodeFour.addEventListener('click',function(x){removeSelected(jsonClicked_recRoute[x].aid);this.parentElement.style.display='none'}(x));
-                     listNode.appendChild(imageNode);
-                     listNode.appendChild(spanNodeOne);
-					           listNode.appendChild(document.createElement("BR"));
-                     listNode.appendChild(spanNodeThree);
-					           listNode.appendChild(spanNodeFour);
-                     listNode.appendChild(document.createElement("BR"));
-                     listNode.appendChild(spanNodeTwo);
-                     document.getElementById(listId).appendChild(listNode);
-					 selectedAids.push(jsonClicked_recRoute[x].aid);
-					 console.log(jsonClicked_recRoute[x]+ " "+ jsonClicked_recRoute[x].aid);
-					 makeMarker(jsonClicked_recRoute[x]);
-				}
+    				for(var x = 0;x<dataLength;x++)	{
+    					makeStuff(data, x);
+    				}
             },
             error: function (err) {
                 console.log('Error, Ajax call unsuccessful.', err);
             }
         });
     });
+}
+
+function makeStuff(data, x) {
+  console.log("making selected");
+  console.log(x);
+  var listNode = document.createElement("LI");
+             listNode.setAttribute('class', 'w3-padding-16 w3-border-bottom w3-border-white');
+             var imageNode = document.createElement("IMG");
+             imageNode.setAttribute('src', 'img/best_dog.jpg');
+             imageNode.setAttribute('class', 'w3-left w3-circle');
+             imageNode.setAttribute('style', 'width:60px');
+             var spanNodeOne = document.createElement('span');
+             spanNodeOne.innerHTML = jsonClicked_recRoute[x].name;
+             spanNodeOne.setAttribute('class','w3-xlarge');
+             var spanNodeTwo = document.createElement("span");
+             spanNodeTwo.innerHTML = jsonClicked_recRoute[x].description;
+             var spanNodeThree = document.createElement("span");
+             spanNodeThree.innerHTML = 'Rating: ' + jsonClicked_recRoute[x].rating + '/5';
+             var spanNodeFour = document.createElement("span");
+             spanNodeFour.setAttribute("class","w3-closebtn w3-margin-right w3-xlarge");
+             spanNodeFour.innerHTML = "&times";
+             spanNodeFour.addEventListener('click', function(x) {
+              removeSelected(jsonClicked_recRoute[x].aid);this.parentElement.style.display='none'
+             });
+             listNode.appendChild(imageNode);
+             listNode.appendChild(spanNodeOne);
+             listNode.appendChild(document.createElement("BR"));
+             listNode.appendChild(spanNodeThree);
+             listNode.appendChild(spanNodeFour);
+             listNode.appendChild(document.createElement("BR"));
+             listNode.appendChild(spanNodeTwo);
+             document.getElementById(listId).appendChild(listNode);
+   selectedAids.push(jsonClicked_recRoute[x].aid);
+   console.log(jsonClicked_recRoute[x]+ " "+ jsonClicked_recRoute[x].aid);
+   makeMarker(jsonClicked_recRoute[x]);
 }
 
 
