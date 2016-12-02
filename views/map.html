@@ -109,6 +109,11 @@ function signOutButton()	{
 	document.getElementById("SignedIn").style = "list-style-type: none; margin: 0; padding: 0; overflow: hidden;";
 	sessionStorage.LoggedIn = "False";
 }
+
+var x = document.getElementsByClassName("adp-placemark");
+for(var y = 0;y<x.size;y++)	{
+	x[y].classname = " ";
+}
 </script>
 
 <!-- Footer -->
