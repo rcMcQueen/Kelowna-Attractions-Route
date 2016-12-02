@@ -154,6 +154,18 @@ var offsetNum = 4
 var offset = 0;
 var selectedAids = [];
 
+if(sessionStorage.LoggedIn == "True")	{
+	console.log("test1");
+	document.getElementById("SignedIn").style = "display:none";
+	document.getElementById("SignOut").style = "list-style-type: none; margin: 0; padding: 0; overflow: hidden;";
+}
+
+function signOutButton()	{
+	document.getElementById("SignOut").style = "display:none";
+	document.getElementById("SignedIn").style = "list-style-type: none; margin: 0; padding: 0; overflow: hidden;";
+	sessionStorage.LoggedIn = "False";
+}
+
 function clickAttr(aid)	{
 	selectedAids.push(aid);
 	passAttraction("selectedList",aid);
