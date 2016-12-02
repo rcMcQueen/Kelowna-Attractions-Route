@@ -22,7 +22,7 @@ function makeMarker(data) {
               map: map
             });
             markers[aid] = marker;
-            attachInfoWindow(marker, data.description, data.name);
+            attachInfoWindow(marker, "MISSING DESCRIPTION. If found, please return to Group 18. We miss it.", data.name);
 }
 
 function attachInfoWindow(marker, desc, name) {
