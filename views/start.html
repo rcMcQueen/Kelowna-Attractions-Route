@@ -185,12 +185,12 @@ var options = {
 
 if(sessionStorage.LoggedIn == "True")	{
 	console.log("test1");
-	document.getElementById("SignedIn").style = "display:none"
+	document.getElementById("SignedIn").style = "display:none";
 	document.getElementById("SignOut").style = "list-style-type: none; margin: 0; padding: 0; overflow: hidden;";
 }
 
 function signOutButton()	{
-	document.getElementById("SignOut").style = "display:none"
+	document.getElementById("SignOut").style = "display:none";
 	document.getElementById("SignedIn").style = "list-style-type: none; margin: 0; padding: 0; overflow: hidden;";
 	sessionStorage.LoggedIn = "False";
 }
@@ -238,6 +238,22 @@ function proceed(bool)	{
 	}
 	if(document.getElementById("destPos").value != "") {
 		window.location.href = "route.html";
+		var startAddress = document.getElementById("currLoc").value;
+		var geocoder = new google.maps.Geocoder();
+		geocoder.geocode({address: addressInput}, function(results, status) {
+			if (status == google.maps.GeocoderStatus.OK) {
+				sessionStorage.userStart = results;
+			}
+		}
+		console.log(results);
+		startAddress = document.getElementById("destLoc").value;
+		geocoder = new google.maps.Geocoder();
+		geocoder.geocode({address: addressInput}, function(results, status) {
+			if (status == google.maps.GeocoderStatus.OK) {
+				sessionStorage.userEnd = results;
+			}
+		}
+		console.log(results);
 		return;
 	}
 	else if(bool == true) {
