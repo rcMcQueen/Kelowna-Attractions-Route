@@ -7,11 +7,10 @@ function createRouteStops(selectedAids){
             dataType: 'json',
             url: 'http://159.203.47.53:8080/createRouteStops',
             success: function (data) {
-                // inserts a route-stops into the database
-                // returns nothing, so no need to display anything on the website
+              $document.getElementById("savedText").innerHTML('Successfully updated record!');
             },
             error: function (err) {
-                console.log('Error, Ajax call unsuccessful.', err);
+              $document.getElementById("savedText").innerHTML('Error! Route not saved!');
             }
         });
     });
