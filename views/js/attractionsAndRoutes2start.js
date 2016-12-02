@@ -144,6 +144,7 @@ function displayRecommendedRoutes(listId,rid, uname){
             url: 'http://159.203.47.53:8080/showRecRoute',
             success: function (data) {
                 // returns A.name, A.description, A.rating, A.lat, A.lng, A.aid
+		    var dataLength = Object.keys(jsonClicked_recRoute).length;
     				for(var x = 0;x<dataLength;x++)	{
     					makeStuff(data, x);
     				}
@@ -157,7 +158,6 @@ function displayRecommendedRoutes(listId,rid, uname){
 
 function makeStuff(data, x) {
   var jsonClicked_recRoute = data;
-  var dataLength = Object.keys(jsonClicked_recRoute).length;
   console.log("making selected");
   console.log(x);
   var listNode = document.createElement("LI");
