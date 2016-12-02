@@ -123,6 +123,9 @@ module.exports = function(app, passport) {
 	// ROUTES AND MAP  =====================
 	// =====================================
 	app.get('/showRecRoute', function(req, res) {
+		var callback = function() {
+			res.json("Route saved");
+		}
 		if(!req.query.username && !req.query.rid){
 			// return empty set, since there are no parameters passed or not all of them are passed
 			res.json([]);
@@ -182,40 +185,34 @@ module.exports = function(app, passport) {
 	app.get('/createRouteStops', isLoggedIn, function(req, res) {
 		var aidSize = req.query.aid.length;
 		if(!req.query.aid || aidSize == 0){
-			return;
+			return "No attractions";
 		} else {
 			// create and insert the new Route into the Database
 			var rid = 0;
 			connection.query('INSERT INTO Route(travel_time) VALUES (1)', function(err,result){
 				if(err){
-					 throw err;
+					 return err;
 				} else {
-					console.log("Successful Route INSERT");
 					rid = parseInt(result.insertId);
-					console.log("new rid = " + rid);
+					var aid = 0;
+					var routeStopInsert = 'INSERT INTO RouteStop (rid, aid) VALUES (?, ?)';
+					for(var i = 0; i < aidSize; i++){
+						aid = parseInt(req.query.aid[i]);
+						connection.query(routeStopInsert, [rid, aid], function(i, err,result){
+							if(err){
+								return err;
+							} else{
+									if (i == (aidSize-1)){
+										callback(rid);
+									}
+							}
+						}.bind(connection, i));
+					}
 				}
 			});
+		}
 
-			var callback = function() {
-				res.json("Route saved");
-			}
-			// var getRidSql = 'SELECT LAST_INSERT_ID();'
-			// insert each new RouteStop into the Database
-			var aid = 0;
-			var routeStopInsert = 'INSERT INTO RouteStop(rid, aid) VALUES (?, ?)';
-			for(var i = 0; i < aidSize; i++){
-				aid = parseInt(req.query.aid[i]);
-				connection.query(routeStopInsert, [rid, aid], function(i, err,result){
-					if(err){
-						throw err;
-					} else{
-							if (i == (req.query.length)){
-								return;
-							}
-					}
-				}.bind(connection, i));
-			}
-
+		var callback = function(rid) {
 			// create and insert the new Stored Route into the Database
 			if(!req.user.uname || req.user.uname == 'undefined'){
 				return;
@@ -223,15 +220,15 @@ module.exports = function(app, passport) {
 				var uname = req.user.uname;
 				var name = uname + " Stored Route ";
 				var visible = 1;
-				connection.query('INSERT INTO StoredRoute(uname, rid, name, visible) VALUES (?, ?, ?, ?)', [uname, rid, name, visible] , function(err,result){
+				connection.query('INSERT INTO StoredRoute (uname, rid, name, visible) VALUES (?, ?, ?, ?)', [uname, rid, name, visible] , function(err,result){
 					if(err){
+						console.log("error in callback");
 						throw err;
 					} else {
 						console.log("Successful StoredRoute INSERT");
+						res.json("Route saved");
 					}
 				});
-
-
 			}
 		}
 	});
