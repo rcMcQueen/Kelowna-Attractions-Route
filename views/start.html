@@ -45,8 +45,9 @@
 	class = "w3-blue">
 	<!--<a href="route.html"><img border="0" src="img/back.png" width="40" height="40"></a>-->
  <button onclick="alert('Directions: Enter starting address, then choose either a predefined route, attraction to visit, or custom ending address');" class="btn btn-secondary" type="button"><i class="material-icons" style="font-size:40px">help</i></button>
-  <li style="float:right"><a class="active" href="/signup"><b>Sign Up</b></a></li>
-  <li style="float:right"><a class="active" href="/login"><b>Login</b></a></li>
+  <li style="float:right" id = "signUpID"><a class="active" href="/signup"><b>Sign Up</b></a></li>
+  <li style="float:right" id = "LoginID"><a class="active" href="/login"><b>Login</b></a></li>
+  <li style="float:right display:none" id = "signOut"><a class="active" href="javascript:ShowOld(2367,146986,2);"><b>Sign Out</b></a></li>
 </ul>
 <!-- First Grid: Logo & About -->
 <div class="w3-row">
@@ -165,6 +166,20 @@ var input = document.getElementById('currPos');
 var options = {
   bounds: defaultBounds
 };
+
+if(sessionStorage.LoggedIn == "True")	{
+	document.getElementById("signOut").style = "inline";
+	document.getElementById("LoginID").style = "hidden";
+	document.getElementById("signUpID").style = "hidden";
+}
+
+function signOutButton()	{
+	document.getElementById("signOut").style = "hidden";
+	document.getElementById("LoginID").style = "inline";
+	document.getElementById("signUpID").style = "inline";
+	sessionStorage.LoggedIn = "False";
+}
+	
 
 autocomplete = new google.maps.places.Autocomplete(input, options);
 input = document.getElementById('destPos');
