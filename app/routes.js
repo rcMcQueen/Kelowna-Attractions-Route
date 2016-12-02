@@ -313,7 +313,8 @@ module.exports = function(app, passport) {
 
 // Display the User's information on their profile
 	app.get('/displayProfile', function(req, res) {
-		connection.query("SELECT uname, email, first_name, last_name FROM User WHERE uname = ?", [req.user.uname], function(err, results) {
+		var sql = "SELECT uname, email, first_name, last_name FROM User WHERE uname = ?";
+		connection.query(sql, [req.user.uname], function(err, results) {
 			if(!err) {
 				res.json(results);
 			} else {
@@ -352,6 +353,22 @@ app.post('/editProfile', function(req, res) {
 	});
 });
 
+// =====================================
+// Routes Profile ========================
+// =====================================
+app.get('/displaySavedRoute', function(req, res) {
+	connection.query("SELECT name FROM User INNER JOIN StoredRoute ON User.uname = StoredRoute.uname WHERE User.uname = ?", [req.user.uname], function(err, results) {
+		if (!err) {
+			res.json(results);
+		}
+		else {
+			res.json({
+				"code": 50,
+				"status": "Error in connection to database."
+			});
+		}
+	});
+});
 
 // route middleware to make sure user is logged in
 function isLoggedIn(req, res, next) {
