@@ -54,11 +54,18 @@ module.exports = function(passport) {
         return done(null, false, req.flash('signupMessage', uname + ' is already taken'));
       }
       else {
-        var newUser = new Model.User();
+        var newUser = {};
         newUser.uname = uname;
         newUser.password = bcrypt.hashSync(password);
 	      newUser.email = req.body.email;
-        connection.query("INSERT INTO User (uname, upass, email) VALUES (?, ?, ?)", [newUser.uname, newUser.password, newUser.email]);
+        connection.query("INSERT INTO User (uname, upass, email) VALUES (?, ?, ?)", [newUser.uname, newUser.password, newUser.email], function(err, results) {
+		if (!err) {
+			return done(null, newUser);
+		}
+		else {
+			return done(err);
+		}
+	});
         return done(null, newUser);
       }
     });
