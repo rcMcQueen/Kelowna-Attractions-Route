@@ -165,7 +165,8 @@ function displayRecommendedRoutes(listId,rid, uname){
                          var spanNodeFour = document.createElement("span");
                          spanNodeFour.setAttribute("class","w3-closebtn w3-margin-right w3-xlarge");
                          spanNodeFour.innerHTML = "&times";
-                         spanNodeFour.addEventListener('click', function() {
+                         spanNodeFour.addEventListener('click', function(x) {
+				 console.log(x);
                           removeSelected(jsonClicked_recRoute[x].aid);this.parentElement.style.display='none'
                         }.bind(x));
                          listNode.appendChild(imageNode);
@@ -178,7 +179,6 @@ function displayRecommendedRoutes(listId,rid, uname){
                          document.getElementById(listId).appendChild(listNode);
                          selectedAids.push(jsonClicked_recRoute[x].aid);
                          console.log(jsonClicked_recRoute[x]+ " "+ jsonClicked_recRoute[x].aid);
-                         console.log(x);
                          console.log(jsonClicked_recRoute[x]);
                          makeMarker(jsonClicked_recRoute[x]);
     				}
