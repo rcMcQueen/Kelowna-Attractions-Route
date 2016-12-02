@@ -7,13 +7,16 @@
         width: 75%;
 		padding-left:50px;
        }
-  body {
-		background-image: url("img/background1.png");
-     }
+	   
  input[type="checkbox"]{
 		width: 20px;
 		height: 20px;
 	}
+	
+	button {
+		color: black;
+	}
+	
  label {
     font: bold 18px ariel !important;
 	}
@@ -32,6 +35,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <body class="w3-content" style="max-width:2000px">
 
 <ul style = "list-style-type: none;
@@ -54,17 +58,21 @@
 	<form class="w3-container w3-bottombar w3-blue w3-border-white" style = "box-shadow: 10px 10px 5px #888888">
 	<h3>Start Location</h3>
   	<div class="input-group">
-		<input type="text" class="form-control" id="currPos" aria-label="Address">
+		<input type="text" class="form-control" id="currPos" aria-label="...">
 			<div class="input-group-btn">
-				<button onclick="getLocation('currPos')" class="btn btn-secondary" type="button"><i class="material-icons w3-large">my_location</i></button>
+				<button onclick="getLocation('currPos')" class="btn btn-default" type="button"><i class="material-icons w3-medium">my_location</i></button>
 			</div>
 	</div>
 	<h3>Ending Location</h3>
-	<button onclick="getLocation('destPos')" class="btn btn-secondary" type="button"><i class="material-icons w3-large">my_location</i></button>
-	<input type="textbox" class="form-control input-lg" id="destPos" placeholder="Address" size="40"><br><br>
-	<input type="button" value="Submit" onclick="proceed(false)">
-	</div>
 	<div class="input-group">
+		<input type="text" class="form-control" id="destPos" aria-label="...">
+			<div class="input-group-btn">
+				<button onclick="getLocation('destPos')" class="btn btn-default" type="button"><i class="material-icons w3-medium">my_location</i></button>
+			</div>
+	</div>
+	<br>
+	<div class="input-group-btn">
+		<button value = "Submit" class="btn btn-default" type="button">Submit</button>
 	</div>
 	<br>
 	</form>
@@ -115,8 +123,12 @@
 	<br>
 	</form>
 	<form class="w3-container w3-blue w3-padding-4" style = "box-shadow: 10px 10px 5px #888888">
-	<button onclick ="attrListMinus();return false;" style = 'display:none' id = 'backBtn'>Go Back </button>
-	<button onclick ='attrListPlus();return false;'>Load More </button>
+	<div class="input-group-btn">
+		<button  class="btn btn-default" type="button" onclick ="attrListMinus();return false;" style = 'display:none' id = 'backBtn'>Go Back </button>
+	</div>
+	<div class="input-group-btn">
+		<button class="btn btn-default" type="button" onclick ='attrListPlus();return false;'>Load More </button>
+	</div>
 	<hr>
 	<ul class="w3-ul w3-card-4" id ="attrList">
 	</ul>
@@ -136,6 +148,7 @@
 <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAmVV2Ab0atjhri97nB2q1OGD_Eb6xW-Hw&libraries=places&js?sensor=false"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="js/attractionsAndRoutes2start.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script>
 var y = 0;
 var z = 0;
