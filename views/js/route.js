@@ -7,10 +7,10 @@ function createRouteStops(selectedAids){
             dataType: 'json',
             url: 'http://159.203.47.53:8080/createRouteStops',
             success: function (data) {
-              document.getElementById("savedText").innerHTML('Successfully updated record!');
+              document.getElementById("savedText").innerHTML = 'Successfully updated record!';
             },
             error: function (err) {
-              document.getElementById("savedText").innerHTML('Error! Route not saved!');
+              document.getElementById("savedText").innerHTML = 'Error! Route not saved!';
             }
         });
     });
