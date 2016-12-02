@@ -165,8 +165,7 @@ function displayRecommendedRoutes(listId,rid, uname){
                          var spanNodeFour = document.createElement("span");
                          spanNodeFour.setAttribute("class","w3-closebtn w3-margin-right w3-xlarge");
                          spanNodeFour.innerHTML = "&times";
-                         spanNodeFour.addEventListener('click', function(x) {
-                           console.log(x);
+                         spanNodeFour.addEventListener('click', function() {
                           removeSelected(jsonClicked_recRoute[x].aid);this.parentElement.style.display='none'
                         }.bind(x));
                          listNode.appendChild(imageNode);
