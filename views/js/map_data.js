@@ -62,7 +62,7 @@ function buildRoute(data){
         position: currPos,
         map: map
       });
-      attachInfoWindow(marker, "MISSING DESCRIPTION. If found, please return to Group 16. We miss it.", data[i].name);
+      attachInfoWindow(marker, data[i].description, data[i].name);
       markerArray[i] = marker;
     }
     displayRoute(originPoint, destinationPoint, waypts, directionsService,
@@ -101,7 +101,7 @@ function computeTotalTravelTime(result) {
 
 function displayRoute(originPoint, destinationPoint, waypts, service, display, data) {
   var dataSize = (originPoint.length + destinationPoint.length + waypts.length);
-
+	directionsDisplay = new google.maps.DirectionsRenderer();
     service.route({
       origin: originPoint,
       destination: destinationPoint,
