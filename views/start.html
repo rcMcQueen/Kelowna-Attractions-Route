@@ -17,6 +17,10 @@
 		color: black;
 	}
 	
+	.hide{
+  display:none;  
+	}
+	
  label {
     font: bold 18px ariel !important;
 	}
@@ -41,13 +45,25 @@
 <ul style = "list-style-type: none;
     margin: 0;
     padding: 0;
-    overflow: hidden;"
-	class = "w3-blue">
+    overflow: hidden;
+	display:none"
+	class = "w3-blue" id = "SignOut">
 	<!--<a href="route.html"><img border="0" src="img/back.png" width="40" height="40"></a>-->
- <button onclick="alert('Directions: Enter starting address, then choose either a predefined route, attraction to visit, or custom ending address');" class="btn btn-secondary" type="button"><i class="material-icons" style="font-size:40px">help</i></button>
-  <li style="float:right" id = "signUpID"><a class="active" href="/signup"><b>Sign Up</b></a></li>
-  <li style="float:right" id = "LoginID"><a class="active" href="/login"><b>Login</b></a></li>
-  <li style="display:none" id = "signOut"><a class="active" href="javascript:signOutButton();"><b>Sign Out</b></a></li>
+	<a href = "start.html" style="font-size:30px"><img src = "img/logo.png"></a>
+ <button onclick="alert('Directions: Enter starting address, then choose either a predefined route, attraction to visit, or custom ending address');" class="btn btn-secondary" type="button"><i class="material-icons" style="font-size:30px">help</i></button>
+  <li style="float:right"><a class="active" href="javascript:signOutButton();"><b>Sign Out</b></a></li>
+  <li style="float:right"><a class="active" href="profile.html"><b>Profile</b></a></li>
+</ul>
+
+<ul style = "list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;"
+	class = "w3-blue" id = "SignedIn">
+	<!--<a href="route.html"><img border="0" src="img/back.png" width="40" height="40"></a>-->
+ <button onclick="alert('Directions: Enter starting address, then choose either a predefined route, attraction to visit, or custom ending address');" class="btn btn-secondary" type="button"><i class="material-icons" style="font-size:30px">help</i></button>
+  <li style="float:right"><a class="active" href="/signup"><b>Sign Up</b></a></li>
+  <li style="float:right"><a class="active" href="/login"><b>Login</b></a></li>
 </ul>
 <!-- First Grid: Logo & About -->
 <div class="w3-row">
@@ -168,15 +184,14 @@ var options = {
 };
 
 if(sessionStorage.LoggedIn == "True")	{
-	document.getElementById("signOut").style = "float:right";
-	document.getElementById("LoginID").style = "hidden";
-	document.getElementById("signUpID").style = "hidden";
+	console.log("test1");
+	document.getElementById("SignedIn").style = "display:none"
+	document.getElementById("SignOut").style = "list-style-type: none; margin: 0; padding: 0; overflow: hidden;";
 }
 
 function signOutButton()	{
-	document.getElementById("signOut").style = "hidden";
-	document.getElementById("LoginID").style = "float:right";
-	document.getElementById("signUpID").style = "float:right";
+	document.getElementById("SignOut").style = "display:none"
+	document.getElementById("SignedIn").style = "list-style-type: none; margin: 0; padding: 0; overflow: hidden;";
 	sessionStorage.LoggedIn = "False";
 }
 	
