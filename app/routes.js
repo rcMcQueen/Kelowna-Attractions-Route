@@ -179,7 +179,7 @@ module.exports = function(app, passport) {
 		}
 	});
 
-	app.get('/createRouteStops', function(req, res) {
+	app.get('/createRouteStops', isLoggedIn, function(req, res) {
 		var aidSize = req.query.aid.length;
 		if(!req.query.aid || aidSize == 0){
 			return;
