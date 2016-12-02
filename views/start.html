@@ -257,6 +257,14 @@ function proceed(bool)	{
 		return;
 	}
 	else if(bool == true) {
+		var startAddress = document.getElementById("currPos").value;
+		var geocoder = new google.maps.Geocoder();
+		geocoder.geocode({address: startAddress}, function(results, status) {
+			if (status == google.maps.GeocoderStatus.OK) {
+				sessionStorage.userStart = results;
+				console.log(results);
+			}
+		});
 		window.location.href = "route.html";
 		return;
 	}
