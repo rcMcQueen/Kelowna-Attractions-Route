@@ -166,7 +166,7 @@ function displayRecommendedRoutes(listId,rid, uname){
           					 var spanNodeFour = document.createElement("span");
           					 spanNodeFour.setAttribute("class","w3-closebtn w3-margin-right w3-xlarge");
           					 spanNodeFour.innerHTML = "&times";
-          					 spanNodeFour.addEventListener('click',function(){removeSelected(jsonClicked_recRoute[x].aid);this.parentElement.style.display='none'});
+          					 spanNodeFour.addEventListener('click',function(x){removeSelected(jsonClicked_recRoute[x].aid);this.parentElement.style.display='none'});
                      listNode.appendChild(imageNode);
                      listNode.appendChild(spanNodeOne);
 					           listNode.appendChild(document.createElement("BR"));
