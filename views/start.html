@@ -239,7 +239,7 @@ function proceed(bool)	{
 	if(document.getElementById("destPos").value != "") {
 		var startAddress = document.getElementById("currPos").value;
 		var geocoder = new google.maps.Geocoder();
-		geocoder.geocode({address: addressInput}, function(results, status) {
+		geocoder.geocode({address: startAddress}, function(results, status) {
 			if (status == google.maps.GeocoderStatus.OK) {
 				sessionStorage.userStart = results;
 			}
@@ -247,7 +247,7 @@ function proceed(bool)	{
 		console.log(results);
 		startAddress = document.getElementById("destPos").value;
 		geocoder = new google.maps.Geocoder();
-		geocoder.geocode({address: addressInput}, function(results, status) {
+		geocoder.geocode({address: startAddress}, function(results, status) {
 			if (status == google.maps.GeocoderStatus.OK) {
 				sessionStorage.userEnd = results;
 			}
