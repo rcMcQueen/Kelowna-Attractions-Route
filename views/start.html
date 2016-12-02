@@ -237,7 +237,6 @@ function proceed(bool)	{
 		return;
 	}
 	if(document.getElementById("destPos").value != "") {
-		window.location.href = "route.html";
 		var startAddress = document.getElementById("currLoc").value;
 		var geocoder = new google.maps.Geocoder();
 		geocoder.geocode({address: addressInput}, function(results, status) {
